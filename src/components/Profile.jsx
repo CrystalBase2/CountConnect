@@ -19,43 +19,7 @@ function Profile() {
           <p className="profile-date">{formattedDate}</p>
         </div>
       </div>
-      <span className="profile-subtitle">Welcome<b>, USER!</b></span>
-
-      <div className="passenger-table-container">
-        <table className="passenger-table">
-          <thead>
-            <tr>
-              <th>Bus Route</th>
-              <th>Passengers Waiting</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Gaisano Mall - Alubijid</td>
-              <td>00</td>
-            </tr>
-            <tr>
-              <td>Gaisano Mall - Libertad</td>
-              <td>00</td>
-            </tr>
-            <tr>
-              <td>Gaisano Mall - Laguindingan</td>
-              <td>00</td>
-            </tr>
-            <tr>
-              <td>Gaisano Mall - Tagoloan</td>
-              <td>00</td>
-            </tr>
-            <tr>
-              <td>Gaisano Mall - Villanueva</td>
-              <td>00</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
     </div>
-
-
   );
 }
 
