@@ -1,6 +1,6 @@
 .home-container {
     flex-direction: column;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Montserrat', 'Inter', sans-serif;
     font-weight: bolder;
     flex-grow: 1;
     padding-right: 50px;
@@ -48,73 +48,10 @@ span {
     font-weight: lighter;
 }
 
-.home-dropdown {
-    margin-left: 100px;
-    margin-top: 5px;
-    font-family: 'Inter', sans-serif;
-    font-weight: lighter;
-    position: absolute;
-}
-
-.dropdown-item {
-    font-size: 15px;
-    padding: 10px;
-    font-family: 'Inter', sans-serif;
-    font-weight: lighter;
-    align-items: center;
-    color: black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.dropdown {
-    margin: 0 auto;
-    width: 250px;
-    height: 5000px;
-    position: relative;
-    z-index: 10;
-}
-
-.dropdown .dropdown-btn {
-    font-family: 'Inter', sans-serif;
-    font-size: 15px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    background: #65647C;
-    display: flex;
-    padding: 10px;
-    border: 1px solid #ddd;
-    color: white;
-
-}
-
-.dropdown-content {
-    position: absolute;
-    left: 0;
-    width: 100%;
-    background: white;
-    cursor: pointer;
-}
-
-.dropdown-content .item {
-    padding: 5px;
-    cursor: pointer;
-}
-
-button {
-    z-index: -1;
-    display: block;
-    width: 300px;
-    margin: 0 auto;
-}
-
 .passenger-table {
-    width: 40%;
+    width: 50%;
     border-collapse: collapse;
-    margin-top: 100px !important;
+    margin-top: 50px !important;
     margin: 0 auto;
 }
 
@@ -128,14 +65,17 @@ button {
 
 
 .passenger-table th {
-    background-color: #D4CEB0;
+    background-color: #D5B690;
     color: #181414;
+
 }
 
 .passenger-table tbody tr:nth-child(even) {
     background-color: white;
+    font-weight: lighter;
 }
 
 .passenger-table tbody tr:nth-child(odd) {
     background-color: white;
+    font-weight: lighter;
 }

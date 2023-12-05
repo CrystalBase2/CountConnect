@@ -1,15 +1,12 @@
 import React, { useState } from "react";
 import { FaHome, FaFile, FaUserAlt, FaCaretDown } from "react-icons/fa";
 import { BiLogOut } from "react-icons/bi";
-import * as RiIcons from "react-icons/ri";
 import { NavLink } from "react-router-dom";
 import "../css/Sidebar.css";
 
-import Submenu from "./SubMenu";
 
 const Sidebar = ({ children }) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
-
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
   };
@@ -19,18 +16,17 @@ const Sidebar = ({ children }) => {
       path: "/dashboard/home",
       name: "Home",
       icon: <FaHome />,
-    },
+      dropdown: [
+        { path: "/dashboard/unit", name: "Unit Updates" }
+    ]},
     {
       name: "Reports",
       icon: <FaFile />,
-      iconClosed: <RiIcons.RiArrowDownSFill />,
-      iconOpened: <RiIcons.RiArrowUpSFill />,
       dropdown: [
         { path: "/dashboard/daily", name: "Daily" },
         { path: "/dashboard/weekly", name: "Weekly" },
         { path: "/dashboard/monthly", name: "Monthly" },
       ],
-      arrow: <FaCaretDown />,
     },
     {
       path: "/dashboard/profile",

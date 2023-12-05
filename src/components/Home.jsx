@@ -24,79 +24,34 @@ function Home() {
       </div>
       <span className="home-subtitle">Welcome<b>, USER!</b></span>
 
-
-      <div className="home-dropdown">
-        <div className="dropdown">
-          <div onClick={(e) => { setIsActive(!isActive); }} className="dropdown-btn">
-            {selected}
-            <p className={isActive ? "fas fa-caret-up" : "fas fa-caret-down"} />
-          </div>
-          <div className="dropdown-content" style={{ display: isActive ? "block" : "none" }}>
-            <div onClick={(e) => {
-              setIsSelected(e.target.textContent);
-              setIsActive(!isActive);
-            }}
-              className="dropdown-item"> Gaisano Mall - Alubijid
-            </div>
-            <div onClick={(e) => {
-              setIsSelected(e.target.textContent);
-              setIsActive(!isActive);
-            }}
-              className="dropdown-item"> Gaisano Mall - Laguindingan
-            </div>
-            <div onClick={(e) => {
-              setIsSelected(e.target.textContent);
-              setIsActive(!isActive);
-            }}
-              className="dropdown-item"> Gaisano Mall - Libertad
-            </div>
-            <div onClick={(e) => {
-              setIsSelected(e.target.textContent);
-              setIsActive(!isActive);
-            }}
-              className="dropdown-item"> Gaisano Mall - Tagoloan
-            </div>
-            <div onClick={(e) => {
-              setIsSelected(e.target.textContent);
-              setIsActive(!isActive);
-            }}
-              className="dropdown-item"> Gaisano Mall - Villanueva
-            </div>
-          </div>
-        </div>
-      </div>
       <div className="passenger-table-container">
         <table className="passenger-table">
           <thead>
             <tr>
-              <th>Terminal</th>
+              <th>Bus Route</th>
               <th>Passengers Waiting</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>Alubijid</td>
-              <td>20</td>
+              <td>Gaisano Mall - Alubijid</td>
+              <td>00</td>
             </tr>
             <tr>
-              <td>Gaisano Mall</td>
-              <td>25</td>
+              <td>Gaisano Mall - Libertad</td>
+              <td>00</td>
             </tr>
             <tr>
-              <td>Villanueva</td>
-              <td>30</td>
+              <td>Gaisano Mall - Laguindingan</td>
+              <td>00</td>
             </tr>
             <tr>
-              <td>Tagoloan</td>
-              <td>10</td>
+              <td>Gaisano Mall - Tagoloan</td>
+              <td>00</td>
             </tr>
             <tr>
-              <td>Laguindingan</td>
-              <td>15</td>
-            </tr>
-            <tr>
-              <td>Libertad</td>
-              <td>8</td>
+              <td>Gaisano Mall - Villanueva</td>
+              <td>00</td>
             </tr>
           </tbody>
         </table>
