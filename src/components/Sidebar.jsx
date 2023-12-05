@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { FaHome, FaFile, FaUserAlt, FaCaretDown } from "react-icons/fa";
+import { FaHome, FaFile, FaUserAlt, FaBusAlt } from "react-icons/fa";
+import { BsTable } from "react-icons/bs";
 import { RiArrowDownSFill, RiArrowUpSFill } from "react-icons/ri";
 import { BiLogOut } from "react-icons/bi";
 import { NavLink } from "react-router-dom";
@@ -18,7 +19,7 @@ const Sidebar = ({ children }) => {
       name: "Home",
       icon: <FaHome />,
       subNav: [
-        { path: "/dashboard/unit", name: "Unit Updates" }
+        {path: "/dashboard/unit", name: "Unit Updates", icon: <FaBusAlt />},
     ],
       iconClosed: <RiArrowDownSFill />,
       iconOpened: <RiArrowUpSFill />,
@@ -27,9 +28,9 @@ const Sidebar = ({ children }) => {
       name: "Reports",
       icon: <FaFile />,
       subNav: [
-        { path: "/dashboard/daily", name: "Daily" },
-        { path: "/dashboard/weekly", name: "Weekly" },
-        { path: "/dashboard/monthly", name: "Monthly" },
+        { path: "/dashboard/daily", name: "Daily", icon: <BsTable />},
+        { path: "/dashboard/weekly", name: "Weekly", icon: <BsTable />},
+        { path: "/dashboard/monthly", name: "Monthly", icon: <BsTable />},
       ],
       iconClosed: <RiArrowDownSFill />,
       iconOpened: <RiArrowUpSFill />,
@@ -73,6 +74,7 @@ const Sidebar = ({ children }) => {
                 className="sublink"
                 activeClassName="active"
               >
+                <div className="sublink_icon">{subItem.icon}</div>
                 <div className="sublink_text">{subItem.name}</div>
               </NavLink>
             ))}
