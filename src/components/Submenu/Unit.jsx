@@ -18,13 +18,12 @@ function Daily() {
   return (
     <div className="submenu-container">
       <div className="submenu-content">
-        <h1 className="submenu-title">REPORTS</h1>
+        <h1 className="submenu-title">Unit Updates</h1>
         <div className="date-icon">
           <FaCalendarAlt />
           <p className="submenu-date">{formattedDate}</p>
         </div>
       </div>
-      <span className="submenu-pagesub">Daily</span>
       <span className="submenu-subtitle">Welcome<b>, USER!</b></span>
 
 

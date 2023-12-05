@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import { FaHome, FaFile, FaUserAlt, FaCaretDown } from "react-icons/fa";
+import { RiArrowDownSFill, RiArrowUpSFill } from "react-icons/ri";
 import { BiLogOut } from "react-icons/bi";
 import { NavLink } from "react-router-dom";
 import "../css/Sidebar.css";
 
-
 const Sidebar = ({ children }) => {
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-  const toggleDropdown = () => {
-    setDropdownOpen(!dropdownOpen);
+  const [subNavOpen, setSubNavOpen] = useState(null);
+
+  const toggleSubNav = (index) => {
+    setSubNavOpen(subNavOpen === index ? null : index);
   };
 
   const menuItem = [
@@ -16,17 +17,22 @@ const Sidebar = ({ children }) => {
       path: "/dashboard/home",
       name: "Home",
       icon: <FaHome />,
-      dropdown: [
+      subNav: [
         { path: "/dashboard/unit", name: "Unit Updates" }
-    ]},
+    ],
+      iconClosed: <RiArrowDownSFill />,
+      iconOpened: <RiArrowUpSFill />,
+    },
     {
       name: "Reports",
       icon: <FaFile />,
-      dropdown: [
+      subNav: [
         { path: "/dashboard/daily", name: "Daily" },
         { path: "/dashboard/weekly", name: "Weekly" },
         { path: "/dashboard/monthly", name: "Monthly" },
       ],
+      iconClosed: <RiArrowDownSFill />,
+      iconOpened: <RiArrowUpSFill />,
     },
     {
       path: "/dashboard/profile",
@@ -50,12 +56,17 @@ const Sidebar = ({ children }) => {
               to={item.path}
               className="link"
               activeClassName="active"
-              onClick={item.dropdown && toggleDropdown}
+              onClick={() => item.subNav && toggleSubNav(index)}
             >
               <div className="icon">{item.icon}</div>
               <div className="link_text">{item.name}</div>
+              {item.subNav && (
+                <div className="arrow-icon">
+                  {subNavOpen === index ? <RiArrowUpSFill /> : <RiArrowDownSFill />}
+                </div>
+              )}
             </NavLink>
-            {dropdownOpen && item.dropdown && item.dropdown.map((subItem, subIndex) => (
+            {subNavOpen === index && item.subNav && item.subNav.map((subItem, subIndex) => (
               <NavLink
                 to={subItem.path}
                 key={subIndex}

@@ -23,7 +23,6 @@ function Home() {
         </div>
       </div>
         <span className="home-subtitle">Welcome<b>, USER!</b></span>
-        <span className="location-title">LOCATION</span>
 
       <div className="home-dropdown">
       <div className="dropdown">

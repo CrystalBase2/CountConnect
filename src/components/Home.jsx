@@ -10,8 +10,6 @@ function Home() {
   const day = currentDate.getDate().toString().padStart(2, '0');
   const formattedDate = `${year}-${month}-${day}`;
 
-  const [isActive, setIsActive] = useState(false);
-  const [selected, setIsSelected] = useState("Choose a bus route");
 
   return (
     <div className="home-container">
