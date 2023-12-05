@@ -9,6 +9,7 @@ import Daily from "./Submenu/Daily";
 import Weekly from "./Submenu/Weekly";
 import Monthly from "./Submenu/Monthly";
 import Unit from "./Submenu/Unit";
+import Webcam from "./Submenu/Webcam";
 
 import '../css/Dashboard.css';
 
@@ -28,6 +29,7 @@ function Dashboard() {
             <Route path = "weekly" element={<Weekly />} />
             <Route path = "monthly" element={<Monthly />} />
             <Route path = "unit" element={<Unit />} />
+            <Route path = "webcam" element={<Webcam />} />
           </Routes>
         </div>
       </div>

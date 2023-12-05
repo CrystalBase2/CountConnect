@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FaHome, FaFile, FaUserAlt, FaBusAlt } from "react-icons/fa";
-import { BsTable } from "react-icons/bs";
+import { BsTable, BsWebcamFill } from "react-icons/bs";
 import { RiArrowDownSFill, RiArrowUpSFill } from "react-icons/ri";
 import { BiLogOut } from "react-icons/bi";
 import { NavLink } from "react-router-dom";
@@ -20,6 +20,7 @@ const Sidebar = ({ children }) => {
       icon: <FaHome />,
       subNav: [
         {path: "/dashboard/unit", name: "Unit Updates", icon: <FaBusAlt />},
+        {path: "/dashboard/webcam", name: "Live Monitoring", icon: <BsWebcamFill />},
     ],
       iconClosed: <RiArrowDownSFill />,
       iconOpened: <RiArrowUpSFill />,

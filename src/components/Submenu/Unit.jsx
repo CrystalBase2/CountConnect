@@ -5,7 +5,7 @@ import { useState } from "react";
 import '../../css/Submenu.css';
 
 
-function Daily() {
+function Unit() {
   const currentDate = new Date();
   const year = currentDate.getFullYear();
   const month = (currentDate.getMonth() + 1).toString().padStart(2, '0');
@@ -118,6 +118,6 @@ function Daily() {
 
 
 
-export default Daily;
+export default Unit;
 
 
