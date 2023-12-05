@@ -57,10 +57,11 @@ span {
 }
 
 .submenu-dropdown {
-    margin-left: -620px;
+    margin-left: 100px;
     margin-top: 5px;
     font-family: 'Inter', sans-serif;
     font-weight: lighter;
+    position: absolute;
 }
 
 .dropdown-item {
