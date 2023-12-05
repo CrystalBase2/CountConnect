@@ -5,7 +5,7 @@ import { useState } from "react";
 import '../../css/Submenu.css';
 
 
-function Daily() {
+function Monthly() {
   const currentDate = new Date();
   const year = currentDate.getFullYear();
   const month = (currentDate.getMonth() + 1).toString().padStart(2, '0');
@@ -25,7 +25,7 @@ function Daily() {
         </div>
       </div>
       <span className="submenu-pagesub">Monthly</span>
-      <span className="submenu-subtitle">Welcome<b>, USER!</b></span>
+      <span className="reports-submenu-subtitle">Welcome<b>, USER!</b></span>
 
 
       <div className="submenu-dropdown">
@@ -68,6 +68,65 @@ function Daily() {
           </div>
         </div>
       </div>
+
+      <h2 className="table-title"><b>(Chosen Bus Here)</b></h2>
+      <div className="passenger-table-container">
+        <table className="passenger-table">
+          <thead>
+            <tr>
+              <th>Bus Number</th>
+              <th> Week 1 </th>
+              <th> Week 2 </th>
+              <th> Week 3 </th>
+              <th> Week 4 </th>
+              <th> Week 5 </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>101</td>
+              <td>00</td>
+              <td>00</td>
+              <td>00</td>
+              <td>00</td>
+              <td>00</td>
+            </tr>
+            <tr>
+              <td>102</td>
+              <td>00</td>
+              <td>00</td>
+              <td>00</td>
+              <td>00</td>
+              <td>00</td>
+            </tr>
+            <tr>
+              <td>103</td>
+              <td>00</td>
+              <td>00</td>
+              <td>00</td>
+              <td>00</td>
+              <td>00</td>
+            </tr>
+            <tr>
+              <td>104</td>
+              <td>00</td>
+              <td>00</td>
+              <td>00</td>
+              <td>00</td>
+              <td>00</td>
+            </tr>
+            <tr>
+              <td>105</td>
+              <td>00</td>
+              <td>00</td>
+              <td>00</td>
+              <td>00</td>
+              <td>00</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
     </div>
 
 
@@ -77,6 +136,6 @@ function Daily() {
 
 
 
-export default Daily;
+export default Monthly;
 
 
