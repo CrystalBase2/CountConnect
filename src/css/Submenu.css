@@ -156,8 +156,15 @@ h2{
     margin: 0 auto;
 }
 
+.weekly-passenger-table {
+    width: 75%;
+    border-collapse: collapse;
+    margin-top: 20px !important;
+    margin: 0 auto;
+}
+
 .passenger-table th,
-.passenger-table td {
+.passenger-table td, .weekly-passenger-table th, .weekly-passenger-table td {
     font-size: 15px;
     border: 1px solid #ccc;
     padding: 10px;
@@ -165,18 +172,18 @@ h2{
 }
 
 
-.passenger-table th {
+.passenger-table th, .weekly-passenger-table {
     background-color: #D5B690;
     color: #181414;
 
 }
 
-.passenger-table tbody tr:nth-child(even) {
+.passenger-table, .weekly-passenger-table tbody tr:nth-child(even) {
     background-color: white;
     font-weight: lighter;
 }
 
-.passenger-table tbody tr:nth-child(odd) {
+.passenger-table, .weekly-passenger-table tbody tr:nth-child(odd) {
     background-color: white;
     font-weight: lighter;
 }

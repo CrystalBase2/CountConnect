@@ -25,7 +25,7 @@ function Daily() {
         </div>
       </div>
       <span className="submenu-pagesub">Weekly</span>
-      <span className="submenu-subtitle">Welcome<b>, USER!</b></span>
+      <span className="reports-submenu-subtitle">Welcome<b>, USER!</b></span>
 
 
       <div className="submenu-dropdown">
@@ -68,6 +68,77 @@ function Daily() {
           </div>
         </div>
       </div>
+
+      <h2 className="table-title"><b>(Chosen Bus Here)</b></h2>
+      <div className="passenger-table-container">
+        <table className="weekly-passenger-table">
+          <thead>
+            <tr>
+              <th>Bus Number</th>
+              <th>Monday</th>
+              <th>Tuesday</th>
+              <th>Wednesday</th>
+              <th>Thursday</th>
+              <th>Friday</th>
+              <th>Saturday</th>
+              <th>Sunday</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>101</td>
+              <td>00</td>
+              <td>00</td>
+              <td>00</td>
+              <td>00</td>
+              <td>00</td>
+              <td>00</td>
+              <td>00</td>
+            </tr>
+            <tr>
+              <td>102</td>
+              <td>00</td>
+              <td>00</td>
+              <td>00</td>
+              <td>00</td>
+              <td>00</td>
+              <td>00</td>
+              <td>00</td>
+            </tr>
+            <tr>
+              <td>103</td>
+              <td>00</td>
+              <td>00</td>
+              <td>00</td>
+              <td>00</td>
+              <td>00</td>
+              <td>00</td>
+              <td>00</td>
+            </tr>
+            <tr>
+              <td>104</td>
+              <td>00</td>
+              <td>00</td>
+              <td>00</td>
+              <td>00</td>
+              <td>00</td>
+              <td>00</td>
+              <td>00</td>
+            </tr>
+            <tr>
+              <td>105</td>
+              <td>00</td>
+              <td>00</td>
+              <td>00</td>
+              <td>00</td>
+              <td>00</td>
+              <td>00</td>
+              <td>00</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
     </div>
 
 
