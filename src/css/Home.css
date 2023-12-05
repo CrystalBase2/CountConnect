@@ -7,105 +7,135 @@
     justify-content: space-between;
 }
 
-    .home-content {
-        font-family: 'Montserrat', sans-serif;
-        margin-left: 100px;
-        margin-top: 50px;
-        display: flex;
-        justify-content: space-between;
-        }
+.home-content {
+    font-family: 'Montserrat', sans-serif;
+    margin-left: 100px;
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-between;
+}
 
-        .home-date {
-            font-weight: bolder;
-        }
+.home-date {
+    font-weight: bolder;
+}
 
-        .date-icon {
-            display: flex;
-            align-items: center;
-        }
+.date-icon {
+    display: flex;
+    align-items: center;
+}
 
-        .date-icon svg {
-            margin-right: 20px;
-        }
+.date-icon svg {
+    margin-right: 20px;
+}
 
-        .home-title {
-            font-size: 50px;
-            font-weight: bolder;
-        }
+.home-title {
+    font-size: 50px;
+    font-weight: bolder;
+}
 
-        span {
-            font-size: 10px;
-            text-align: left;
-            flex: 1;
-            font-family: 'Montserrat', sans-serif;
-            margin-left: 100px;
-            margin-top: 55px;
-            display: flex;
-        }
+span {
+    font-size: 10px;
+    text-align: left;
+    flex: 1;
+    font-family: 'Montserrat', sans-serif;
+    margin-left: 100px;
+    margin-top: 55px;
+    display: flex;
+}
 
-        .home-subtitle {
-            font-size: 20px;
-            font-weight: lighter;
-        }
+.home-subtitle {
+    font-size: 20px;
+    font-weight: lighter;
+}
 
-    .home-dropdown {
-        margin-left: 100px;
-        margin-top: 5px;
-        font-family: 'Inter', sans-serif;
-        font-weight: lighter;
-        position: absolute;
-        }
+.home-dropdown {
+    margin-left: 100px;
+    margin-top: 5px;
+    font-family: 'Inter', sans-serif;
+    font-weight: lighter;
+    position: absolute;
+}
 
-        .dropdown-item {
-            font-size: 15px;
-            padding: 10px;
-            font-family: 'Inter', sans-serif;
-            font-weight: lighter;
-            align-items: center;
-            color: black;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        .dropdown {
-            margin: 0 auto;
-            width: 250px;
-            height: 5000px;
-            position: relative;
-            z-index: 10;
-        }
+.dropdown-item {
+    font-size: 15px;
+    padding: 10px;
+    font-family: 'Inter', sans-serif;
+    font-weight: lighter;
+    align-items: center;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-        .dropdown .dropdown-btn {
-            font-family: 'Inter', sans-serif;
-            font-size: 15px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            background: #65647C;
-            display: flex;
-            padding: 10px;
-            border: 1px solid #ddd;
-            color: white;
-            
-        }
-        .dropdown-content {
-            position: absolute;
-            left: 0;
-            width: 100%;
-            background: white;
-            cursor: pointer;
-        }
+.dropdown {
+    margin: 0 auto;
+    width: 250px;
+    height: 5000px;
+    position: relative;
+    z-index: 10;
+}
 
-        .dropdown-content .item {
-            padding: 5px;
-            cursor: pointer;
-        }
-        
-        button {
-            z-index: -1;
-            display: block;
-            width: 300px;
-            margin: 0 auto;
-        }
+.dropdown .dropdown-btn {
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    background: #65647C;
+    display: flex;
+    padding: 10px;
+    border: 1px solid #ddd;
+    color: white;
+
+}
+
+.dropdown-content {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    background: white;
+    cursor: pointer;
+}
+
+.dropdown-content .item {
+    padding: 5px;
+    cursor: pointer;
+}
+
+button {
+    z-index: -1;
+    display: block;
+    width: 300px;
+    margin: 0 auto;
+}
+
+.passenger-table {
+    width: 40%;
+    border-collapse: collapse;
+    margin-top: 100px !important;
+    margin: 0 auto;
+}
+
+.passenger-table th,
+.passenger-table td {
+    font-size: 15px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+}
+
+
+.passenger-table th {
+    background-color: #D4CEB0;
+    color: #181414;
+}
+
+.passenger-table tbody tr:nth-child(even) {
+    background-color: white;
+}
+
+.passenger-table tbody tr:nth-child(odd) {
+    background-color: white;
+}
