@@ -67,34 +67,42 @@ function Daily() {
           </div>
         </div>
       </div>
-      
+
+      <h2 className="table-title"><b>(Chosen Bus Here)</b></h2>
+      <p className="table-subtitle"><i>This is reflected from the Mobile Application</i></p>
       <div className="passenger-table-container">
         <table className="passenger-table">
           <thead>
             <tr>
-              <th>Bus Route</th>
-              <th>Passengers Waiting</th>
+              <th>Bus Number</th>
+              <th>Bus Capacity</th>
+              <th>Vehicle Passenger Count</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>Gaisano Mall - Alubijid</td>
+              <td>101</td>
+              <td>00</td>
               <td>00</td>
             </tr>
             <tr>
-              <td>Gaisano Mall - Libertad</td>
+              <td>102</td>
+              <td>00</td>
               <td>00</td>
             </tr>
             <tr>
-              <td>Gaisano Mall - Laguindingan</td>
+              <td>103</td>
+              <td>00</td>
               <td>00</td>
             </tr>
             <tr>
-              <td>Gaisano Mall - Tagoloan</td>
+              <td>104</td>
+              <td>00</td>
               <td>00</td>
             </tr>
             <tr>
-              <td>Gaisano Mall - Villanueva</td>
+              <td>105</td>
+              <td>00</td>
               <td>00</td>
             </tr>
           </tbody>
