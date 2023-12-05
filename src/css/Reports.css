@@ -1,0 +1,31 @@
+.reports-container {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bolder;
+    flex-grow: 1;
+    padding-right: 50px;
+}
+
+.reports-title {
+    font-size: 50px;
+    font-weight: bolder;
+
+}
+
+.reports-content {
+    margin-left: 100px;
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.date-icon {
+    display: flex;
+    align-items: center;
+}
+
+.date-icon svg {
+    margin-right: 20px;
+}

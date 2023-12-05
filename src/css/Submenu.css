@@ -1,0 +1,123 @@
+.submenu-container {
+    flex-direction: column;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bolder;
+    flex-grow: 1;
+    padding-right: 50px;
+    justify-content: space-between;
+}
+
+.submenu-content {
+    font-family: 'Montserrat', sans-serif;
+    margin-left: 100px;
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.submenu-date {
+    font-weight: bolder;
+}
+
+.submenu-icon {
+    display: flex;
+    align-items: center;
+}
+
+.submenu-icon svg {
+    margin-right: 20px;
+}
+
+.submenu-title {
+    font-size: 50px;
+    font-weight: bolder;
+}
+
+.submenu-pagesub {
+    font-size: 30px;
+    font-weight: bolder;
+    color: #65647C;
+    text-align: center;
+    margin-top: 1px;
+}
+
+span {
+    font-size: 10px;
+    text-align: left;
+    flex: 1;
+    font-family: 'Montserrat', sans-serif;
+    margin-left: 100px;
+    display: flex;
+}
+
+.submenu-subtitle {
+    font-size: 20px;
+    margin-top: 60px;
+    font-weight: lighter;
+}
+
+.submenu-dropdown {
+    margin-left: -620px;
+    margin-top: 5px;
+    font-family: 'Inter', sans-serif;
+    font-weight: lighter;
+}
+
+.dropdown-item {
+    font-size: 15px;
+    padding: 10px;
+    font-family: 'Inter', sans-serif;
+    font-weight: lighter;
+    align-items: center;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dropdown {
+    margin: 0 auto;
+    width: 250px;
+    height: 5000px;
+    position: relative;
+}
+
+.dropdown,
+.dropdown * {
+    z-index: 10;
+}
+
+.dropdown .dropdown-btn {
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    background: #65647C;
+    display: flex;
+    padding: 10px;
+    border: 1px solid #ddd;
+    color: white;
+
+}
+
+.dropdown-content {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    background: white;
+    cursor: pointer;
+}
+
+.dropdown-content .item {
+    padding: 5px;
+    cursor: pointer;
+}
+
+button {
+    z-index: -1;
+    display: block;
+    width: 300px;
+    margin: 0 auto;
+}

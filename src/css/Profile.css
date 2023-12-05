@@ -1,0 +1,47 @@
+.profile-container {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bolder;
+    flex-grow: 1;
+    padding-right: 50px;
+}
+
+.profile-title {
+    font-size: 50px;
+    font-weight: bolder;
+
+}
+
+.profile-content {
+    margin-left: 100px;
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.date-icon {
+    display: flex;
+    align-items: center;
+}
+
+.date-icon svg {
+    margin-right: 20px;
+}
+
+.location-title {
+    font-size: 50px;
+    font-weight: bolder;
+    text-align: center;
+    
+}
+
+span {
+    font-size: 10px;
+    margin-left: 800px;
+    flex: 1;
+    font-family: 'Montserrat', sans-serif;
+    margin-top: 55px;
+    display: flex;
+}
