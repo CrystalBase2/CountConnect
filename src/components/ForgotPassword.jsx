@@ -26,7 +26,7 @@ function ForgotPassword() {
         <br></br>
         <br></br>
         <br></br>
-        <p>We’ll be sending you a link to change your password</p>
+        <p className = "forgotpassword-signup-link">We’ll be sending you a link to change your password</p>
         <form className="forgotpassword-form" onSubmit={handleSubmit}>
           <div className="forgotpassword-input-group">
             <input
