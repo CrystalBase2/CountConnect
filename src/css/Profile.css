@@ -1,24 +1,22 @@
 .profile-container {
-    display: flex;
     flex-direction: column;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Montserrat', 'Inter', sans-serif;
     font-weight: bolder;
     flex-grow: 1;
     padding-right: 50px;
-}
-
-.profile-title {
-    font-size: 50px;
-    font-weight: bolder;
-
+    justify-content: space-between;
 }
 
 .profile-content {
+    font-family: 'Montserrat', sans-serif;
     margin-left: 100px;
     margin-top: 50px;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+}
+
+.profile-date {
+    font-weight: bolder;
 }
 
 .date-icon {
@@ -30,18 +28,54 @@
     margin-right: 20px;
 }
 
-.location-title {
+.profile-title {
     font-size: 50px;
     font-weight: bolder;
-    text-align: center;
-    
 }
 
 span {
     font-size: 10px;
-    margin-left: 800px;
+    text-align: left;
     flex: 1;
     font-family: 'Montserrat', sans-serif;
+    margin-left: 100px;
     margin-top: 55px;
     display: flex;
+}
+
+.profile-subtitle {
+    font-size: 20px;
+    font-weight: lighter;
+}
+
+.passenger-table {
+    width: 50%;
+    border-collapse: collapse;
+    margin-top: 50px !important;
+    margin: 0 auto;
+}
+
+.passenger-table th,
+.passenger-table td {
+    font-size: 15px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+}
+
+
+.passenger-table th {
+    background-color: #D5B690;
+    color: #181414;
+
+}
+
+.passenger-table tbody tr:nth-child(even) {
+    background-color: white;
+    font-weight: lighter;
+}
+
+.passenger-table tbody tr:nth-child(odd) {
+    background-color: white;
+    font-weight: lighter;
 }

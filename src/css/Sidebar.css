@@ -41,6 +41,12 @@
     gap: 20px;
 }
 
+.link:hover {
+    background: #F3EFE0;
+    color: #000;
+    transition: all 0.5s;
+}
+
 .sublink {
     display: flex;
     font-size: 15px;

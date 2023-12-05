@@ -122,3 +122,35 @@ button {
     width: 300px;
     margin: 0 auto;
 }
+
+.passenger-table {
+    width: 50%;
+    border-collapse: collapse;
+    margin-top: 50px !important;
+    margin: 0 auto;
+}
+
+.passenger-table th,
+.passenger-table td {
+    font-size: 15px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+}
+
+
+.passenger-table th {
+    background-color: #D5B690;
+    color: #181414;
+
+}
+
+.passenger-table tbody tr:nth-child(even) {
+    background-color: white;
+    font-weight: lighter;
+}
+
+.passenger-table tbody tr:nth-child(odd) {
+    background-color: white;
+    font-weight: lighter;
+}

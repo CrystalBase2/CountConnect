@@ -1,6 +1,6 @@
 import React from "react";
 import { FaCalendarAlt } from "react-icons/fa";
-import '../css/Home.css';
+import '../css/Profile.css';
 
 function Profile() {
   const currentDate = new Date();
@@ -11,18 +11,51 @@ function Profile() {
 
 
   return (
-    <div className="home-container">
-      <div className="home-content">
-        <h1 className="home-title">PROFILE</h1>
+    <div className="profile-container">
+      <div className="profile-content">
+        <h1 className="profile-title">PROFILE</h1>
         <div className="date-icon">
-          <FaCalendarAlt/>
-          <p className="home-date">{formattedDate}</p>
+          <FaCalendarAlt />
+          <p className="profile-date">{formattedDate}</p>
         </div>
+      </div>
+      <span className="profile-subtitle">Welcome<b>, USER!</b></span>
+
+      <div className="passenger-table-container">
+        <table className="passenger-table">
+          <thead>
+            <tr>
+              <th>Bus Route</th>
+              <th>Passengers Waiting</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Gaisano Mall - Alubijid</td>
+              <td>00</td>
+            </tr>
+            <tr>
+              <td>Gaisano Mall - Libertad</td>
+              <td>00</td>
+            </tr>
+            <tr>
+              <td>Gaisano Mall - Laguindingan</td>
+              <td>00</td>
+            </tr>
+            <tr>
+              <td>Gaisano Mall - Tagoloan</td>
+              <td>00</td>
+            </tr>
+            <tr>
+              <td>Gaisano Mall - Villanueva</td>
+              <td>00</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
 
-      
-  
+
   );
 }
 
