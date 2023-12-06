@@ -2,6 +2,9 @@ import React from "react";
 import { FaCalendarAlt } from "react-icons/fa";
 import '../../css/Webcam.css';
 
+import BusIcon from '../../images/BusIcon.png';
+import TerminalIcon from '../../images/TerminalIcon.png';
+
 
 function Webcam() {
   const currentDate = new Date();
@@ -18,6 +21,8 @@ function Webcam() {
           <p className="submenu-date">{formattedDate}</p>
         </div>
       </div>
+      <img src={BusIcon} className="photo_img" alt="photo_img"/>
+      <img src={TerminalIcon} className="photo_img" alt="photo_img"/>
     </div>
 );
 }
