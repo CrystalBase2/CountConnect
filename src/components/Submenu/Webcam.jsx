@@ -15,14 +15,14 @@ function Webcam() {
   return (
     <div className="submenu-container">
       <div className="submenu-content">
-        <h1 className="submenu-title">LIVE MONITORING</h1>
+        <h1 className="submenu-title">LIVE FEED MONITORING</h1>
         <div className="date-icon">
           <FaCalendarAlt />
           <p className="submenu-date">{formattedDate}</p>
         </div>
       </div>
-      <img src={BusIcon} className="photo_img" alt="photo_img"/>
-      <img src={TerminalIcon} className="photo_img" alt="photo_img"/>
+      <img src={BusIcon} className="bus-photo_img" alt="photo_img"/>
+      <img src={TerminalIcon} className="terminal-photo_img" alt="photo_img"/>
     </div>
 );
 }
