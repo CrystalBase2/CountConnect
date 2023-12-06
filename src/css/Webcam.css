@@ -1,4 +1,4 @@
-.submenu-container {
+.webcam-container {
     flex-direction: column;
     font-family: 'Montserrat', sans-serif;
     font-weight: bolder;
@@ -7,7 +7,7 @@
     justify-content: space-between;
 }
 
-.submenu-content {
+.webcam-content {
     font-family: 'Montserrat', sans-serif;
     margin-left: 100px;
     margin-top: 50px;
@@ -15,27 +15,27 @@
     justify-content: space-between;
 }
 
-.submenu-date {
+.webcam-date {
     font-weight: bolder;
 }
 
-.submenu-icon {
+.webcam-icon {
     display: flex;
     align-items: center;
 }
 
-.submenu-icon svg {
+.webcam-icon svg {
     margin-right: 20px;
 }
 
-.submenu-title {
+.webcam-title {
     font-size: 50px;
     font-weight: bolder;
     text-align: left;
     white-space: nowrap;
 }
 
-.submenu-pagesub {
+.webcam-pagesub {
     font-size: 30px;
     font-weight: bolder;
     color: #65647C;
@@ -51,17 +51,10 @@ span {
     display: flex;
 }
 
-.submenu-subtitle {
+.webcam-subtitle {
     font-size: 20px;
     text-align: left;
     margin-top: 30px;
-    font-weight: lighter;
-}
-
-.reports-submenu-subtitle {
-    font-size: 20px;
-    text-align: left;
-    margin-top: 60px;
     font-weight: lighter;
 }
 
@@ -83,3 +76,41 @@ span {
     margin-left: 500px;
     padding-left: 50px;
 }
+
+.button-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* This defines two columns with equal width */
+    grid-gap: 10px; /* This adds a space between the buttons */
+  }
+  
+  .bus-button,
+  .terminal-button {
+    /* Remove margin-left from both buttons */
+    margin-left: 0;
+  }
+
+.bus-button {
+    font-family: 'Montserrat', sans-serif;
+    width: 250px;    
+    height: 40px;
+    font-size: medium;
+    border: none;
+    border-radius: 40px;
+    background-color: #65647C;
+    color: white;
+    margin-top: 380px;
+    margin-left: 225px;
+}
+
+.terminal-button {
+    font-family: 'Montserrat', sans-serif;
+    width: 250px;    
+    height: 40px;
+    font-size: medium;
+    border: none;
+    border-radius: 40px;
+    background-color: #65647C;
+    color: white;
+    margin-top: 380px;
+    margin-left: 35px;
+    }

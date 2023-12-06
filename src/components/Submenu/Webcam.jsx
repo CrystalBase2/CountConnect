@@ -19,25 +19,29 @@ function Webcam() {
 
   
   return (
-    <div className="submenu-container">
-      <div className="submenu-content">
-        <h1 className="submenu-title">LIVE FEED MONITORING</h1>
+    <div className="webcam-container">
+      <div className="webcam-content">
+        <h1 className="webcam-title">LIVE FEED MONITORING</h1>
         <div className="date-icon">
           <FaCalendarAlt />
-          <p className="submenu-date">{formattedDate}</p>
+          <p className="webcam-date">{formattedDate}</p>
         </div>
       </div>
       <img src={BusIcon} className="bus-photo_img" alt="photo_img"/>
       <img src={TerminalIcon} className="terminal-photo_img" alt="photo_img"/>
 
+      <div className="button-container">
       <form>
-          <button type="submit" className="login-button" onClick={handleBusFeed}>
+          <button type="submit" className="bus-button" onClick={handleBusFeed}>
             View Bus Live Feed
           </button>
-          <button type="submit" className="login-button" onClick={handleTerminalFeed}>
+        </form>
+      <form>
+          <button type="submit" className="terminal-button" onClick={handleTerminalFeed}>
             View Terminal Live Feed
           </button>
-        </form>
+      </form>
+      </div>
     </div>
 );
 }
