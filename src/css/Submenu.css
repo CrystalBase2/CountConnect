@@ -32,6 +32,7 @@
     font-size: 50px;
     font-weight: bolder;
     text-align: left;
+    white-space: nowrap;
 }
 
 .submenu-pagesub {
