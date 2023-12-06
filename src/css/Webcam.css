@@ -79,15 +79,11 @@ span {
 
 .button-container {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* This defines two columns with equal width */
-    grid-gap: 10px; /* This adds a space between the buttons */
-  }
-  
-  .bus-button,
-  .terminal-button {
-    /* Remove margin-left from both buttons */
-    margin-left: 0;
-  }
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 10px;
+    position: absolute;
+    z-index: 10;
+  } 
 
 .bus-button {
     font-family: 'Montserrat', sans-serif;
@@ -112,5 +108,5 @@ span {
     background-color: #65647C;
     color: white;
     margin-top: 380px;
-    margin-left: 35px;
-    }
+    margin-left: 85px;
+}
