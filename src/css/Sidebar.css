@@ -51,9 +51,10 @@
     display: flex;
     font-size: 15px;
     color: #000000;
-    padding: 12px 100px;
+    padding: 10px 80px;
     gap: 20px;
     transition: all 0.5s;
+    white-space: nowrap;
 }
 
 .sublink:hover {

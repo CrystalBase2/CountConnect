@@ -20,7 +20,7 @@ const Sidebar = ({ children }) => {
       icon: <FaHome />,
       subNav: [
         {path: "/dashboard/unit", name: "Unit Updates", icon: <FaBusAlt />},
-        {path: "/dashboard/webcam", name: "Live Monitoring", icon: <BsWebcamFill />},
+        {path: "/dashboard/webcam", name: "Live Feed", icon: <BsWebcamFill />},
     ],
       iconClosed: <RiArrowDownSFill />,
       iconOpened: <RiArrowUpSFill />,
