@@ -24,8 +24,6 @@ function App() {
             <Route path="/registration" element={<Registration />} />
             <Route path="/forgotpassword" element={<ForgotPassword />} />
             <Route path="/dashboard/*" element={<Dashboard />} />
-            
-            <Route path = "/busfeed" element={<BusFeed/>} />
           </Routes>
         </Router>
       </QueryClientProvider>

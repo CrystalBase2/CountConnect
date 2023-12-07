@@ -3,7 +3,7 @@ import { FaCalendarAlt } from "react-icons/fa";
 
 import '../../css/Subpages.css';
 
-function Profile() {
+function BusFeed() {
   const currentDate = new Date();
   const year = currentDate.getFullYear();
   const month = (currentDate.getMonth() + 1).toString().padStart(2, '0');
@@ -12,20 +12,18 @@ function Profile() {
 
 
   return (
-    <div className="profile-container">
-      <div className="profile-content">
-        <h1 className="profile-title">LIVE FEED ON BUS UNITS</h1>
+    <div className="subpages-container">
+      <div className="subpages-content">
+        <h1 className="subpages-title">LIVE FEED ON BUS UNITS</h1>
         <div className="date-icon">
           <FaCalendarAlt />
-          <p className="profile-date">{formattedDate}</p>
+          <p className="subpages-date">{formattedDate}</p>
         </div>
       </div>
     </div>
   );
 }
 
-
-
-export default Profile;
+export default BusFeed;
 
 

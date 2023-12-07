@@ -19,8 +19,8 @@ const Sidebar = ({ children }) => {
       name: "Home",
       icon: <FaHome />,
       subNav: [
-        {path: "/dashboard/unit", name: "Unit Updates", icon: <FaBusAlt />},
-        {path: "/dashboard/webcam", name: "Live Feed", icon: <BsWebcamFill />},
+        {path: "./unit", name: "Unit Updates", icon: <FaBusAlt />},
+        {path: "./webcam", name: "Live Feed", icon: <BsWebcamFill />},
     ],
       iconClosed: <RiArrowDownSFill />,
       iconOpened: <RiArrowUpSFill />,

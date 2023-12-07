@@ -11,6 +11,7 @@ import Monthly from "./Submenu/Monthly";
 import Unit from "./Submenu/Unit";
 import Webcam from "./Submenu/Webcam";
 
+import BusFeed from "./SubPages/BusFeed";
 
 import '../css/Dashboard.css';
 
@@ -32,6 +33,8 @@ function Dashboard() {
             <Route path = "monthly" element={<Monthly />} />
             <Route path = "unit" element={<Unit />} />
             <Route path = "webcam" element={<Webcam />} />
+            <Route path = "webcam/busfeed" element={<BusFeed />} />
+
 
           </Routes>
         </div>

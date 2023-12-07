@@ -14,7 +14,7 @@ function Webcam() {
   const formattedDate = `${year}-${month}-${day}`;
 
   const navigate = useNavigate();
-  const handleBusFeed = () => {navigate("/BusFeed");};
+  const handleBusFeed = () => {navigate("./busfeed");};
   const handleTerminalFeed = () => {navigate("../SubPages/BusFeed.js");};
 
   
