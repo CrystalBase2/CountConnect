@@ -12,6 +12,7 @@ import Unit from "./Submenu/Unit";
 import Webcam from "./Submenu/Webcam";
 
 import BusFeed from "./SubPages/BusFeed";
+import TermiFeed from "./SubPages/TermiFeed";
 
 import '../css/Dashboard.css';
 
@@ -23,6 +24,7 @@ function Dashboard() {
       <div className="dashcontainer">
         <div className="dashboard">
           <Routes>
+
             <Route path="" element={<Home />} />
             <Route path="home" element={<Home />} />
             <Route path="reports" element={<Reports />} />
@@ -32,9 +34,10 @@ function Dashboard() {
             <Route path = "weekly" element={<Weekly />} />
             <Route path = "monthly" element={<Monthly />} />
             <Route path = "unit" element={<Unit />} />
+
             <Route path = "webcam" element={<Webcam />} />
             <Route path = "webcam/busfeed" element={<BusFeed />} />
-
+            <Route path = "webcam/termifeed" element={<TermiFeed />} />
 
           </Routes>
         </div>

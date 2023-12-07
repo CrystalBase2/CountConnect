@@ -15,7 +15,7 @@ function Webcam() {
 
   const navigate = useNavigate();
   const handleBusFeed = () => {navigate("./busfeed");};
-  const handleTerminalFeed = () => {navigate("../SubPages/BusFeed.js");};
+  const handleTerminalFeed = () => {navigate("./termifeed");};
 
   
   return (
