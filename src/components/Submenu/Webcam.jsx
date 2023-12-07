@@ -35,7 +35,7 @@ function Webcam() {
           <button type="submit" className="bus-button" onClick={handleBusFeed}>
             View Bus Live Feed
           </button>
-        </form>
+      </form>
       <form>
           <button type="submit" className="terminal-button" onClick={handleTerminalFeed}>
             View Terminal Live Feed
