@@ -84,6 +84,11 @@ span {
     align-items: center;
 }
 
+.dropdown-item:hover {
+    background: #acabc7;
+    transition: all 0.2s;
+}
+
 .dropdown {
     margin: 0 auto;
     width: 250px;
