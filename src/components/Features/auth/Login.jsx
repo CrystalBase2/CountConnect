@@ -30,8 +30,14 @@ function Login() {
       <div className="login-left"></div>
       <div className="login-right">
         {showAlert && ( // Conditionally render the alert
-          <Alert severity="warning">
-            <AlertTitle>Warning</AlertTitle>
+          <Alert severity="warning" 
+          style={{
+            backgroundColor: '#D5B690',
+            color: 'darkred',
+            width: '50%',
+            margin: '0 auto',
+          }}>
+            <AlertTitle> <b>Warning</b> </AlertTitle>
             Invalid Credentials
           </Alert>
         )}
