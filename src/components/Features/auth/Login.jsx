@@ -36,9 +36,7 @@ function Login() {
             color: 'darkred',
             width: '50%',
             margin: '0 auto',
-          }}>
-            <AlertTitle> <b>Warning</b> </AlertTitle>
-            Invalid Credentials
+          }}> <b>Warning! </b>Invalid Credentials
           </Alert>
         )}
         <h1 className="login-title">LOGIN TO YOUR</h1>
