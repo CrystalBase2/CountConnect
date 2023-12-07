@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "../css/Login.css";
+import "../../../css/Login.css";
 
 function Login() {
   const navigate = useNavigate();
@@ -25,7 +25,7 @@ function Login() {
         <form className="login-form" onSubmit={handleSubmit}>
           <div className="login-input-group">
             <input
-              type="email" 
+              type="email"
               id="email"
               name="email"
               placeholder="Email Address"
@@ -71,5 +71,5 @@ function Login() {
     </div>
   );
 
-  }
+}
 export default Login;

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import '../css/ForgotPassword.css'
+import '../../../css/ForgotPassword.css'
 
 function ForgotPassword() {
   const navigate = useNavigate();
@@ -19,14 +19,14 @@ function ForgotPassword() {
   return (
     <div className="forgotpassword-container">
       <div className="forgotpassword-left">
-        
+
       </div>
       <div className="forgotpassword-right">
         <h1 className="forgotpassword-title">FORGOT PASSWORD</h1>
         <br></br>
         <br></br>
         <br></br>
-        <p className = "forgotpassword-signup-link">We’ll be sending you a link to change your password</p>
+        <p className="forgotpassword-signup-link">We’ll be sending you a link to change your password</p>
         <form className="forgotpassword-form" onSubmit={handleSubmit}>
           <div className="forgotpassword-input-group">
             <input
@@ -40,8 +40,8 @@ function ForgotPassword() {
               required
             />
           </div>
-        <br></br>
-        <br></br>
+          <br></br>
+          <br></br>
 
           <button type="submit" className="forgotpassword-button" onClick={handleLogin}>
             SUBMIT
@@ -54,7 +54,7 @@ function ForgotPassword() {
             Click Here to Login!
           </a>
         </p>
-        
+
       </div>
     </div>
   );

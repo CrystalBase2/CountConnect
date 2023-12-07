@@ -2,14 +2,13 @@ import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'; // Use Routes instead of Route
 import { QueryClient, QueryClientProvider } from 'react-query';
-import store from './Features/Redux/store';
+import store from './components/Features/Redux/store';
 import { Provider } from 'react-redux'
 
-import Login from './components/Login';
-import Registration from './components/Registration';
+import Login from './components/Features/auth/Login';
+import Registration from './components/Features/auth/Registration';
 import Dashboard from './components/Dashboard';
-import ForgotPassword from './components/ForgotPassword';
-import BusFeed from "./components//SubPages/BusFeed";
+import ForgotPassword from './components/Features/auth/ForgotPassword';
 
 
 const queryClient = new QueryClient();
