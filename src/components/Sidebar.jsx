@@ -41,7 +41,7 @@ const Sidebar = ({ children }) => {
       name: "Profile",
       icon: <FaUserAlt />,
       subNav: [
-        {path: "./unit", name: "Terminal Drivers", icon: <BsFillPeopleFill />},
+        {path: "./busdriver", name: "Terminal Drivers", icon: <BsFillPeopleFill />},
     ],
     },
     {
