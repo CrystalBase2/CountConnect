@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FaHome, FaFile, FaUserAlt, FaBusAlt } from "react-icons/fa";
-import { BsTable, BsWebcamFill } from "react-icons/bs";
+import { BsTable, BsWebcamFill, BsFillPeopleFill } from "react-icons/bs";
 import { RiArrowDownSFill, RiArrowUpSFill } from "react-icons/ri";
 import { BiLogOut } from "react-icons/bi";
 import { NavLink } from "react-router-dom";
@@ -40,6 +40,9 @@ const Sidebar = ({ children }) => {
       path: "/dashboard/profile",
       name: "Profile",
       icon: <FaUserAlt />,
+      subNav: [
+        {path: "./unit", name: "Terminal Drivers", icon: <BsFillPeopleFill />},
+    ],
     },
     {
       path: "/",

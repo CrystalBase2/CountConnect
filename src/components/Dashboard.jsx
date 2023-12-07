@@ -10,6 +10,7 @@ import Weekly from "./Submenu/Weekly";
 import Monthly from "./Submenu/Monthly";
 import Unit from "./Submenu/Unit";
 import Webcam from "./Submenu/Webcam";
+import BusDriver from "./Submenu/BusDrivers";
 
 import BusFeed from "./SubPages/BusFeed";
 import TermiFeed from "./SubPages/TermiFeed";
@@ -34,6 +35,7 @@ function Dashboard() {
             <Route path = "weekly" element={<Weekly />} />
             <Route path = "monthly" element={<Monthly />} />
             <Route path = "unit" element={<Unit />} />
+            <Route path = "busdriver" element={<BusDriver />} />
 
             <Route path = "webcam" element={<Webcam />} />
             <Route path = "webcam/busfeed" element={<BusFeed />} />
