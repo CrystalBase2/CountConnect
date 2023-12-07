@@ -84,6 +84,11 @@ span {
     align-items: center;
 }
 
+.dropdown-item:hover {
+    background: #acabc7;
+    transition: all 0.2s;
+}
+
 .dropdown {
     margin: 0 auto;
     width: 250px;
@@ -186,4 +191,17 @@ h2{
 .passenger-table, .weekly-passenger-table tbody tr:nth-child(odd) {
     background-color: white;
     font-weight: lighter;
+}
+
+.driver-button {
+    font-family: 'Montserrat', sans-serif;
+    width: 150px;    
+    height: 30px;
+    font-size: medium;
+    border: 1px solid black;
+    border-radius: 40px;
+    background-color: #D5B690;
+    color: black;
+    margin-top: 20px;
+    margin-left: 645px;
 }
