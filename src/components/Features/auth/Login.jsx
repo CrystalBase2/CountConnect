@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../../firebase"
 import "../../../css/Login.css";
 
 function Login() {
@@ -8,12 +10,13 @@ function Login() {
   const [password, setPassword] = useState("");
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(email, password);
-  };
-
-  const handleLogin = () => {
-    // Simulate a successful login, then navigate to Dashboard
-    navigate("/dashboard");
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        console.log(userCredential);
+        navigate("/dashboard");
+      }).catch((error) => {
+        console.log(error);
+      })
   };
 
   return (
@@ -56,7 +59,7 @@ function Login() {
           <br></br>
           <br></br>
 
-          <button type="submit" className="login-button" onClick={handleLogin}>
+          <button type="submit" className="login-button">
             LOGIN
           </button>
         </form>
