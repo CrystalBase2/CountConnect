@@ -20,6 +20,13 @@
     font-weight: bolder;
 }
 
+.profile-subtitle{
+    font-size: 20px;
+    font-weight:bold ;
+    margin-top: 130px;
+    margin-left: 150px;
+}
+
 span {
     font-size: 10px;
     text-align: left;
@@ -29,3 +36,8 @@ span {
     margin-top: 55px;
     display: flex;
 }
+
+.horizontal-line {
+    border-top: 1px solid black;
+  }
+

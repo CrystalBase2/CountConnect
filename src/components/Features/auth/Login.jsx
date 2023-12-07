@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../../firebase";
 import { Alert, AlertTitle } from "@mui/material"; // Import the Alert component
 import "../../../css/Login.css";
@@ -9,36 +9,60 @@ function Login() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [showAlert, setShowAlert] = useState(false); // State to control alert visibility
+  const [showAlertVerification, setShowAlertVerification] = useState(false); // State to control alert visibility
+  const [showAlertCredentials, setShowAlertCredentials] = useState(false); // State to control alert visibility
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        console.log(userCredential);
-        navigate("/dashboard");
-      })
-      .catch((error) => {
-        setShowAlert(true); // Show the alert when there's an error
-        console.log(error);
-      });
+  const checkIfUserIsVerified = (user) => {
+    if (user && user.emailVerified) {
+      return true;
+    } else {
+      setShowAlertVerification(true); // Show the alert when there's an error
+      return false;
+    }
   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setShowAlertCredentials(false);
+    setShowAlertVerification(false);
+    try {
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+
+      if (checkIfUserIsVerified(user)) {
+        // Password is correctly entered, and email is verified
+        navigate("/");
+      }
+    } catch (error) {
+      setShowAlertCredentials(true); // Show the alert when there's an error
+    }
+  };
 
   return (
     <div className="login-container">
       <div className="login-left"></div>
       <div className="login-right">
-        {showAlert && ( // Conditionally render the alert
-          <Alert severity="warning" 
-          style={{
-            backgroundColor: '#D5B690',
-            color: 'darkred',
-            width: '50%',
-            margin: '0 auto',
-          }}> <b>Warning! </b>Invalid Credentials
+        {showAlertCredentials && ( // Conditionally render the alert
+          <Alert severity="warning"
+            style={{
+              backgroundColor: '#D5B690',
+              color: 'darkred',
+              width: '50%',
+              margin: '0 auto',
+            }}> <b>Warning! </b>Invalid Credentials
           </Alert>
         )}
+        {showAlertVerification && ( // Conditionally render the alert
+          <Alert severity="warning"
+            style={{
+              backgroundColor: '#D5B690',
+              color: 'darkred',
+              width: '50%',
+              margin: '0 auto',
+            }}> <b>Warning! </b>Verification Needed
+          </Alert>
+        )}
+
         <h1 className="login-title">LOGIN TO YOUR</h1>
         <h1 className="login-subtitle">ACCOUNT</h1>
         <form className="login-form" onSubmit={handleSubmit}>
@@ -89,6 +113,7 @@ function Login() {
       </div>
     </div>
   );
+
 
 }
 export default Login;

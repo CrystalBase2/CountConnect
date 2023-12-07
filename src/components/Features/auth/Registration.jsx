@@ -1,19 +1,40 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
+import { createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
+import { auth } from "../../../firebase"
 import '../../../css/Registration.css'
 
 const Registration = () => {
+  const navigate = useNavigate();
+  const [registering, setRegistering] = useState(false);
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
-  const handleRegister = () => {
-
-    console.log('Email:', email);
-    console.log('Username:', username);
-    console.log('Password:', password);
-    console.log('Confirm Password:', confirmPassword);
+  const handleRegister = async (e) => {
+    e.preventDefault()
+    try {
+      if (!registering) {
+        if (password === confirmPassword) {
+          setRegistering(true);
+          await createUserWithEmailAndPassword(auth, email, password)
+            .then(async () => {
+              await sendEmailVerification(auth.currentUser);
+              alert("Email Sent");
+              navigate("/");
+            })
+            .catch((error) => {
+              alert(error);
+            })
+        } else {
+          alert("Password does not match with confirm password");
+        }
+      }
+    } finally {
+      setRegistering(false);
+    }
   };
 
   return (

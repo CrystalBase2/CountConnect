@@ -67,9 +67,6 @@ function BusDriver() {
       </div>
 
     </div>
-
-
-
   );
 }
 
