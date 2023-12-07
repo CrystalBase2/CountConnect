@@ -1,5 +1,6 @@
 import React from "react";
 import { FaCalendarAlt } from "react-icons/fa";
+
 import '../../css/Subpages.css';
 
 function Profile() {
@@ -13,7 +14,7 @@ function Profile() {
   return (
     <div className="profile-container">
       <div className="profile-content">
-        <h1 className="profile-title">PROFILE</h1>
+        <h1 className="profile-title">LIVE FEED ON BUS UNITS</h1>
         <div className="date-icon">
           <FaCalendarAlt />
           <p className="profile-date">{formattedDate}</p>

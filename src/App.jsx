@@ -9,6 +9,8 @@ import Login from './components/Login';
 import Registration from './components/Registration';
 import Dashboard from './components/Dashboard';
 import ForgotPassword from './components/ForgotPassword';
+import BusFeed from "./components//SubPages/BusFeed";
+
 
 const queryClient = new QueryClient();
 
@@ -22,6 +24,8 @@ function App() {
             <Route path="/registration" element={<Registration />} />
             <Route path="/forgotpassword" element={<ForgotPassword />} />
             <Route path="/dashboard/*" element={<Dashboard />} />
+            
+            <Route path = "/busfeed" element={<BusFeed/>} />
           </Routes>
         </Router>
       </QueryClientProvider>

@@ -11,6 +11,7 @@ import Monthly from "./Submenu/Monthly";
 import Unit from "./Submenu/Unit";
 import Webcam from "./Submenu/Webcam";
 
+
 import '../css/Dashboard.css';
 
 function Dashboard() {
@@ -25,11 +26,13 @@ function Dashboard() {
             <Route path="home" element={<Home />} />
             <Route path="reports" element={<Reports />} />
             <Route path="profile" element={<Profile />} />
+
             <Route path = "daily" element={<Daily />} />
             <Route path = "weekly" element={<Weekly />} />
             <Route path = "monthly" element={<Monthly />} />
             <Route path = "unit" element={<Unit />} />
             <Route path = "webcam" element={<Webcam />} />
+
           </Routes>
         </div>
       </div>
