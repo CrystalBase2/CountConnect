@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
-import { auth } from "../../../firebase"
+import { setDoc, doc } from "firebase/firestore";
+import { auth, db } from "../../../firebase"
 import '../../../css/Registration.css'
 
 const Registration = () => {
@@ -14,24 +15,35 @@ const Registration = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
 
   const handleRegister = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     try {
       if (!registering) {
         if (password === confirmPassword) {
           setRegistering(true);
-          await createUserWithEmailAndPassword(auth, email, password)
-            .then(async () => {
-              await sendEmailVerification(auth.currentUser);
-              alert("Email Sent");
-              navigate("/");
-            })
-            .catch((error) => {
-              alert(error);
-            })
+          const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+          const user = userCredential.user;
+
+          // Use the userId as the document ID
+          const userDocRef = doc(db, "users", user.uid);
+
+          // Add user details to Firestore
+          await setDoc(userDocRef, {
+            userId: user.uid,
+            username,
+            email: user.email,
+            // Add other user details as needed
+          });
+
+          // Send email verification
+          await sendEmailVerification(user);
+          alert("Email Sent");
+          navigate("/");
         } else {
           alert("Password does not match with confirm password");
         }
       }
+    } catch (error) {
+      alert(error);
     } finally {
       setRegistering(false);
     }
