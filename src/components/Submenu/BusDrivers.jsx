@@ -46,6 +46,10 @@ function BusDriver() {
       </div>
       <h2 className="table-title"><b>Terminal Unit Driver Information</b></h2>
 
+      <button type="button" className="driver-button" onClick={handleBusDriver}>
+        Add New Driver
+      </button>
+
       <div className="passenger-table-container">
         <table className="busdriver-table">
           <thead>
@@ -96,10 +100,6 @@ function BusDriver() {
           </tbody>
         </table>
       </div>
-
-      <button type="button" className="driver-button" onClick={handleBusDriver}>
-        Add New Driver
-      </button>
 
       {/* Modal for adding a new driver */}
       {isModalOpen && (
