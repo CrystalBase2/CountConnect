@@ -224,13 +224,14 @@ h2{
     padding: 20px;
     border-radius: 8px;
     width: 30%;
-    height: 65%;
+    height: 70%;
     text-align: center;
 }
 
 .modal label {
     display: block;
     margin-bottom: 10px;
+    font-weight: lighter;
 }
 
 .modal input {
@@ -257,7 +258,7 @@ h2{
 }
 
 .modal-buttons button:nth-child(2) {
-    background-color: #f44336;
+    background-color: #d5564d;
     color: white;
     border: none;
     margin-top: 20px;
