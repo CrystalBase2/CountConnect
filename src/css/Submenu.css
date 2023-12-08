@@ -216,28 +216,29 @@ h2{
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 18px;
+    font-size: 15px;
 }
 
 .modal {
     background: #D5B690;
-    padding: 20px;
+    margin-bottom: 30px;
+    padding: 15px;
     border-radius: 8px;
     width: 30%;
-    height: 70%;
+    height: 72%;
     text-align: center;
 }
-
+ 
 .modal label {
     display: block;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     font-weight: lighter;
 }
 
 .modal input {
     width: 80%;
     padding: 8px;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 
 .modal-buttons {
@@ -248,6 +249,7 @@ h2{
 .modal-buttons button {
     padding: 10px 20px;
     cursor: pointer;
+    border-radius: 40px;
 }
 
 .modal-buttons button:nth-child(1) {
@@ -262,4 +264,15 @@ h2{
     color: white;
     border: none;
     margin-top: 20px;
+}
+
+.destination-dropdown {
+    width: 84%;
+    padding: 8px;
+    margin-bottom: 10px;
+    font-size: 15px;
+}
+
+.destination-dropdown option {
+    text-align: center;
 }

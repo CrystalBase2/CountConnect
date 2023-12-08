@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import '../../css/Submenu.css';
 
-function BusDriver() {
+function BusDriver() { 
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [busRoute, setSelectedDestination] = useState("Select Destination Here");
   const [busNumber, setBusNumber] = useState("");
   const [idNumber, setIDNumber] = useState("");
   const [driverName, setDriverName] = useState("");
@@ -17,6 +18,7 @@ function BusDriver() {
   const closeModal = () => {
     setIsModalOpen(false);
     // Reset form fields on modal close
+    setSelectedDestination("");
     setBusNumber("");
     setIDNumber("");
     setDriverName("");
@@ -27,6 +29,7 @@ function BusDriver() {
     e.preventDefault();
     // Add your logic to save the new driver details
     // For now, let's just log the details
+    console.log("Select Route:", busRoute);
     console.log("Bus Number:", busNumber);
     console.log("ID Number:", idNumber);
     console.log("Driver Name:", driverName);
@@ -51,6 +54,7 @@ function BusDriver() {
         <table className="passenger-table">
           <thead>
             <tr>
+              <th>Bus Route</th>
               <th>Bus Number</th>
               <th>ID Number</th>
               <th>Driver's Name</th>
@@ -59,30 +63,35 @@ function BusDriver() {
           </thead>
           <tbody>
             <tr>
+              <td>Destination Here</td>
               <td>101</td>
               <td>123456</td>
               <td>Input Here</td>
               <td>09*********</td>
             </tr>
             <tr>
+              <td>Destination Here</td>
               <td>102</td>
               <td>123457</td>
               <td>Input Here</td>
               <td>09*********</td>
             </tr>
             <tr>
+              <td>Destination Here</td>
               <td>103</td>
               <td>123458</td>
               <td>Input Here</td>
               <td>09*********</td>
             </tr>
             <tr>
+              <td>Destination Here</td>
               <td>104</td>
               <td>123459</td>
               <td>Input Here</td>
               <td>09*********</td>
             </tr>
             <tr>
+              <td>Destination Here</td>
               <td>105</td>
               <td>123450</td>
               <td>Input Here</td>
@@ -99,6 +108,20 @@ function BusDriver() {
             <h2>Add New Driver</h2>
             <br></br>
             <form onSubmit={handleSave}>
+            <label>
+                Select Bus Route:
+                <select
+                  value={busRoute}
+                  onChange={(e) => setSelectedDestination(e.target.value)}
+                  className="destination-dropdown"
+                >
+                <option value="Alubijid">Gaisano Mall - Alubijid</option>
+                <option value="Laguindingan">Gaisano Mall - Laguindingan</option>
+                <option value="Libertad">Gaisano Mall - Libertad</option>
+                <option value="Tagoloan">Gaisano Mall - Tagoloan</option>
+                <option value="Villanueva">Gaisano Mall - Villanueva</option>
+              </select>
+            </label>
             <label>
                 Bus Number:
                 <input
@@ -132,7 +155,7 @@ function BusDriver() {
                 />
               </label>
               <div className="modal-buttons">
-                <button type="submit">Save</button>
+                <button type="submit">Save Information</button>
                 <button type="button" onClick={closeModal}>Cancel</button>
               </div>
             </form>
