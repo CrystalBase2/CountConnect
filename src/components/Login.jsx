@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../../firebase";
+import { auth } from "../firebase";
 import { Alert } from "@mui/material";
-import "../../../css/Login.css";
+import "../css/Login.css";
 
 const Login = () => {
   const navigate = useNavigate();

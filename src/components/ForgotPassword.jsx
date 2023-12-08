@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { auth } from "../../../firebase";
+import { auth } from "../firebase";
 import { sendPasswordResetEmail } from "firebase/auth";
 import { Alert } from "@mui/material";
-import "../../../css/ForgotPassword.css";
+import "../css/ForgotPassword.css";
 
 function ForgotPassword() {
   const navigate = useNavigate();
