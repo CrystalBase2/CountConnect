@@ -43,7 +43,7 @@ const Login = () => {
       <div className="login-left"></div>
       <div className="login-right">
         {showAlert && (
-          <Alert severity="warning" style={{ backgroundColor: '#D5B690', color: 'darkred', width: '50%', margin: '0 auto' }}>
+          <Alert severity="warning" style={{ backgroundColor: '#D5B690', color: 'darkred', width: '35%', margin: '0 auto' }}>
             <b>Warning! </b>{alertMessage}
           </Alert>
         )}
