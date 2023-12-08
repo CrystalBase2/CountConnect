@@ -5,10 +5,10 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import store from './components/Features/Redux/store';
 import { Provider } from 'react-redux'
 
-import Login from './components/Features/auth/Login';
-import Registration from './components/Features/auth/Registration';
+import Login from './components/Login';
+import Registration from './components/Registration';
 import Dashboard from './components/Dashboard';
-import ForgotPassword from './components/Features/auth/ForgotPassword';
+import ForgotPassword from './components/ForgotPassword';
 
 
 const queryClient = new QueryClient();

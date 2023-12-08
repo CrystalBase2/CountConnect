@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword, sendEmailVerification, onAuthStateChanged } from "firebase/auth";
 import { collection, query, where, getDocs, doc, setDoc, updateDoc } from "firebase/firestore";
-import { auth, db } from "../../../firebase"
+import { auth, db } from "../firebase"
 import { Alert } from "@mui/material";
-import '../../../css/Registration.css'
+import '../css/Registration.css'
 
 const Registration = () => {
  const navigate = useNavigate();
