@@ -203,5 +203,62 @@ h2{
     background-color: #D5B690;
     color: black;
     margin-top: 20px;
-    margin-left: 645px;
+    margin-right: 25%;
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+}
+
+.modal {
+    background: #D5B690;
+    padding: 20px;
+    border-radius: 8px;
+    width: 30%;
+    height: 65%;
+    text-align: center;
+}
+
+.modal label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.modal input {
+    width: 80%;
+    padding: 8px;
+    margin-bottom: 10px;
+}
+
+.modal-buttons {
+    margin-top: 20px;
+    
+}
+
+.modal-buttons button {
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.modal-buttons button:nth-child(1) {
+    background-color: #52575D;
+    color: white;
+    border: none;
+    
+}
+
+.modal-buttons button:nth-child(2) {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    margin-top: 20px;
 }

@@ -1,25 +1,51 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import '../../css/Submenu.css';
 
-
 function BusDriver() {
-
   const navigate = useNavigate();
-  const handleBusDriver = () => {navigate("./busfeed");};
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [busNumber, setBusNumber] = useState("");
+  const [idNumber, setIDNumber] = useState("");
+  const [driverName, setDriverName] = useState("");
+  const [contactNumber, setContactNumber] = useState("");
+
+  const handleBusDriver = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    // Reset form fields on modal close
+    setBusNumber("");
+    setIDNumber("");
+    setDriverName("");
+    setContactNumber("");
+  };
+
+  const handleSave = (e) => {
+    e.preventDefault();
+    // Add your logic to save the new driver details
+    // For now, let's just log the details
+    console.log("Bus Number:", busNumber);
+    console.log("ID Number:", idNumber);
+    console.log("Driver Name:", driverName);
+    console.log("Contact Number:", contactNumber);
+
+    // Close the modal
+    closeModal();
+  };
 
   return (
     <div className="submenu-container">
       <div className="submenu-content">
-      <h1 className="submenu-title">Terminal Drivers</h1>
+        <h1 className="submenu-title">Terminal Drivers</h1>
       </div>
       <h2 className="table-title"><b>Terminal Unit Driver Information</b></h2>
 
-      <form>
-          <button type="submit" className="driver-button" onClick={handleBusDriver}>
-            Add New Driver
-          </button>
-      </form>
+      <button type="button" className="driver-button" onClick={handleBusDriver}>
+        Add New Driver
+      </button>
 
       <div className="passenger-table-container">
         <table className="passenger-table">
@@ -66,12 +92,55 @@ function BusDriver() {
         </table>
       </div>
 
+      {/* Modal for adding a new driver */}
+      {isModalOpen && (
+        <div className="modal-overlay">
+          <div className="modal">
+            <h2>Add New Driver</h2>
+            <br></br>
+            <form onSubmit={handleSave}>
+            <label>
+                Bus Number:
+                <input
+                  type="text"
+                  value={busNumber}
+                  onChange={(e) => setBusNumber(e.target.value)}
+                />
+              </label>
+              <label>
+                ID Number:
+                <input
+                  type="text"
+                  value={idNumber}
+                  onChange={(e) => setIDNumber(e.target.value)}
+                />
+              </label>
+              <label>
+                Driver's Name:
+                <input
+                  type="text"
+                  value={driverName}
+                  onChange={(e) => setDriverName(e.target.value)}
+                />
+              </label>
+              <label>
+                Contact Number:
+                <input
+                  type="text"
+                  value={contactNumber}
+                  onChange={(e) => setContactNumber(e.target.value)}
+                />
+              </label>
+              <div className="modal-buttons">
+                <button type="submit">Save</button>
+                <button type="button" onClick={closeModal}>Cancel</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
 
-
-
 export default BusDriver;
-
-
