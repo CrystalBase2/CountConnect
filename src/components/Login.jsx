@@ -1,22 +1,22 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../firebase";
-import { Alert } from "@mui/material";
-import "../css/Login.css";
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { UserAuth } from './Features/auth/AuthContext'; // Import the UserAuth context
+import { Alert } from '@mui/material';
+import '../css/Login.css';
 
 const Login = () => {
+  const { user, signIn } = UserAuth(); // Use the signIn function from the UserAuth context
   const navigate = useNavigate();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [showAlert, setShowAlert] = useState(false);
-  const [alertMessage, setAlertMessage] = useState("");
+  const [alertMessage, setAlertMessage] = useState('');
 
-  const checkIfUserIsVerified = (user) => {
+  const checkIfUserIsVerified = () => {
     if (user && user.emailVerified) {
       return true;
     } else {
-      setAlertMessage("Verification Needed");
+      setAlertMessage('Verification Needed');
       setShowAlert(true);
       return false;
     }
@@ -26,14 +26,12 @@ const Login = () => {
     e.preventDefault();
     setShowAlert(false);
     try {
-      const userCredential = await signInWithEmailAndPassword(auth, email, password);
-      const user = userCredential.user;
-
-      if (checkIfUserIsVerified(user)) {
-        navigate("/dashboard");
+      await signIn(email, password); // Use the signIn function from the UserAuth context
+      if (checkIfUserIsVerified()) {
+        navigate('/dashboard');
       }
     } catch (error) {
-      setAlertMessage("Invalid Credentials");
+      setAlertMessage('Invalid Credentials');
       setShowAlert(true);
     }
   };
