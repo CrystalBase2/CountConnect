@@ -168,8 +168,15 @@ h2{
     margin: 0 auto;
 }
 
+.busdriver-table {
+    width: auto;
+    border-collapse: collapse;
+    margin-top: 20px !important;
+    margin: 0 auto;
+}
+
 .passenger-table th,
-.passenger-table td, .weekly-passenger-table th, .weekly-passenger-table td {
+.passenger-table td, .weekly-passenger-table th, .weekly-passenger-table td, .busdriver-table th, .busdriver-table td {
     font-size: 15px;
     border: 1px solid #ccc;
     padding: 10px;
@@ -177,18 +184,18 @@ h2{
 }
 
 
-.passenger-table th, .weekly-passenger-table {
+.passenger-table th, .weekly-passenger-table, .busdriver-table {
     background-color: #D5B690;
     color: #181414;
 
 }
 
-.passenger-table, .weekly-passenger-table tbody tr:nth-child(even) {
+.passenger-table, .weekly-passenger-table, .busdriver-table tbody tr:nth-child(even) {
     background-color: white;
     font-weight: lighter;
 }
 
-.passenger-table, .weekly-passenger-table tbody tr:nth-child(odd) {
+.passenger-table, .weekly-passenger-table, .busdriver-table tbody tr:nth-child(odd) {
     background-color: white;
     font-weight: lighter;
 }
@@ -203,7 +210,7 @@ h2{
     background-color: #D5B690;
     color: black;
     margin-top: 20px;
-    margin-right: 25%;
+    margin-right: 45%;
 }
 
 .modal-overlay {
@@ -271,8 +278,10 @@ h2{
     padding: 8px;
     margin-bottom: 10px;
     font-size: 15px;
+   
 }
 
 .destination-dropdown option {
-    text-align: center;
+    text-align: center; 
 }
+

@@ -5,7 +5,7 @@ import '../../css/Submenu.css';
 function BusDriver() { 
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [busRoute, setSelectedDestination] = useState("Select Destination Here");
+  const [busRoute, setSelectedDestination] = useState("");
   const [busNumber, setBusNumber] = useState("");
   const [idNumber, setIDNumber] = useState("");
   const [driverName, setDriverName] = useState("");
@@ -46,12 +46,8 @@ function BusDriver() {
       </div>
       <h2 className="table-title"><b>Terminal Unit Driver Information</b></h2>
 
-      <button type="button" className="driver-button" onClick={handleBusDriver}>
-        Add New Driver
-      </button>
-
       <div className="passenger-table-container">
-        <table className="passenger-table">
+        <table className="busdriver-table">
           <thead>
             <tr>
               <th>Bus Route</th>
@@ -100,6 +96,10 @@ function BusDriver() {
           </tbody>
         </table>
       </div>
+
+      <button type="button" className="driver-button" onClick={handleBusDriver}>
+        Add New Driver
+      </button>
 
       {/* Modal for adding a new driver */}
       {isModalOpen && (
