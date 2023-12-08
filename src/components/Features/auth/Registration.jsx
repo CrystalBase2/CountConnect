@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
 import { setDoc, doc } from "firebase/firestore";
 import { auth, db } from "../../../firebase"
+import { Alert } from "@mui/material";
 import '../../../css/Registration.css'
 
 const Registration = () => {
@@ -14,6 +15,13 @@ const Registration = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
+  const [showAlert, setShowAlert] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
+  const [showAlert2, setShowAlert2] = useState(false);
+  const [alertMessage2, setAlertMessage2] = useState("");
+  const [showAlert3, setShowAlert3] = useState(false);
+  const [alertMessage3, setAlertMessage3] = useState("");
+  
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
@@ -36,14 +44,18 @@ const Registration = () => {
 
           // Send email verification
           await sendEmailVerification(user);
-          alert("Email Sent");
-          navigate("/");
+          setAlertMessage("Please check your inbox.");
+          setShowAlert(true);
+
         } else {
-          alert("Password does not match with confirm password");
+          setAlertMessage2("Password does not match with confirm password.");
+          setShowAlert2(true);
         }
       }
     } catch (error) {
-      alert(error);
+      setAlertMessage3("Password should be at least 6 characters.");
+      setShowAlert3(true);
+
     } finally {
       setRegistering(false);
     }
@@ -54,6 +66,24 @@ const Registration = () => {
       <div className="registration-left">
       </div>
       <div className="registration-right">
+      {showAlert && (
+          <Alert severity="success" style={{ backgroundColor: '#D5B690', color: 'darkgreen', width: '50%', margin: '0 auto' }}>
+            <b>Email Sent! </b>{alertMessage}
+          </Alert>
+        )}
+
+      {showAlert2 && (
+          <Alert severity="error" style={{ backgroundColor: '#D5B690', color: 'darkred', width: '90%', margin: '0 auto', whiteSpace: 'nowrap'}}>
+            <b>Mismatch Password! </b>{alertMessage2}
+          </Alert>
+        )}
+
+      {showAlert3 && (
+          <Alert severity="warning" style={{ backgroundColor: '#D5B690', color: 'darkbrown', width: '70%', margin: '0 auto', whiteSpace: 'nowrap'}}>
+            <b>Weak Password! </b>{alertMessage3}
+          </Alert>
+        )}
+
         <h1 className="registration-title">CREATE AN ACCOUNT</h1>
         <form className="registration-form" onSubmit={handleRegister}>
           <div className="registration-input-group">
