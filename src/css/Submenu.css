@@ -184,7 +184,7 @@ h2{
 }
 
 
-.passenger-table th, .weekly-passenger-table, .busdriver-table {
+.passenger-table th, .weekly-passenger-table th, .busdriver-table {
     background-color: #D5B690;
     color: #181414;
 
