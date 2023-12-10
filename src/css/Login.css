@@ -105,7 +105,13 @@
     color: #C4C4C4;
 }
 
-.custom-alert {
-    background-color: #65647C;
-    color: black;
-  }
+.login-forgotpassword-link {
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.login-forgotpassword{
+    font-family: 'Montserrat', sans-serif;
+    color: #65647C;
+}
