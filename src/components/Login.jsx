@@ -9,7 +9,7 @@ const Login = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [alert, setAlert] = useState({ show: false, severity: 'info', message: '' });
+  const [alert, setAlert] = useState({ show: false, severity: '', message: '' });
 
   const checkIfUserIsVerified = () => {
     if (user && user.emailVerified) {

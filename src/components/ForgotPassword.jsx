@@ -10,21 +10,21 @@ function ForgotPassword() {
   const navigate = useNavigate();
   const { user, forgotPass } = UserAuth();
   const [email, setEmail] = useState("");
-  const [alert, setAlert] = useState({ show: false, severity: 'info', message: '' });
+  const [alert, setAlert] = useState({ show: false, severity: '', message: '' });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
       await forgotPass(email);
-      setAlert({ show: true, severity: 'success', message: 'Password reset email sent successfully. Please check your inbox.' });
+      setAlert({ show: true, severity: 'success', message: 'Email sent successfully. Please check your inbox.' });
       setTimeout(() => {
-        setAlert({ show: false, severity: 'info', message: '' });
+        setAlert({ show: false, severity: 'success', message: '' });
         navigate('/');
       }, 5000);
     } catch (error) {
       console.log(error)
-      setAlert({ show: true, severity: 'info', message: 'Error sending password reset email. Please check your email address.' });
+      setAlert({ show: true, severity: 'error', message: 'Invalid Email. Please check your email address.' });
     }
   };
 
@@ -38,7 +38,7 @@ function ForgotPassword() {
       <div className="forgotpassword-right">
 
         {alert.show && (
-          <Alert severity={alert.severity} style={{ backgroundColor: "#D5B690", color: alert.severity === "success" ? "darkgreen" : "darkred", width: "50%", margin: "0 auto" }}>
+          <Alert severity={alert.severity} style={{ backgroundColor: "#D5B690", color: alert.severity === "success" ? "darkgreen" : "darkred", width: "max-content", margin: "0 auto", whiteSpace: "nowrap"}}>
             <b>{alert.severity === "success" ? "Success! " : "Error! "}</b>{alert.message}
           </Alert>
 
@@ -48,14 +48,14 @@ function ForgotPassword() {
         <br></br>
         <br></br>
         <br></br>
-        <p className="forgotpassword-signup-link">We’ll be sending you a link to change your password</p>
+        <p className="forgotpassword-signup-link">We’ll be sending you a link to change your password in your registred email.</p>
         <form className="forgotpassword-form" onSubmit={handleSubmit}>
           <div className="forgotpassword-input-group">
             <input
               type="email"
               id="email"
               name="email"
-              placeholder="Email Address"
+              placeholder="Input Email Address Here"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="forgotpassword-input"
