@@ -47,7 +47,7 @@ function BusDriver() {
       <h2 className="table-title"><b>Terminal Unit Driver Information</b></h2>
 
       <button type="button" className="driver-button" onClick={handleBusDriver}>
-        Add New Driver
+        + Add New Driver
       </button>
 
       <div className="passenger-table-container">
@@ -105,7 +105,7 @@ function BusDriver() {
       {isModalOpen && (
         <div className="modal-overlay">
           <div className="modal">
-            <h2>Add New Driver</h2>
+            <h3>Add New Driver</h3>
             <br></br>
             <form onSubmit={handleSave}>
             <label>

@@ -230,22 +230,33 @@ h2{
     background: #D5B690;
     margin-bottom: 30px;
     padding: 15px;
-    border-radius: 8px;
+    border-radius: 30px;
     width: 30%;
     height: 72%;
     text-align: center;
+}
+
+h3{
+    margin-left: auto;
+    align-items: center;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;  
+    font-size: 35px;
+    font-weight: bolder;
+    color: #1f2123;
 }
  
 .modal label {
     display: block;
     margin-bottom: 5px;
-    font-weight: lighter;
+    font-weight: bold;
 }
 
 .modal input {
     width: 80%;
     padding: 8px;
     margin-bottom: 5px;
+    border-style: hidden;
 }
 
 .modal-buttons {
@@ -278,7 +289,7 @@ h2{
     padding: 8px;
     margin-bottom: 10px;
     font-size: 15px;
-   
+    border-style: hidden;
 }
 
 .destination-dropdown option {
