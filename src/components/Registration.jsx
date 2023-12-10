@@ -15,7 +15,7 @@ const Registration = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [alert, setAlert] = useState({ show: false, severity: 'info', message: '' });
+  const [alert, setAlert] = useState({ show: false, severity: '', message: '' });
 
   useEffect(() => {
     if (user && user.emailVerified) {
@@ -53,7 +53,7 @@ const Registration = () => {
 
             setAlert({ show: true, severity: 'success', message: 'Email verification sent. Please verify to login.' });
             setTimeout(() => {
-              setAlert({ show: false, severity: 'info', message: '' });
+              setAlert({ show: false, severity: 'success', message: '' });
               navigate('/');
             }, 5000); // 5000 milliseconds = 5 seconds
           } else {
@@ -61,7 +61,7 @@ const Registration = () => {
             const userData = userDoc.data();
 
             if (userData.emailVerificationSent) {
-              setAlert({ show: true, severity: 'info', message: 'Email verification already sent. Please verify to login' });
+              setAlert({ show: true, severity: 'info', message: 'Email already registered. Please verify to login' });
             } else {
               setAlert({ show: true, severity: 'info', message: 'Email already registered and verified. Please use a different email.' });
             }
@@ -87,10 +87,9 @@ const Registration = () => {
       </div>
       <div className="registration-right">
         {alert.show && (
-          <Alert severity={alert.severity} style={{ backgroundColor: "#D5B690", color: alert.severity === "success" ? "darkgreen" : "darkred", width: "50%", margin: "0 auto" }}>
-            <b>{alert.severity === "success" ? "Success! " : "Error! "}</b>{alert.message}
+          <Alert severity={alert.severity} style={{ backgroundColor: "#D5B690", color: alert.severity === "success" ? "darkgreen" : "#03396C" ? "" : "darkred", width: "max-content", margin: "0 auto", whiteSpace: 'nowrap'}}>
+            <b>{ alert.severity === "success" && "Success! " || alert.severity === "info" && "Note! " || alert.severity === "error" && "Error! "}</b>{alert.message}
           </Alert>
-
         )}
 
         <h1 className="registration-title">CREATE AN ACCOUNT</h1>
