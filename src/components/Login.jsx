@@ -9,30 +9,26 @@ const Login = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [showAlert, setShowAlert] = useState(false);
-  const [alertMessage, setAlertMessage] = useState('');
+  const [alert, setAlert] = useState({ show: false, severity: 'info', message: '' });
 
   const checkIfUserIsVerified = () => {
     if (user && user.emailVerified) {
       return true;
     } else {
-      setAlertMessage('Verification Needed');
-      setShowAlert(true);
-      return false;
+      setAlert({ show: true, severity: 'info', message: 'Please check your email.' });
     }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setShowAlert(false);
+    setAlert(false);
     try {
       await signIn(email, password); // Use the signIn function from the UserAuth context
       if (checkIfUserIsVerified()) {
         navigate('/dashboard');
       }
     } catch (error) {
-      setAlertMessage('Invalid Credentials');
-      setShowAlert(true);
+      setAlert({ show: true, severity: 'error', message: 'Please sign up.' });
     }
   };
 
@@ -40,15 +36,16 @@ const Login = () => {
     <div className="login-container">
       <div className="login-left"></div>
       <div className="login-right">
-        {showAlert && (
-          <Alert severity="warning" style={{ backgroundColor: '#D5B690', color: 'darkred', width: '35%', margin: '0 auto' }}>
-            <b>Warning! </b>{alertMessage}
+      {alert.show && (
+          <Alert severity={alert.severity} style={{ backgroundColor: "#D5B690", color: alert.severity === "info" ? "#03396C" : "darkred", width: "max-content", margin: "0 auto", whiteSpace: 'nowrap'}}>
+            <b>{alert.severity === "info" ? "Verification Needed! " : "Invalid Credentials! "}</b>{alert.message}
           </Alert>
+
         )}
 
         <h1 className="login-title">LOGIN TO YOUR</h1>
         <h1 className="login-subtitle">ACCOUNT</h1>
-        <form className="login-form" onSubmit={handleSubmit}>
+        <form className="login-form" onSubmit={handleSubmit}> 
           <div className="login-input-group">
             <input
               type="email"
