@@ -39,6 +39,7 @@
     padding: 15px 50px 20px;
     transition: all 0.5s;
     gap: 20px;
+    white-space: nowrap;
 }
 
 .link:hover {
