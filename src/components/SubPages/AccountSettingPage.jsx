@@ -76,7 +76,11 @@ function EditProfilePage() {
         value={email}
         onChange={(e) => handleInputChange("email", e.target.value)}
       />
+      <button type="button" className="edit-profile-button" onClick="">
+        Save
+      </button>
     </div>
+    
   );
 }
 

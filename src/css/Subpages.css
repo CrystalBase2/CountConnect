@@ -73,3 +73,17 @@
     margin-left: 5px;
     margin-right: 10px;
 }
+
+.edit-profile-button {
+    font-family: 'Montserrat', sans-serif;
+    width: 70px;    
+    height: 30px;
+    font-size: medium;
+    border: 1px solid black;
+    border-radius: 40px;
+    background-color: #D5B690;
+    color: black;
+    margin-top: 20px;
+    margin-left: center;
+    cursor: pointer;
+}
