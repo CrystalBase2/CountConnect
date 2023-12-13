@@ -96,6 +96,7 @@ span {
     color: white;
     margin-top: 380px;
     margin-left: 225px;
+    cursor: pointer;
 }
 
 .terminal-button {
@@ -109,4 +110,5 @@ span {
     color: white;
     margin-top: 380px;
     margin-left: 85px;
+    cursor: pointer;
 }
