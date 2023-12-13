@@ -161,6 +161,7 @@ const Registration = () => {
             />
           </div>
           <br></br>
+          <p className= "registration-link-reverify"><u>Resend Verifiation Email</u></p>
           <br></br>
           <button type="submit" className="registration-button">
             REGISTER

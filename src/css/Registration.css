@@ -85,6 +85,7 @@
     background-color: #65647C;
     color: white;
     margin: 0 auto;
+    margin-bottom: -15px;
 }
 
 .registration-signup-link {
@@ -93,10 +94,18 @@
     margin-top: 20px;
 }
 
+.registration-link-reverify {
+    font-family: 'Montserrat', sans-serif;
+    color: #65647C;
+    margin-bottom: -10px;
+    text-decoration: underline;
+}
+
 .registration-link {
     font-family: 'Montserrat', sans-serif;
     color: #65647C;
 }
+
 
 .registration-input::placeholder {
     color: #C4C4C4;
