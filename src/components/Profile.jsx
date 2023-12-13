@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FaCalendarAlt } from "react-icons/fa";
 import { FaUserCog } from "react-icons/fa";
-import { IoSettingsSharp } from "react-icons/io5";
+import { BsPersonFillExclamation } from "react-icons/bs";
 import '../css/Profile.css';
 
 import InformationPage from './SubPages/InformationPage';
@@ -16,7 +16,8 @@ function Profile() {
   const day = currentDate.getDate().toString().padStart(2, '0');
   const formattedDate = `${year}-${month}-${day}`;
 
-  const [selectedOption, setSelectedOption] = useState(null);
+  const [selectedOption, setSelectedOption] = useState('Information');
+
 
   const handleOptionClick = (option) => {
     setSelectedOption(option);
@@ -47,10 +48,10 @@ function Profile() {
           <h5 class="card-title">Insert Name Here</h5>
           <p class="card-text">Operator</p>
           <button type="submit" className="profile-submenu-information" onClick={() => handleOptionClick('Information')}>
-          <FaUserCog/> Information
+          <BsPersonFillExclamation /> Information
           </button>
           <button type="submit" className="profile-submenu-account" onClick={() => handleOptionClick('AccountSetting')}>
-          <IoSettingsSharp/> Account Setting
+          <FaUserCog/> Edit Profile
           </button>
         </div>
       </div>
