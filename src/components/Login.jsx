@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { UserAuth } from './Features/auth/AuthContext'; // Import the UserAuth context
 import { Alert } from '@mui/material';
 import '../css/Login.css';
 
 const Login = () => {
-  const { user, signIn } = UserAuth(); // Use the signIn function from the UserAuth context
+  const { user, signIn, reloadUser } = UserAuth(); // Use the signIn function from the UserAuth context
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -23,6 +23,7 @@ const Login = () => {
     e.preventDefault();
     setAlert(false);
     try {
+      await reloadUser();
       await signIn(email, password); // Use the signIn function from the UserAuth context
       if (checkIfUserIsVerified()) {
         navigate('/dashboard');
