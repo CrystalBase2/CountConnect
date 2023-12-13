@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { sendEmailVerification} from 'firebase/auth';
+import { sendEmailVerification } from 'firebase/auth';
 import { collection, query, where, getDocs, doc, setDoc, updateDoc } from 'firebase/firestore';
 import { UserAuth } from './Features/auth/AuthContext';  // Import the UserAuth context
 import { db } from '../firebase';
@@ -8,7 +8,7 @@ import { Alert } from '@mui/material';
 import '../css/Registration.css';
 
 const Registration = () => {
-  const { createUser, user, onAuthStateChanged } = UserAuth(); // Use the UserAuth context
+  const { createUser, user, reloadUser } = UserAuth(); // Use the UserAuth context
   const navigate = useNavigate();
   const [registering, setRegistering] = useState(false);
   const [email, setEmail] = useState('');
@@ -16,6 +16,7 @@ const Registration = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [alert, setAlert] = useState({ show: false, severity: '', message: '' });
+
 
   useEffect(() => {
     if (user && user.emailVerified) {
@@ -54,8 +55,9 @@ const Registration = () => {
             setAlert({ show: true, severity: 'success', message: 'Email verification sent. Please verify to login.' });
             setTimeout(() => {
               setAlert({ show: false, severity: 'success', message: '' });
-              navigate('/');
-            }, 5000); // 5000 milliseconds = 5 seconds
+              // Redirect to login with full page reload
+              window.location.href = '/';
+            }, 5000);
           } else {
             const userDoc = querySnapshot.docs[0];
             const userData = userDoc.data();
@@ -74,6 +76,9 @@ const Registration = () => {
       }
     } catch (error) {
       console.log(error);
+      window.location.href = '/';
+
+      
     } finally {
       setRegistering(false);
     }
@@ -87,8 +92,8 @@ const Registration = () => {
       </div>
       <div className="registration-right">
         {alert.show && (
-          <Alert severity={alert.severity} style={{ backgroundColor: "#D5B690", color: alert.severity === "success" ? "darkgreen" : "#03396C" ? "" : "darkred", width: "max-content", margin: "0 auto", whiteSpace: 'nowrap'}}>
-            <b>{ alert.severity === "success" && "Success! " || alert.severity === "info" && "Note! " || alert.severity === "error" && "Error! "}</b>{alert.message}
+          <Alert severity={alert.severity} style={{ backgroundColor: "#D5B690", color: alert.severity === "success" ? "darkgreen" : "#03396C" ? "" : "darkred", width: "max-content", margin: "0 auto", whiteSpace: 'nowrap' }}>
+            <b>{alert.severity === "success" && "Success! " || alert.severity === "info" && "Note! " || alert.severity === "error" && "Error! "}</b>{alert.message}
           </Alert>
         )}
 
@@ -150,9 +155,10 @@ const Registration = () => {
         </form>
         <br></br>
         <p className="registration-signup-link">
-          Already have an account? <Link to="/" className="registration-link">
+          Already have an account?{' '}
+          <a href="/" className="registration-link" >
             Click Here to Login!
-          </Link>
+          </a>
         </p>
       </div>
     </div>
