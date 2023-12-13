@@ -4,13 +4,19 @@ import { BsTable, BsWebcamFill, BsFillPeopleFill } from "react-icons/bs";
 import { RiArrowDownSFill, RiArrowUpSFill } from "react-icons/ri";
 import { BiLogOut } from "react-icons/bi";
 import { NavLink } from "react-router-dom";
+import { UserAuth } from "./Features/auth/AuthContext"; // Import UserAuth context
 import "../css/Sidebar.css";
 
 const Sidebar = ({ children }) => {
   const [subNavOpen, setSubNavOpen] = useState(null);
+  const { logout } = UserAuth(); // Get the logout function from context
 
-  const toggleSubNav = (index) => {
-    setSubNavOpen(subNavOpen === index ? null : index);
+  const handleLogout = () => {
+    // Call the logout function when the Logout button is clicked
+    logout();
+      // Perform a full page reload and redirect to the login page
+  window.location.reload();
+  window.location.href = "/"; 
   };
 
   const menuItem = [
@@ -21,7 +27,7 @@ const Sidebar = ({ children }) => {
       subNav: [
         {path: "./unit", name: "Unit Updates", icon: <FaBusAlt />},
         {path: "./webcam", name: "Live Feed", icon: <BsWebcamFill />},
-    ],
+      ],
       iconClosed: <RiArrowDownSFill />,
       iconOpened: <RiArrowUpSFill />,
     },
@@ -42,12 +48,12 @@ const Sidebar = ({ children }) => {
       icon: <FaUserAlt />,
       subNav: [
         {path: "./busdriver", name: "Terminal Drivers", icon: <BsFillPeopleFill />},
-    ],
+      ],
     },
     {
-      path: "/",
       name: "Logout",
       icon: <BiLogOut />,
+      onClick: handleLogout, // Add onClick handler for logout
     },
   ];
 
@@ -59,9 +65,13 @@ const Sidebar = ({ children }) => {
           <div key={index}>
             <NavLink
               to={item.path}
-              className="link"
-              activeClassName="active"
-              onClick={() => item.subNav && toggleSubNav(index)}
+              className={({ isActive }) =>
+              isActive ? "link active" : "link"
+            }
+              onClick={() => {
+                item.subNav && setSubNavOpen(subNavOpen === index ? null : index);
+                item.onClick && item.onClick(); // Call onClick if provided
+              }}
             >
               <div className="icon">{item.icon}</div>
               <div className="link_text">{item.name}</div>
@@ -75,8 +85,9 @@ const Sidebar = ({ children }) => {
               <NavLink
                 to={subItem.path}
                 key={subIndex}
-                className="sublink"
-                activeClassName="active"
+                className={({ isActive }) =>
+                isActive ? "link active" : "sublink"
+              }
               >
                 <div className="sublink_icon">{subItem.icon}</div>
                 <div className="sublink_text">{subItem.name}</div>

@@ -15,20 +15,28 @@ const UserContext = createContext();
 export const AuthContextProvider = ({ children }) => {
     const [user, setUser] = useState({});
 
-    const createUser = (email, password) => {
-        return createUserWithEmailAndPassword(auth, email, password);
+    const createUser = async (email, password) => {
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        sendEmailVerification(userCredential.user);
+        return userCredential;
     };
 
-    const signIn = (email, password) => {
-        return signInWithEmailAndPassword(auth, email, password)
-    }
+    const signIn = async (email, password) => {
+        const userCredential = await signInWithEmailAndPassword(auth, email, password);
+        return userCredential;
+       };
 
     const forgotPass = (email) => {
         return sendPasswordResetEmail(auth, email)
     }
 
-    const logout = () => {
-        return signOut(auth)
+    const logout = async () => {
+        try {
+            await signOut(auth);
+            console.log("success logout")
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     const reloadUser = async () => {
@@ -42,14 +50,15 @@ export const AuthContextProvider = ({ children }) => {
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-            console.log(currentUser);
-            setUser(currentUser);
+          console.log(currentUser);
+          setUser(currentUser);
         });
         return () => {
-            unsubscribe();
+          unsubscribe();
         };
-    }, []);
+       }, []);
 
+    
     return (
         <UserContext.Provider value={{ createUser, user, logout, signIn, forgotPass, reloadUser }}>
             {children}

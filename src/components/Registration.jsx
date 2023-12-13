@@ -49,10 +49,14 @@ const Registration = () => {
               emailVerificationSent: false,
             });
 
-            await sendEmailVerification(newUser);
             await updateDoc(userDocRef, { emailVerificationSent: true });
 
             setAlert({ show: true, severity: 'success', message: 'Email verification sent. Please verify to login.' });
+            setTimeout(() => {
+              setAlert({ show: false, severity: 'success', message: '' });
+              // Redirect to login with full page reload
+              window.location.href = '/';
+            }, 3000);
           } else {
             const userDoc = querySnapshot.docs[0];
             const userData = userDoc.data();
