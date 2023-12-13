@@ -11,13 +11,11 @@ const Sidebar = ({ children }) => {
   const [subNavOpen, setSubNavOpen] = useState(null);
   const { logout } = UserAuth(); // Get the logout function from context
 
-  const handleLogout = () => {
-    // Call the logout function when the Logout button is clicked
-    logout();
-      // Perform a full page reload and redirect to the login page
-  window.location.reload();
-  window.location.href = "/"; 
-  };
+const handleLogout = () => {
+  // Call the logout function when the Logout button is clicked
+  logout();
+
+};
 
   const menuItem = [
     {

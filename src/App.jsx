@@ -10,6 +10,7 @@ import Registration from './components/Registration';
 import Dashboard from './components/Dashboard';
 import ForgotPassword from './components/ForgotPassword';
 import { AuthContextProvider } from './components/Features/auth/AuthContext';
+import ProtectedRoutes from './components/Features/auth/ProtectedRoutes';
 
 const queryClient = new QueryClient();
 
@@ -23,7 +24,7 @@ function App() {
               <Route path="/" element={<Login />} />
               <Route path="/registration" element={<Registration />} />
               <Route path="/forgotpassword" element={<ForgotPassword />} />
-              <Route path="/dashboard/*" element={<Dashboard />} />
+              <Route path="/dashboard/*" element={<ProtectedRoutes><Dashboard /></ProtectedRoutes>} />
             </Routes>
           </Router>
         </QueryClientProvider>
