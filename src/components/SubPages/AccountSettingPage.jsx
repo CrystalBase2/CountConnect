@@ -101,9 +101,9 @@ function EditProfilePage() {
 
       {isModalOpen && (
         <div className="modal-overlay">
-          <div className="modal">
+          <div className="subpages-modal">
           <img src={WarningIcon} className="warning-photo_img" alt="photo_img"/>
-            <h3>Are you sure of the changes?</h3>
+            <h5>Are you sure of the changes?</h5>
             <br></br>
             <form onSubmit={handleSave}>
                 <input

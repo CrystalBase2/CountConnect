@@ -232,8 +232,8 @@ h2{
     margin-bottom: 30px;
     padding: 15px;
     border-radius: 30px;
-    width: 30%;
-    height: 72%;
+    width: max-content;
+    height: max-content;
     text-align: center;
 }
 
