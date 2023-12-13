@@ -3,8 +3,9 @@ import { FaCalendarAlt } from "react-icons/fa";
 import { FaUserCog } from "react-icons/fa";
 import { IoSettingsSharp } from "react-icons/io5";
 import '../css/Profile.css';
-import InformationPage from './InformationPage'; // Import your Information mini-page component
-import AccountSettingPage from './AccountSettingPage'; // Import your Account Setting mini-page component
+
+import InformationPage from './SubPages/InformationPage';
+import AccountSettingPage from './SubPages/AccountSettingPage';
 
 import ProfileIcon from '../images/Profile.png';
 
