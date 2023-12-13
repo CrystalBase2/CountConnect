@@ -6,6 +6,8 @@ import '../css/Profile.css';
 import InformationPage from './InformationPage'; // Import your Information mini-page component
 import AccountSettingPage from './AccountSettingPage'; // Import your Account Setting mini-page component
 
+import ProfileIcon from '../images/Profile.png';
+
 function Profile() {
   const currentDate = new Date();
   const year = currentDate.getFullYear();
@@ -46,7 +48,17 @@ function Profile() {
         {selectedOption === 'Information' && <InformationPage />}
         {selectedOption === 'AccountSetting' && <AccountSettingPage />}
       </div>
+
+      <div class="card">
+        <img src={ProfileIcon} className="profile-photo_img" alt="Card image"/>
+        <div class="card-body">
+          <h5 class="card-title">Insert Name Here</h5>
+          <p class="card-text">Operator</p>
+          <a href="#!" class="btn btn-primary">Button</a>
+        </div>
+      </div>
     </div>
+    
   );
 }
 
