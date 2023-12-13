@@ -5,6 +5,8 @@
     flex-grow: 1;
     padding-right: 50px;
     justify-content: space-between;
+
+
 }
 
 .profile-content {
@@ -20,24 +22,42 @@
     font-weight: bolder;
 }
 
-.profile-subtitle{
+.profile-subtitle {
     font-size: 20px;
-    font-weight:bold ;
-    margin-top: 130px;
-    margin-left: 150px;
+    font-weight: lighter;
+    cursor: pointer;
 }
 
-span {
-    font-size: 10px;
-    text-align: left;
-    flex: 1;
-    font-family: 'Montserrat', sans-serif;
-    margin-left: 100px;
-    margin-top: 55px;
+.profile-submenu-information,
+.profile-submenu-account {
+    font-size: 20px;
+    text-align: center;
+    /* Center the text horizontally */
     display: flex;
+    align-items: center;
+    /* Center the text vertically */
+    justify-content: center;
+    /* Center the text horizontally */
+    margin-top: 20px;
+    font-weight: lighter;
+    cursor: pointer;
+
+    padding: 10px;
+    /* Add padding for better appearance */
 }
 
-.horizontal-line {
-    border-top: 1px solid black;
-  }
+.span-tab {
+    display: flex;
+    /* Added flex display to arrange spans horizontally */
+}
 
+.profile-submenu-information:hover,
+.profile-submenu-account:hover {
+    background-color: #52575D;
+}
+
+.profile-submenu-information>svg,
+.profile-submenu-account>svg {
+    margin-right: 30px;
+    /* Adjust the margin to add space between the icon and text */
+}
