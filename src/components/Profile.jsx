@@ -35,15 +35,6 @@ function Profile() {
           Welcome<b>, USER!</b>
         </span>
 
-        <div className="span-tab">
-          <span className="profile-submenu-information" onClick={() => handleOptionClick('Information')}>
-              <FaUserCog /> <b> Information</b>
-          </span>
-          <span className="profile-submenu-account" onClick={() => handleOptionClick('AccountSetting')}>
-              <IoSettingsSharp /> <b>Account Setting</b>
-          </span>
-      </div>
-
       <div className="mini-page-container">
         {selectedOption === 'Information' && <InformationPage />}
         {selectedOption === 'AccountSetting' && <AccountSettingPage />}
@@ -54,10 +45,18 @@ function Profile() {
         <div class="card-body">
           <h5 class="card-title">Insert Name Here</h5>
           <p class="card-text">Operator</p>
-          <a href="#!" class="btn btn-primary">Button</a>
+          <button type="submit" className="profile-submenu-information" onClick={() => handleOptionClick('Information')}>
+          <FaUserCog/> Information
+          </button>
+          <button type="submit" className="profile-submenu-account" onClick={() => handleOptionClick('AccountSetting')}>
+          <IoSettingsSharp/> Account Setting
+          </button>
         </div>
       </div>
+
+
     </div>
+    
     
   );
 }

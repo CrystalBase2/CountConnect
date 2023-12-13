@@ -5,8 +5,6 @@
     flex-grow: 1;
     padding-right: 50px;
     justify-content: space-between;
-
-
 }
 
 .profile-content {
@@ -28,46 +26,13 @@
     cursor: pointer;
 }
 
-.profile-submenu-information,
-.profile-submenu-account {
-    font-size: 20px;
-    text-align: center;
-    /* Center the text horizontally */
-    display: flex;
-    align-items: center;
-    /* Center the text vertically */
-    justify-content: center;
-    /* Center the text horizontally */
-    margin-top: 20px;
-    font-weight: lighter;
-    cursor: pointer;
-
-    padding: 10px;
-    /* Add padding for better appearance */
-}
-
-.span-tab {
-    display: flex;
-    /* Added flex display to arrange spans horizontally */
-}
-
-.profile-submenu-information:hover,
-.profile-submenu-account:hover {
-    background-color: #52575D;
-}
-
-.profile-submenu-information>svg,
-.profile-submenu-account>svg {
-    margin-right: 30px;
-    /* Adjust the margin to add space between the icon and text */
-}
-
 .card {
     background-color: #E6D2B9;
     padding: 25px;
+    margin-top: 10px;
     margin-left: 100px;
     width: 250px;
-    height: 300px;
+    height: 350px;
     border-radius: 10px;
 }
 
@@ -91,4 +56,30 @@
     font-weight: lighter;
     font-style: italic;
     text-align: center;
+}
+
+.profile-submenu-information,
+.profile-submenu-account {
+    font-family: 'Montserrat', sans-serif;  
+    font-weight: lighter;
+    font-size: 17px;
+    background-color: #E6D2B9;
+    margin-top: 10px;
+    padding: 10px;  
+    border-style: hidden;   
+    width: 250px;
+    height: 50px;
+}
+
+.profile-submenu-information:hover,
+.profile-submenu-account:hover {
+    background-color: white;
+    cursor: pointer;
+}
+
+.profile-submenu-information>svg{
+    margin-right: 32%;
+}
+.profile-submenu-account>svg {
+    margin-right: 20%;
 }
