@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import '../../css/Subpages.css';
+import WarningIcon from '../../images/warning.png';
 
 function EditProfilePage() {
   const [firstName, setFirstName] = useState("");
@@ -28,6 +29,24 @@ function EditProfilePage() {
       default:
         break;
     }
+  };
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [contactNumber1, setContactNumber1] = useState("");
+
+  const handleSaveChanges = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setContactNumber1("");
+  };
+
+  const handleSave = (e) => {
+    e.preventDefault();
+    console.log("", contactNumber1);
+    closeModal();
   };
 
   return (
@@ -76,9 +95,32 @@ function EditProfilePage() {
         value={email}
         onChange={(e) => handleInputChange("email", e.target.value)}
       />
-      <button type="button" className="edit-profile-button" onClick="">
+      <button type="button" className="edit-profile-button" onClick={handleSaveChanges}>
         Save
       </button>
+
+      {isModalOpen && (
+        <div className="modal-overlay">
+          <div className="modal">
+          <img src={WarningIcon} className="warning-photo_img" alt="photo_img"/>
+            <h3>Are you sure of the changes?</h3>
+            <br></br>
+            <form onSubmit={handleSave}>
+                <input
+                  type="password"
+                  placeholder="Input Password to Confirm Changes"
+                  value={contactNumber}
+                  onChange={(e) => setContactNumber1(e.target.value)}
+                />
+              <div className="modal-buttons">
+                <button type="submit">Save Changes</button>
+                <button type="button" onClick={closeModal}>Cancel</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
     </div>
     
   );

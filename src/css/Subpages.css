@@ -87,3 +87,87 @@
     margin-left: center;
     cursor: pointer;
 }
+
+/* For Modal Configurations */
+
+.modal-overlay {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+}
+
+.modal {
+    position: absolute;
+    background: #D5B690;
+    margin-bottom: 30px;
+    padding: 15px;
+    border-radius: 30px;
+    width: 30%;
+    height: 72%;
+    text-align: center;
+}
+
+h3{
+    position: relative;
+    margin-left: auto;
+    align-items: center;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;  
+    font-size: 30px;
+    color: #1f2123;
+}
+
+.modal input {
+    position: relative;
+    width: 80%;
+    padding: 20px;
+    font-size: 18px;
+    color: black;
+    margin-bottom: 5px;
+    border-style: hidden;
+    border-radius: 5px;
+}
+
+.modal-buttons {
+    position: relative;
+    margin-top: 20px;
+    
+}
+
+.modal-buttons button {
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 40px;
+}
+
+.modal-buttons button:nth-child(1) {
+    background-color: #52575D;
+    color: white;
+    border: none;
+    
+}
+
+.modal-buttons button:nth-child(2) {
+    background-color: #d5564d;
+    color: white;
+    border: none;
+    margin-top: 20px;
+}
+
+.warning-photo_img{
+    position: relative;
+    max-width: 35%;
+    max-height: 35%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+
