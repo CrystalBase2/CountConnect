@@ -26,7 +26,7 @@ const Login = () => {
         setLoginSuccess(true); // Set login to true then return false
       }
     } catch (error) {
-      setAlert({ show: true, severity: 'error', message: 'Invalid Credentials!' });
+      setAlert({ show: true, severity: 'error', message: 'Wrong email or password!' });
       setPassword(''); // Clear password field on error
       setLoginSuccess(false); // Reset login success state on error
     }
