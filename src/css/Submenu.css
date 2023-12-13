@@ -258,6 +258,7 @@ h3{
     padding: 8px;
     margin-bottom: 5px;
     border-style: hidden;
+    border-radius: 5px;
 }
 
 .modal-buttons {
@@ -291,6 +292,7 @@ h3{
     margin-bottom: 10px;
     font-size: 15px;
     border-style: hidden;
+    border-radius: 5px;
 }
 
 .destination-dropdown option {
