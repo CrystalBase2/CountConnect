@@ -13,6 +13,8 @@ const Registration = () => {
   const [registering, setRegistering] = useState(false);
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [alert, setAlert] = useState({ show: false, severity: '', message: '' });
@@ -44,7 +46,8 @@ const Registration = () => {
 
             await setDoc(userDocRef, {
               userId: newUser.uid,
-              username,
+              firstName,
+              lastName,
               email: newUser.email,
               emailVerificationSent: false,
             });
@@ -112,11 +115,23 @@ const Registration = () => {
           <div className="registration-input-group">
             <input
               type="text"
-              id="username"
-              name="username"
-              placeholder="Username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              id="First Name"
+              name="First Name"
+              placeholder="First Name"
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+              className="registration-input"
+              required
+            />
+          </div>
+          <div className="registration-input-group">
+            <input
+              type="text"
+              id="Last Name"
+              name="Last Name"
+              placeholder="Last Name"
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
               className="registration-input"
               required
             />
