@@ -8,36 +8,33 @@ import {
     sendEmailVerification,
     reload,
 } from 'firebase/auth';
-import { auth } from '../../../firebase';
+import { auth, db } from '../../../firebase';
 
 const UserContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
     const [user, setUser] = useState({});
 
-    const createUser = async (email, password) => {
-        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-        sendEmailVerification(userCredential.user);
-        return userCredential;
+    const createUser = (email, password) => {
+        return createUserWithEmailAndPassword(auth, email, password);
     };
 
     const signIn = (email, password) => {
-        return signInWithEmailAndPassword(auth, email, password);
+        return signInWithEmailAndPassword(auth, email, password)
     }
 
     const forgotPass = (email) => {
-        return sendPasswordResetEmail(auth, email);
+        return sendPasswordResetEmail(auth, email)
     }
 
     const logout = () => {
-        return signOut(auth);
+        return signOut(auth)
     }
 
     const reloadUser = async () => {
         try {
             await reload(auth.currentUser);
             setUser(auth.currentUser);
-            console.log("reloaded")
         } catch (error) {
             console.error('Error reloading user:', error.message);
         }
