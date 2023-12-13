@@ -211,6 +211,7 @@ h2{
     color: black;
     margin-top: 20px;
     margin-left: center;
+    cursor: pointer;
 }
 
 .modal-overlay {
