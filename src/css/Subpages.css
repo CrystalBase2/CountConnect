@@ -4,7 +4,7 @@
     font-weight: bolder;
     flex-grow: 1;
     padding-right: 50px;
-    justify-content: space-between;
+    position: relative;
 }
 
 .subpages-content {
@@ -31,4 +31,44 @@
 .subpages-title {
     font-size: 50px;
     font-weight: bolder;
+}
+
+/* Subpages for Profile Page */
+
+.profile-submenu-container{
+    position: absolute;
+    z-index: 1; 
+    align-items: center;
+    padding-left: 35%;
+}
+
+.info-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 30px;
+    font-weight: light;
+}
+
+.profile-submenu-container label {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.name-rounded-input{
+    width: max-content;
+}
+
+.details-rounded-input{
+    width: 65%;
+}
+
+.contact-rounded-input{
+    width: 35%;
+}
+.name-rounded-input, .details-rounded-input, .contact-rounded-input{
+    border-radius: 5px;
+    border: hidden;
+    padding: 10px;
+    margin-top: 15px;
+    margin-left: 5px;
+    margin-right: 10px;
 }

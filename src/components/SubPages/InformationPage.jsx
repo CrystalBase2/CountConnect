@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import '../../css/Subpages.css';
 
 function InformationPage() {
   const [firstName, setFirstName] = useState("");
@@ -30,44 +31,48 @@ function InformationPage() {
   };
 
   return (
-    <div className="information-page">
-      <br />
+    <div className="profile-submenu-container">
+    <br></br> 
+    <h1 className = "info-title">Information</h1>
+    <hr></hr>
+    <br></br>
       <label htmlFor="firstName">First Name:</label>
       <input
         type="text"
         id="firstName"
+        className="name-rounded-input"
         value={firstName}
         onChange={(e) => handleInputChange("firstName", e.target.value)}
       />
-
       <label htmlFor="lastName">Last Name:</label>
       <input
         type="text"
         id="lastName"
+        className="name-rounded-input"
         value={lastName}
         onChange={(e) => handleInputChange("lastName", e.target.value)}
-      />
-
+      /><br></br>
       <label htmlFor="address">Address:</label>
       <input
         type="text"
         id="address"
+        className="details-rounded-input"
         value={address}
         onChange={(e) => handleInputChange("address", e.target.value)}
-      />
-
+      /><br></br>
       <label htmlFor="contactNumber">Contact Number:</label>
       <input
         type="text"
         id="contactNumber"
+        className="contact-rounded-input"
         value={contactNumber}
         onChange={(e) => handleInputChange("contactNumber", e.target.value)}
-      />
-
+      /><br></br>
       <label htmlFor="email">Email:</label>
       <input
         type="text"
         id="email"
+        className="details-rounded-input"
         value={email}
         onChange={(e) => handleInputChange("email", e.target.value)}
       />
