@@ -34,7 +34,7 @@ function EditProfilePage() {
   };
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [contactNumber1, setContactNumber1] = useState("");
+
 
   const handleSaveChanges = () => {
     setIsModalOpen(true);
@@ -42,22 +42,20 @@ function EditProfilePage() {
 
   const closeModal = () => {
     setIsModalOpen(false);
-    setContactNumber1("");
   };
 
   const handleSave = (e) => {
     e.preventDefault();
-    console.log("", contactNumber1);
     closeModal();
   };
 
   return (
     <div className="profile-submenu-container">
-    <br></br> 
-    <h1 className = "info-title">Edit Profile</h1>
-    <hr className="hrStyle"></hr>
-    <br></br>
-    <Box
+      <br />
+      <h1 className="info-title">Edit Profile</h1>
+      <hr className="hrStyle" />
+      <br />
+      <Box
       component="form"
       sx={{
         '& .MuiTextField-root': { m: 2.5},
@@ -126,16 +124,14 @@ function EditProfilePage() {
       {isModalOpen && (
         <div className="modal-overlay">
           <div className="subpages-modal">
-          <img src={WarningIcon} className="warning-photo_img" alt="photo_img"/>
+            <img src={WarningIcon} className="warning-photo_img" alt="photo_img" />
             <h5>Are you sure of the changes?</h5>
-            <br></br>
+            <br />
             <form onSubmit={handleSave}>
-                <input
-                  type="password"
-                  placeholder="Input Password to Confirm Changes"
-                  value={contactNumber}
-                  onChange={(e) => setContactNumber1(e.target.value)}
-                />
+              <input
+                type="password"
+                placeholder="Input Password to Confirm Changes"
+              />
               <div className="modal-buttons">
                 <button type="submit">Save Changes</button>
                 <button type="button" onClick={closeModal}>Cancel</button>
@@ -144,9 +140,7 @@ function EditProfilePage() {
           </div>
         </div>
       )}
-
     </div>
-    
   );
 }
 
