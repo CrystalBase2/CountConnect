@@ -36,10 +36,12 @@
 /* Subpages for Profile Page */
 
 .profile-submenu-container{
-    position: absolute;
-    z-index: 1; 
+    position: relative;
     align-items: center;
-    padding-left: 33%;
+    justify-content: space-between;
+    align-items: center;
+    height: 25px;
+    padding-left: 45%;
 }
 
 .info-title {
@@ -125,6 +127,7 @@ h5{
 
 .subpages-modal-buttons button {
     padding: 10px 20px;
+    position: relative;
     cursor: pointer;
     border-radius: 40px;
 }

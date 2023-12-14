@@ -1,10 +1,10 @@
 .profile-container {
-    flex-direction: column;
+    display: grid;
+    grid-column: 2;
+    grid-row: 1;
     font-family: 'Montserrat', 'Inter', sans-serif;
     font-weight: bolder;
-    flex-grow: 1;
     padding-right: 50px;
-    justify-content: space-between;
 }
 
 .profile-content {
@@ -28,11 +28,12 @@
 .card {
     background-color: #E6D2B9;
     padding: 25px;
-    margin-top: 10px;
+    margin-top: auto 0;
     margin-left: 100px;
     width: 250px;
     height: 350px;
     border-radius: 10px;
+    z-index: 1; 
 }
 
 .profile-photo_img{
