@@ -43,10 +43,16 @@
 }
 
 .info-title {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Montserrat', sans-serif;  
     font-size: 30px;
     font-weight: light;
 }
+
+.hrStyle {
+    color: red;
+    background-color: black;
+    height: 5px;
+  }
 
 .profile-submenu-container label {
     font-weight: lighter;

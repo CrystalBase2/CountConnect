@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import TextField from '@mui/material/TextField';
+import Box from '@mui/material/Box';
 import '../../css/Subpages.css';
 import WarningIcon from '../../images/warning.png';
 
@@ -53,48 +55,63 @@ function EditProfilePage() {
     <div className="profile-submenu-container">
     <br></br> 
     <h1 className = "info-title">Edit Profile</h1>
-    <hr></hr>
+    <hr className="hrStyle"></hr>
     <br></br>
-      <label htmlFor="firstName">First Name:</label>
-      <input
+    <Box
+      component="form"
+      sx={{
+        '& .MuiTextField-root': { m: 1, width: '25ch' },
+      }}
+      noValidate
+      autoComplete="off"
+    >
+      <div>
+      <TextField
+        label="First Name"
+        defaultValue= "Input Name Here"
         type="text"
         id="firstName"
         className="name-rounded-input"
-        value={firstName}
         onChange={(e) => handleInputChange("firstName", e.target.value)}
+        size= "small"
       />
-      <label htmlFor="lastName">Last Name:</label>
-      <input
+      <TextField
+        label="Last Name"
+        defaultValue= "Input Name Here"
         type="text"
         id="lastName"
         className="name-rounded-input"
-        value={lastName}
         onChange={(e) => handleInputChange("lastName", e.target.value)}
+        size= "small"
       /><br></br>
-      <label htmlFor="address">Address:</label>
-      <input
+      <TextField
+        label="Address"
+        defaultValue= "House No, Street, Barangay, City, Province and Code"
         type="text"
         id="address"
         className="details-rounded-input"
-        value={address}
         onChange={(e) => handleInputChange("address", e.target.value)}
+        size= "small"
       /><br></br>
-      <label htmlFor="contactNumber">Contact Number:</label>
-      <input
+      <TextField
+        label="Contact Number"
+        defaultValue= "Input Active Number Here"
         type="text"
         id="contactNumber"
         className="contact-rounded-input"
-        value={contactNumber}
         onChange={(e) => handleInputChange("contactNumber", e.target.value)}
+        size= "small"
       /><br></br>
-      <label htmlFor="email">Email:</label>
-      <input
+      <TextField
+        label="Email Address"
+        defaultValue= "Input Email Here"
         type="text"
         id="email"
         className="details-rounded-input"
-        value={email}
         onChange={(e) => handleInputChange("email", e.target.value)}
+        size= "small"
       />
+      </div></Box>
       <button type="button" className="edit-profile-button" onClick={handleSaveChanges}>
         Save
       </button>
