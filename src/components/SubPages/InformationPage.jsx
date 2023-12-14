@@ -1,22 +1,13 @@
 import React, { useState } from "react";
 import TextField from '@mui/material/TextField';
+import Box from '@mui/material/Box';
 import '../../css/Subpages.css';
 
 function InformationPage() {
     return (
-        <div>
-          <TextField
-            required
-            id="outlined-required"
-            label="First Name"
-            defaultValue= "Input Name Here"x
-          />
-          <TextField
-            id="outlined-password-input"
-            label="Password"
-            type="password"
-            autoComplete="current-password"
-          />
+      <div className="profile-submenu-container">
+      <br></br> 
+      <h1 className = "info-title">Information</h1>
         </div>
     );
   }

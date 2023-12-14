@@ -60,7 +60,9 @@ function EditProfilePage() {
     <Box
       component="form"
       sx={{
-        '& .MuiTextField-root': { m: 1, width: '25ch' },
+        '& .MuiTextField-root': { m: 2.5},
+        width: 580,
+        maxWidth: '100%',
       }}
       noValidate
       autoComplete="off"
@@ -69,45 +71,50 @@ function EditProfilePage() {
       <TextField
         label="First Name"
         defaultValue= "Input Name Here"
+        InputProps={{inputProps: {style: {color: 'gray', fontSize: '15px', padding: '10px'},}}}
         type="text"
         id="firstName"
-        className="name-rounded-input"
+        className="rounded-input"
         onChange={(e) => handleInputChange("firstName", e.target.value)}
         size= "small"
       />
       <TextField
         label="Last Name"
         defaultValue= "Input Name Here"
+        InputProps={{inputProps: {style: {color: 'gray', fontSize: '15px', padding: '10px'},}}}
         type="text"
         id="lastName"
-        className="name-rounded-input"
+        className="rounded-input"
         onChange={(e) => handleInputChange("lastName", e.target.value)}
         size= "small"
       /><br></br>
       <TextField
         label="Address"
         defaultValue= "House No, Street, Barangay, City, Province and Code"
+        InputProps={{inputProps: {style: {color: 'gray', fontSize: '15px', padding: '10px'},}}}
         type="text"
         id="address"
-        className="details-rounded-input"
+        className="address-rounded-input"
         onChange={(e) => handleInputChange("address", e.target.value)}
         size= "small"
       /><br></br>
       <TextField
         label="Contact Number"
         defaultValue= "Input Active Number Here"
+        InputProps={{inputProps: {style: {color: 'gray', fontSize: '15px', padding: '10px'},}}}
         type="text"
         id="contactNumber"
-        className="contact-rounded-input"
+        className="rounded-input"
         onChange={(e) => handleInputChange("contactNumber", e.target.value)}
         size= "small"
-      /><br></br>
+      />
       <TextField
-        label="Email Address"
+        label="Email Address" 
         defaultValue= "Input Email Here"
+        InputProps={{inputProps: {style: {color: 'gray', fontSize: '15px', padding: '10px'},}}}
         type="text"
         id="email"
-        className="details-rounded-input"
+        className="rounded-input"
         onChange={(e) => handleInputChange("email", e.target.value)}
         size= "small"
       />
