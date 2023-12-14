@@ -84,28 +84,24 @@
 /* For Modal Configurations */
 
 .modal-overlay {
-    position: relative;
-    top: 0;
-    left: 0;
     background: rgba(0, 0, 0, 0.5);
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 10;
 }
 
 .subpages-modal {
-    position: absolute;
     background: #D5B690;
     margin-bottom: 30px;
-    padding: 15px;
     border-radius: 30px;
+    padding-bottom: 15px;
     width: max-content;
     height: fit-content;
-    text-align: center;
+    text-align: center;  
 }
 
 h5{
-    position: relative;
     margin-left: auto;
     text-align: center;
     font-family: 'Montserrat', sans-serif;  
@@ -114,7 +110,6 @@ h5{
 }
 
 .subpages-modal input {
-    position: relative;
     width: 70%;
     padding: 10px;
     font-size: 15px;
@@ -125,7 +120,6 @@ h5{
 }
 
 .subpages-modal-buttons {
-    position: relative;
     margin-top: 20px;
 }
 
@@ -149,12 +143,10 @@ h5{
 }
 
 .warning-photo_img{
-    position: relative;
     max-width: 25%;
     max-height: 25%;
     margin: 0 auto;
     display: flex;
     justify-content: center;
-    padding: 10px;
 }
 
