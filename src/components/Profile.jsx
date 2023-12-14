@@ -33,7 +33,7 @@ function Profile() {
         </div>
       </div>
 
-      <span className="profile-subtitle" onClick={() => handleOptionClick('Welcome')}>
+      <span className="profile-subtitle">
           Welcome<b>, USER!</b>
         </span>
 
