@@ -49,10 +49,10 @@
 }
 
 .hrStyle {
-    color: red;
     background-color: black;
-    height: 5px;
-  }
+    height: 1px;
+    width: 120%;
+}
 
 .profile-submenu-container label {
     font-weight: lighter;
