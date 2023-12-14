@@ -70,7 +70,7 @@ function EditProfilePage() {
       <div>
       <TextField
         label="First Name"
-        defaultValue= "Input Name Here"
+        defaultValue= " "
         InputProps={{inputProps: {style: {color: 'gray', fontSize: '15px', padding: '10px'},}}}
         type="text"
         id="firstName"
@@ -80,7 +80,7 @@ function EditProfilePage() {
       />
       <TextField
         label="Last Name"
-        defaultValue= "Input Name Here"
+        defaultValue= " "
         InputProps={{inputProps: {style: {color: 'gray', fontSize: '15px', padding: '10px'},}}}
         type="text"
         id="lastName"
@@ -100,7 +100,7 @@ function EditProfilePage() {
       /><br></br>
       <TextField
         label="Contact Number"
-        defaultValue= "Input Active Number Here"
+        defaultValue= "+63**********"
         InputProps={{inputProps: {style: {color: 'gray', fontSize: '15px', padding: '10px'},}}}
         type="text"
         id="contactNumber"
@@ -110,7 +110,7 @@ function EditProfilePage() {
       />
       <TextField
         label="Email Address" 
-        defaultValue= "Input Email Here"
+        defaultValue= "email@gmail.com"
         InputProps={{inputProps: {style: {color: 'gray', fontSize: '15px', padding: '10px'},}}}
         type="text"
         id="email"
