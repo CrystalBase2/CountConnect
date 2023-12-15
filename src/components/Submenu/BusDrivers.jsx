@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import '../../css/Submenu.css';
+import TextField from '@mui/material/TextField';
+import Box from '@mui/material/Box';
 
 function BusDriver() { 
   const navigate = useNavigate();
@@ -103,13 +105,19 @@ function BusDriver() {
 
       {/* Modal for adding a new driver */}
       {isModalOpen && (
+            <Box
+            component="form"
+            sx={{
+              '& .MuiTextField-root': { m: 1, width: '25ch' },
+            }}
+            noValidate
+            autoComplete="off"
+          >
         <div className="modal-overlay">
           <div className="modal">
             <h3>Add New Driver</h3>
             <br></br>
             <form onSubmit={handleSave}>
-            <label>
-                Select Bus Route:
                 <select
                   value={busRoute}
                   onChange={(e) => setSelectedDestination(e.target.value)}
@@ -121,46 +129,38 @@ function BusDriver() {
                 <option value="Tagoloan">Gaisano Mall - Tagoloan</option>
                 <option value="Villanueva">Gaisano Mall - Villanueva</option>
               </select>
-            </label>
-            <label>
-                Bus Number:
-                <input
+                <TextField
                   type="text"
                   value={busNumber}
+                  label="Bus Number"
                   onChange={(e) => setBusNumber(e.target.value)}
-                />
-              </label>
-              <label>
-                ID Number:
-                <input
+                /><br></br>
+                <TextField
                   type="text"
                   value={idNumber}
+                  label="Employee ID Number"
                   onChange={(e) => setIDNumber(e.target.value)}
-                />
-              </label>
-              <label>
-                Driver's Name:
-                <input
+                /><br></br>
+                <TextField
                   type="text"
                   value={driverName}
+                  label="Driver's Name"
                   onChange={(e) => setDriverName(e.target.value)}
-                />
-              </label>
-              <label>
-                Contact Number:
-                <input
+                /><br></br>
+                <TextField
                   type="text"
                   value={contactNumber}
+                  label="Contact Number"
                   onChange={(e) => setContactNumber(e.target.value)}
                 />
-              </label>
+
               <div className="modal-buttons">
                 <button type="submit">Save Information</button>
                 <button type="button" onClick={closeModal}>Cancel</button>
               </div>
             </form>
           </div>
-        </div>
+        </div></Box>
       )}
     </div>
   );
