@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import '../../css/Submenu.css';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
+import MenuItem from '@mui/material/MenuItem';
 
 function BusDriver() { 
   const navigate = useNavigate();
@@ -16,6 +17,29 @@ function BusDriver() {
   const handleBusDriver = () => {
     setIsModalOpen(true);
   };
+
+  const BusRoute = [
+    {
+      value: 'Alubijid',
+      label: 'Gaisano Mall to Alubijid',
+    },
+    {
+      value: 'Laguindingan',
+      label: 'Gaisano Mall to Laguindingan',
+    },
+    {
+      value: 'Libertad',
+      label: 'Gaisano Mall to Libertad',
+    },
+    {
+      value: 'Tagoloan',
+      label: 'Gaisano Mall to Tagoloan',
+    },
+    {
+      value: 'Villanueva',
+      label: 'Gaisano Mall to Villanueva',
+    },
+  ];
 
   const closeModal = () => {
     setIsModalOpen(false);
@@ -118,40 +142,47 @@ function BusDriver() {
             <h3>Add New Driver</h3>
             <br></br>
             <form onSubmit={handleSave}>
-                <select
-                  value={busRoute}
-                  onChange={(e) => setSelectedDestination(e.target.value)}
-                  className="destination-dropdown"
-                >
-                <option value="Alubijid">Gaisano Mall - Alubijid</option>
-                <option value="Laguindingan">Gaisano Mall - Laguindingan</option>
-                <option value="Libertad">Gaisano Mall - Libertad</option>
-                <option value="Tagoloan">Gaisano Mall - Tagoloan</option>
-                <option value="Villanueva">Gaisano Mall - Villanueva</option>
-              </select>
+                <TextField
+                  id="outlined-select-route"
+                  select
+                  label="Bus Route"
+                  defaultValue="Alubijid"
+                  helperText="Please select driver's bus route"
+                  size ="small"
+                >                
+                {BusRoute.map((option) => (
+                  <MenuItem key={option.value} value={option.value}>
+                    {option.label}
+                  </MenuItem>
+                ))}
+                </TextField> <br></br>
                 <TextField
                   type="text"
                   value={busNumber}
                   label="Bus Number"
                   onChange={(e) => setBusNumber(e.target.value)}
+                  size ="small"
                 /><br></br>
                 <TextField
                   type="text"
                   value={idNumber}
                   label="Employee ID Number"
                   onChange={(e) => setIDNumber(e.target.value)}
+                  size ="small"
                 /><br></br>
                 <TextField
                   type="text"
                   value={driverName}
                   label="Driver's Name"
                   onChange={(e) => setDriverName(e.target.value)}
+                  size ="small"
                 /><br></br>
                 <TextField
                   type="text"
                   value={contactNumber}
                   label="Contact Number"
                   onChange={(e) => setContactNumber(e.target.value)}
+                  size ="small"
                 />
 
               <div className="modal-buttons">
