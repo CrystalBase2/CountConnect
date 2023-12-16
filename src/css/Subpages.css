@@ -16,15 +16,26 @@
 }
 
 .subpages-date {
-    font-weight: bolder;
+    font-family: Tahoma, sans-serif;
+    font-weight: bold;
+    font-size: 21px;
+    color: #152A38;
+    white-space: nowrap;
 }
 
-.subpages-icon {
+h7{
+    font-family: Tahoma, sans-serif;
+    font-weight: light;
+    font-size: 15px;
+    color: #263f50;
+}
+
+.date-icon {
     display: flex;
     align-items: center;
 }
 
-.subpages-icon svg {
+.date-icon svg {
     margin-right: 20px;
 }
 

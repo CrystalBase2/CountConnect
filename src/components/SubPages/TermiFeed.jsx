@@ -5,10 +5,17 @@ import '../../css/Subpages.css';
 
 function BusFeed() {
   const currentDate = new Date();
-  const year = currentDate.getFullYear();
-  const month = (currentDate.getMonth() + 1).toString().padStart(2, '0');
   const day = currentDate.getDate().toString().padStart(2, '0');
-  const formattedDate = `${year}-${month}-${day}`;
+  const monthNames = [
+    'January', 'February', 'March', 'April',
+    'May', 'June', 'July', 'August',
+    'September', 'October', 'November', 'December'
+  ];
+  const month = monthNames[currentDate.getMonth()];
+  const year = currentDate.getFullYear();
+  const formattedDate = `${day} ${month}, ${year}`;
+  
+  console.log(formattedDate);
 
 
   return (
@@ -17,7 +24,7 @@ function BusFeed() {
         <h1 className="subpages-title">LIVE FEED ON GAISANO TERMINAL</h1>
         <div className="date-icon">
           <FaCalendarAlt />
-          <p className="subpages-date">{formattedDate}</p>
+          <p className="subpages-date"><h7>Today</h7><br/>{formattedDate}</p>
         </div>
       </div>
     </div>
