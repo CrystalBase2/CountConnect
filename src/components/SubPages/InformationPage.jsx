@@ -3,7 +3,10 @@ import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import '../../css/Subpages.css';
 
+import { UserAuth } from "../Features/auth/AuthContext";
+
 function Information() {
+  const {user} = UserAuth();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [address, setAddress] = useState("");
@@ -29,7 +32,7 @@ function Information() {
       <div>
       <TextField
         label="First Name"
-        defaultValue= "Text Here"
+        value= {user.firstName}
         InputProps={{inputProps: {style: {color: 'gray', fontSize: '15px', padding: '10px'},},readOnly: true}}
         type="text"
         id="firstName"
@@ -39,7 +42,7 @@ function Information() {
       />
       <TextField
         label="Last Name"
-        defaultValue= "Text Here"
+       value= {user.lastName}
         InputProps={{inputProps: {style: {color: 'gray', fontSize: '15px', padding: '10px'},},readOnly: true}}
         type="text"
         id="lastName"
