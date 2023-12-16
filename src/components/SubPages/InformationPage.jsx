@@ -2,16 +2,12 @@ import React, { useState } from "react";
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import '../../css/Subpages.css';
+import { useQuery } from "react-query";
 
 import { UserAuth } from "../Features/auth/AuthContext";
 
 function Information() {
   const {user} = UserAuth();
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [address, setAddress] = useState("");
-  const [contactNumber, setContactNumber] = useState("");
-  const [email, setEmail] = useState("");
 
   return (
     <div className="profile-submenu-container">
@@ -30,54 +26,49 @@ function Information() {
       autoComplete="off"
     >
       <div>
-      <TextField disabled
+      <TextField
         label="First Name"
-        value= {user.firstName}
+        value= {user.firstName || ""}
         InputProps={{inputProps: {style: {color: 'gray', fontSize: '15px', padding: '10px'},},readOnly: true}}
         type="text"
         id="firstName"
         className="rounded-input"
-        onChange={(e) => handleInputChange("firstName", e.target.value)}
         size= "small"
-      /> 
-      <TextField disabled
+      />
+      <TextField
         label="Last Name"
-       value= {user.lastName}
+       value= {user.lastName || ""}
         InputProps={{inputProps: {style: {color: 'gray', fontSize: '15px', padding: '10px'},},readOnly: true}}
         type="text"
         id="lastName"
         className="rounded-input"
-        onChange={(e) => handleInputChange("lastName", e.target.value)}
         size= "small"
       /><br></br>
-      <TextField disabled
+      <TextField
         label="Address"
-        value= "House No, Street, Barangay, City, Province and Code"
+        defaultValue= "House No, Street, Barangay, City, Province and Code"
         InputProps={{inputProps: {style: {color: 'gray', fontSize: '15px', padding: '10px'},},readOnly: true}}
         type="text"
         id="address"
         className="address-rounded-input"
-        onChange={(e) => handleInputChange("address", e.target.value)}
         size= "small"
       /><br></br>
-      <TextField disabled
+      <TextField
         label="Contact Number"
-        value= "+63**********"
+        defaultValue= "+63**********"
         InputProps={{inputProps: {style: {color: 'gray', fontSize: '15px', padding: '10px'},},readOnly: true}}
         type="text"
         id="contactNumber"
         className="rounded-input"
-        onChange={(e) => handleInputChange("contactNumber", e.target.value)}
         size= "small"
       />
-      <TextField disabled
+      <TextField
         label="Email Address" 
-        value= "email@gmail.com"
+        defaultValue= "email@gmail.com"
         InputProps={{inputProps: {style: {color: 'gray', fontSize: '15px', padding: '10px'},},readOnly: true}}
         type="text"
         id="email"
         className="rounded-input"
-        onChange={(e) => handleInputChange("email", e.target.value)}
         size= "small"
       />
       </div></Box>
