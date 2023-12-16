@@ -7,11 +7,18 @@ import '../css/Home.css';
 function Home() {
   const { user } = UserAuth();
   const currentDate = new Date();
-  const year = currentDate.getFullYear();
-  const month = (currentDate.getMonth() + 1).toString().padStart(2, '0');
   const day = currentDate.getDate().toString().padStart(2, '0');
-  const formattedDate = `${year}-${month}-${day}`;
-
+  const monthNames = [
+    'January', 'February', 'March', 'April',
+    'May', 'June', 'July', 'August',
+    'September', 'October', 'November', 'December'
+  ];
+  const month = monthNames[currentDate.getMonth()];
+  const year = currentDate.getFullYear();
+  const formattedDate = `${day} ${month}, ${year}`;
+  
+  console.log(formattedDate);
+  
 
   return (
     <div className="home-container">
@@ -19,7 +26,7 @@ function Home() {
         <h1 className="home-title">HOME</h1>
         <div className="date-icon">
           <FaCalendarAlt />
-          <p className="home-date">{formattedDate}</p>
+          <p className="home-date"><h7>Today</h7><br></br>{formattedDate}</p>
         </div>
       </div>
       <span className="home-subtitle">Welcome<b>, {user.firstName}!</b></span>

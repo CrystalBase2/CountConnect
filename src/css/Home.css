@@ -8,7 +8,6 @@
 }
 
 .home-content {
-    font-family: 'Montserrat', sans-serif;
     margin-left: 100px;
     margin-top: 50px;
     display: flex;
@@ -16,7 +15,17 @@
 }
 
 .home-date {
-    font-weight: bolder;
+    font-family: Tahoma, sans-serif;
+    font-weight: bold;
+    font-size: 21px;
+    color: #152A38;
+}
+
+h7{
+    font-family: Tahoma, sans-serif;
+    font-weight: light;
+    font-size: 15px;
+    color: #263f50;
 }
 
 .date-icon {
