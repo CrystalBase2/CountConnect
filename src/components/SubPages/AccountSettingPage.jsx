@@ -9,12 +9,14 @@ import { db } from "../../firebase";
 
 
 function EditProfilePage() {
-  const { user } = UserAuth();
+  const { user,signIn } = UserAuth();
   const [firstName, setFirstName] = useState(user.firstName || "");
   const [lastName, setLastName] = useState(user.lastName || "");
   const [address, setAddress] = useState(user.address || "");
   const [contactNumber, setContactNumber] = useState(user.contactNumber || "");
   const [email, setEmail] = useState(user.email || "");
+  const [password, setPassword] = useState("");
+  
 
   const handleInputChange = (field, value) => {
     switch (field) {
@@ -51,12 +53,23 @@ function EditProfilePage() {
 
   const handleSave = async (e) => {
     e.preventDefault();
-    
-    // Create a document reference based on the user's ID or any identifier
+    if (!password) {
+      // Show an error message or handle the lack of password
+      return;
+    }
+
+    try {
+      await signIn(user.email, password);
+    } catch (error) {
+      console.log(error)
+      console.error("Password authentication failed:", error.message);
+      // Show an error message or handle the authentication failure
+      return;
+    }
+
     const userDocRef = doc(db, 'users', user.uid);
 
-    // Update the user document in Firestore
-    await setDoc(userDocRef,{
+    await setDoc(userDocRef, {
       firstName,
       lastName,
       address,
@@ -149,6 +162,7 @@ function EditProfilePage() {
               <input
                 type="password"
                 placeholder="Input Password to Confirm Changes"
+                onChange={(e) => setPassword(e.target.value)} 
               />
               <div className="modal-buttons">
                 <button type="submit">Save Changes</button>
