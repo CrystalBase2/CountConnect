@@ -26,7 +26,7 @@ function Home() {
         <h1 className="home-title">HOME</h1>
         <div className="date-icon">
           <FaCalendarAlt />
-          <p className="home-date"><h7>Today</h7><br></br>{formattedDate}</p>
+          <p className="home-date"><h7>Today</h7><br/>{formattedDate}</p>
         </div>
       </div>
       <span className="home-subtitle">Welcome<b>, {user.firstName}!</b></span>

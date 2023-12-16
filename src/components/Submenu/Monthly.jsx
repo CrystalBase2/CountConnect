@@ -7,10 +7,17 @@ import '../../css/Submenu.css';
 
 function Monthly() {
   const currentDate = new Date();
-  const year = currentDate.getFullYear();
-  const month = (currentDate.getMonth() + 1).toString().padStart(2, '0');
   const day = currentDate.getDate().toString().padStart(2, '0');
-  const formattedDate = `${year}-${month}-${day}`;
+  const monthNames = [
+    'January', 'February', 'March', 'April',
+    'May', 'June', 'July', 'August',
+    'September', 'October', 'November', 'December'
+  ];
+  const month = monthNames[currentDate.getMonth()];
+  const year = currentDate.getFullYear();
+  const formattedDate = `${day} ${month}, ${year}`;
+  
+  console.log(formattedDate);
 
   const [isActive, setIsActive] = useState(false);
   const [selected, setIsSelected] = useState("Choose a bus route");
@@ -21,7 +28,7 @@ function Monthly() {
         <h1 className="submenu-title">REPORTS</h1>
         <div className="date-icon">
           <FaCalendarAlt />
-          <p className="submenu-date">{formattedDate}</p>
+          <p className="home-date"><h7>Today</h7><br/>{formattedDate}</p>
         </div>
       </div>
       <span className="submenu-pagesub">Monthly</span>
