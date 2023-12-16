@@ -3,17 +3,18 @@ import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import '../../css/Subpages.css';
 import WarningIcon from '../../images/warning.png';
-
 import { UserAuth } from "../Features/auth/AuthContext";
+import { collection, query, where, getDocs, doc, setDoc, updateDoc } from 'firebase/firestore';
+import { db } from "../../firebase";
+
 
 function EditProfilePage() {
-  const {user} = UserAuth();
-
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [address, setAddress] = useState("");
-  const [contactNumber, setContactNumber] = useState("");
-  const [email, setEmail] = useState("");
+  const { user } = UserAuth();
+  const [firstName, setFirstName] = useState(user.firstName || "");
+  const [lastName, setLastName] = useState(user.lastName || "");
+  const [address, setAddress] = useState(user.address || "");
+  const [contactNumber, setContactNumber] = useState(user.contactNumber || "");
+  const [email, setEmail] = useState(user.email || "");
 
   const handleInputChange = (field, value) => {
     switch (field) {
@@ -48,8 +49,21 @@ function EditProfilePage() {
     setIsModalOpen(false);
   };
 
-  const handleSave = (e) => {
+  const handleSave = async (e) => {
     e.preventDefault();
+    
+    // Create a document reference based on the user's ID or any identifier
+    const userDocRef = doc(db, 'users', user.uid);
+
+    // Update the user document in Firestore
+    await setDoc(userDocRef,{
+      firstName,
+      lastName,
+      address,
+      contactNumber,
+      email,
+    });
+
     closeModal();
   };
 
@@ -72,8 +86,8 @@ function EditProfilePage() {
       <div>
       <TextField
         label="First Name"
-        defaultValue= " "
-        InputProps={{inputProps: {style: {color: 'gray', fontSize: '15px', padding: '10px'},}}}
+        defaultValue= {user.firstName || " "}
+        InputProps={{inputProps: {style: {color: 'black', fontSize: '15px', padding: '10px'},}}}
         type="text"
         id="firstName"
         className="rounded-input"
@@ -82,8 +96,8 @@ function EditProfilePage() {
       />
       <TextField
         label="Last Name"
-        defaultValue= " "
-        InputProps={{inputProps: {style: {color: 'gray', fontSize: '15px', padding: '10px'},}}}
+        defaultValue= {user.lastName || " "}
+        InputProps={{inputProps: {style: {color: 'black', fontSize: '15px', padding: '10px'},}}}
         type="text"
         id="lastName"
         className="rounded-input"
@@ -92,8 +106,8 @@ function EditProfilePage() {
       /><br></br>
       <TextField
         label="Address"
-        defaultValue= "House No, Street, Barangay, City, Province and Code"
-        InputProps={{inputProps: {style: {color: 'gray', fontSize: '15px', padding: '10px'},}}}
+        placeholder="House No, Street, Barangay, City, Province and Code"
+        InputProps={{inputProps: {style: {color: 'black', fontSize: '15px', padding: '10px'},}}}
         type="text"
         id="address"
         className="address-rounded-input"
@@ -102,8 +116,8 @@ function EditProfilePage() {
       /><br></br>
       <TextField
         label="Contact Number"
-        defaultValue= "+63**********"
-        InputProps={{inputProps: {style: {color: 'gray', fontSize: '15px', padding: '10px'},}}}
+        placeholder="+63**********"
+        InputProps={{inputProps: {style: {color: 'black', fontSize: '15px', padding: '10px'},}}}
         type="text"
         id="contactNumber"
         className="rounded-input"
@@ -112,8 +126,8 @@ function EditProfilePage() {
       />
       <TextField
         label="Email Address" 
-        defaultValue= "email@gmail.com"
-        InputProps={{inputProps: {style: {color: 'gray', fontSize: '15px', padding: '10px'},}}}
+        defaultValue= {user.email}
+        InputProps={{inputProps: {style: {color: 'black', fontSize: '15px', padding: '10px'},}}}
         type="text"
         id="email"
         className="rounded-input"

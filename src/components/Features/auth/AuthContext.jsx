@@ -1,20 +1,20 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import {
-    createUserWithEmailAndPassword,
-    signInWithEmailAndPassword,
-    sendPasswordResetEmail,
-    signOut,
-    onAuthStateChanged,
-    sendEmailVerification,
-    reload,
+   createUserWithEmailAndPassword,
+   signInWithEmailAndPassword,
+   sendPasswordResetEmail,
+   signOut,
+   onAuthStateChanged,
+   sendEmailVerification,
+   reload,
 } from 'firebase/auth';
 import { auth, db } from '../../../firebase';
-import { collection, doc, getDoc} from 'firebase/firestore';
+import { collection, doc, onSnapshot } from 'firebase/firestore';
 
 const UserContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
-    const [user, setUser] = useState({});
+   const [user, setUser] = useState({});
 
     const createUser = async (email, password) => {
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
@@ -50,33 +50,37 @@ export const AuthContextProvider = ({ children }) => {
     };
 
 
-    useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
-            console.log(currentUser);
-            setUser(currentUser);
-     
-            if (currentUser) {
-                // Fetch additional user data from Firestore.
-                const userRef = doc(collection(db, 'users'), currentUser.uid);
-     
-                try {
-                    const userDoc = await getDoc(userRef);
-                    if (userDoc.exists()) {
-                       const userData = userDoc.data();
-                       setUser((prevUser) => ({ ...prevUser, ...userData }));
-                    } else {
-                       console.log('No such document!');
-                    }
-                } catch (error) {
-                    console.error('Error fetching user data:', error.message);
-                }
-            }
-        });
-     
-        return () => {
-            unsubscribe();
-        };
-     }, []);
+
+   useEffect(() => {
+       const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
+           console.log(currentUser);
+           setUser(currentUser);
+
+           if (currentUser) {
+               // Fetch additional user data from Firestore.
+               const userRef = doc(collection(db, 'users'), currentUser.uid);
+
+               // Listen for real-time updates.
+               const unsubscribeSnapshot = onSnapshot(userRef, (docSnapshot) => {
+                  if (docSnapshot.exists()) {
+                      const userData = docSnapshot.data();
+                      setUser((prevUser) => ({ ...prevUser, ...userData }));
+                  } else {
+                      console.log('No such document!');
+                  }
+               });
+
+               // Clean up the snapshot listener when the component unmounts.
+               return () => {
+                  unsubscribeSnapshot();
+               };
+           }
+       });
+
+       return () => {
+           unsubscribe();
+       };
+   }, []);
      
 
     
