@@ -28,7 +28,7 @@ function Information() {
       <div>
       <TextField
         label="First Name"
-        value= {user.firstName || ""}
+        value= {user.firstName || " "}
         InputProps={{inputProps: {style: {color: 'gray', fontSize: '15px', padding: '10px'},},readOnly: true}}
         type="text"
         id="firstName"
@@ -37,7 +37,7 @@ function Information() {
       />
       <TextField
         label="Last Name"
-       value= {user.lastName || ""}
+       value= {user.lastName || " "}
         InputProps={{inputProps: {style: {color: 'gray', fontSize: '15px', padding: '10px'},},readOnly: true}}
         type="text"
         id="lastName"
