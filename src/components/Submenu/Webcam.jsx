@@ -19,7 +19,7 @@ function Webcam() {
   const formattedDate = `${day} ${month}, ${year}`;
   
   console.log(formattedDate);
-  
+
   const navigate = useNavigate();
   const handleBusFeed = () => {navigate("./busfeed");};
   const handleTerminalFeed = () => {navigate("./termifeed");};
@@ -31,7 +31,7 @@ function Webcam() {
         <h1 className="webcam-title">LIVE FEED MONITORING</h1>
         <div className="date-icon">
           <FaCalendarAlt />
-          <p className="home-date"><h7>Today</h7><br/>{formattedDate}</p>
+          <p className="submenu-date"><h7>Today</h7><br/>{formattedDate}</p>
         </div>
       </div>
       <img src={BusIcon} className="bus-photo_img" alt="photo_img"/>

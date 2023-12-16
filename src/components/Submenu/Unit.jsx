@@ -28,7 +28,7 @@ function Unit() {
         <h1 className="submenu-title">Unit Updates</h1>
         <div className="date-icon">
           <FaCalendarAlt />
-          <p className="home-date"><h7>Today</h7><br/>{formattedDate}</p>
+          <p className="submenu-date"><h7>Today</h7><br/>{formattedDate}</p>
         </div>
       </div>
       <span className="submenu-subtitle">Welcome<b>, USER!</b></span>
