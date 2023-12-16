@@ -4,7 +4,11 @@ import Box from '@mui/material/Box';
 import '../../css/Subpages.css';
 import WarningIcon from '../../images/warning.png';
 
+import { UserAuth } from "../Features/auth/AuthContext";
+
 function EditProfilePage() {
+  const {user} = UserAuth();
+
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [address, setAddress] = useState("");
@@ -66,10 +70,10 @@ function EditProfilePage() {
       autoComplete="off"
     >
       <div>
-      <TextField
+      <TextField disabled
         label="First Name"
-        defaultValue= " "
-        InputProps={{inputProps: {style: {color: 'gray', fontSize: '15px', padding: '10px'},}}}
+        value= {user.firstName}
+        InputProps={{inputProps: {style: {color: 'gray', fontSize: '15px', padding: '10px', cursor: 'not-allowed'},}}}
         type="text"
         id="firstName"
         className="rounded-input"
@@ -78,8 +82,8 @@ function EditProfilePage() {
       />
       <TextField
         label="Last Name"
-        defaultValue= " "
-        InputProps={{inputProps: {style: {color: 'gray', fontSize: '15px', padding: '10px'},}}}
+        value= {user.lastName}
+        InputProps={{inputProps: {style: {color: 'gray', fontSize: '15px', padding: '10px', cursor: 'not-allowed'},}}}
         type="text"
         id="lastName"
         className="rounded-input"
