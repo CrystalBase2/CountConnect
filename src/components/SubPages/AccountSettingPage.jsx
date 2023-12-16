@@ -70,6 +70,7 @@ function EditProfilePage() {
     const userDocRef = doc(db, 'users', user.uid);
 
     await setDoc(userDocRef, {
+      userId: user.uid,
       firstName,
       lastName,
       address,
@@ -119,7 +120,7 @@ function EditProfilePage() {
       /><br></br>
       <TextField
         label="Address"
-        placeholder="House No, Street, Barangay, City, Province and Code"
+        defaultValue= {user.address || "House No, Street, Barangay, City, Province and Code"}
         InputProps={{inputProps: {style: {color: 'black', fontSize: '15px', padding: '10px'},}}}
         type="text"
         id="address"
@@ -129,7 +130,7 @@ function EditProfilePage() {
       /><br></br>
       <TextField
         label="Contact Number"
-        placeholder="+63**********"
+        defaultValue={user.contactNumber || "+63**********"}
         InputProps={{inputProps: {style: {color: 'black', fontSize: '15px', padding: '10px'},}}}
         type="text"
         id="contactNumber"
@@ -139,7 +140,7 @@ function EditProfilePage() {
       />
       <TextField
         label="Email Address" 
-        defaultValue= {user.email}
+        defaultValue= {user.email || "email@gmail.com"}
         InputProps={{inputProps: {style: {color: 'black', fontSize: '15px', padding: '10px'},}}}
         type="text"
         id="email"

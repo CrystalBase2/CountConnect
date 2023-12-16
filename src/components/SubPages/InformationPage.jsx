@@ -26,7 +26,7 @@ function Information() {
       autoComplete="off"
     >
       <div>
-      <TextField
+      <TextField disabled
         label="First Name"
         value= {user.firstName || " "}
         InputProps={{inputProps: {style: {color: 'gray', fontSize: '15px', padding: '10px'},},readOnly: true}}
@@ -35,36 +35,36 @@ function Information() {
         className="rounded-input"
         size= "small"
       />
-      <TextField
+      <TextField disabled
         label="Last Name"
-       value= {user.lastName || " "}
+        value= {user.lastName || " "}
         InputProps={{inputProps: {style: {color: 'gray', fontSize: '15px', padding: '10px'},},readOnly: true}}
         type="text"
         id="lastName"
         className="rounded-input"
         size= "small"
       /><br></br>
-      <TextField
+      <TextField disabled
         label="Address"
-        defaultValue= "House No, Street, Barangay, City, Province and Code"
+        value= {user.address || " "}
         InputProps={{inputProps: {style: {color: 'gray', fontSize: '15px', padding: '10px'},},readOnly: true}}
         type="text"
         id="address"
         className="address-rounded-input"
         size= "small"
       /><br></br>
-      <TextField
+      <TextField disabled
         label="Contact Number"
-        defaultValue= "+63**********"
+        value={user.contactNumber || " "}
         InputProps={{inputProps: {style: {color: 'gray', fontSize: '15px', padding: '10px'},},readOnly: true}}
         type="text"
         id="contactNumber"
         className="rounded-input"
         size= "small"
       />
-      <TextField
+      <TextField disabled
         label="Email Address" 
-        defaultValue= "email@gmail.com"
+        value= {user.email || " "}
         InputProps={{inputProps: {style: {color: 'gray', fontSize: '15px', padding: '10px'},},readOnly: true}}
         type="text"
         id="email"
