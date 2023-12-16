@@ -15,6 +15,29 @@
     justify-content: space-between;
 }
 
+.profile-date {
+    font-family: Tahoma, sans-serif;
+    font-weight: bold;
+    font-size: 21px;
+    color: #152A38;
+}
+
+h7{
+    font-family: Tahoma, sans-serif;
+    font-weight: light;
+    font-size: 15px;
+    color: #263f50;
+}
+
+.date-icon {
+    display: flex;
+    align-items: center;
+}
+
+.date-icon svg {
+    margin-right: 20px;
+}
+
 .profile-title {
     font-size: 50px;
     font-weight: bolder;
