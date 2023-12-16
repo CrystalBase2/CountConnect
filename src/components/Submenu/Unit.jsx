@@ -20,7 +20,7 @@ function Unit() {
   const month = monthNames[currentDate.getMonth()];
   const year = currentDate.getFullYear();
   const formattedDate = `${day} ${month}, ${year}`;
-  
+
   console.log(formattedDate);
 
   const [isActive, setIsActive] = useState(false);
@@ -32,10 +32,17 @@ function Unit() {
         <h1 className="submenu-title">Unit Updates</h1>
         <div className="date-icon">
           <FaCalendarAlt />
-          <p className="submenu-date"><h7>Today</h7><br/>{formattedDate}</p>
+          <p className="submenu-date"><h7>Today</h7><br />{formattedDate}</p>
         </div>
       </div>
-      <span className="submenu-subtitle">Welcome<b>, {user.firstName}!</b></span>
+      <span className="submenu-subtitle">
+        {user.firstName ? (
+          <React.Fragment>
+            Welcome<b>, {user.firstName}!</b>
+          </React.Fragment>
+        ) : (
+          "Loading..."
+        )}</span>
 
 
       <div className="submenu-dropdown">

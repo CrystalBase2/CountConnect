@@ -11,7 +11,7 @@ import { UserAuth } from "./Features/auth/AuthContext";
 import ProfileIcon from '../images/Profile.png';
 
 function Profile() {
-  const {user} = UserAuth();
+  const { user } = UserAuth();
   const currentDate = new Date();
   const day = currentDate.getDate().toString().padStart(2, '0');
   const monthNames = [
@@ -22,7 +22,7 @@ function Profile() {
   const month = monthNames[currentDate.getMonth()];
   const year = currentDate.getFullYear();
   const formattedDate = `${day} ${month}, ${year}`;
-  
+
   console.log(formattedDate);
 
   const [selectedOption, setSelectedOption] = useState('Information');
@@ -43,8 +43,14 @@ function Profile() {
       </div>
 
       <span className="profile-subtitle">
-          Welcome<b>, {user.firstName}!</b>
-        </span>
+        {user.firstName ? (
+          <React.Fragment>
+            Welcome<b>, {user.firstName}!</b>
+          </React.Fragment>
+        ) : (
+          "Loading..."
+        )}
+      </span>
 
       <div className="mini-page-container">
         {selectedOption === 'Information' && <InformationPage />}
@@ -52,23 +58,23 @@ function Profile() {
       </div>
 
       <div class="card">
-        <img src={ProfileIcon} className="profile-photo_img" alt="Card image"/>
+        <img src={ProfileIcon} className="profile-photo_img" alt="Card image" />
         <div class="card-body">
           <h5 class="card-title">{user.firstName} {user.lastName}</h5>
           <p class="card-text">Operator</p>
           <button type="submit" className="profile-submenu-information" onClick={() => handleOptionClick('Information')}>
-          <BsPersonFillExclamation /> Information
+            <BsPersonFillExclamation /> Information
           </button>
           <button type="submit" className="profile-submenu-account" onClick={() => handleOptionClick('AccountSetting')}>
-          <FaUserCog/> Edit Profile
+            <FaUserCog /> Edit Profile
           </button>
         </div>
       </div>
 
 
     </div>
-    
-    
+
+
   );
 }
 

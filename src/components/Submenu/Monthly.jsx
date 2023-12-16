@@ -20,7 +20,7 @@ function Monthly() {
   const month = monthNames[currentDate.getMonth()];
   const year = currentDate.getFullYear();
   const formattedDate = `${day} ${month}, ${year}`;
-  
+
   console.log(formattedDate);
 
   const [isActive, setIsActive] = useState(false);
@@ -32,11 +32,19 @@ function Monthly() {
         <h1 className="submenu-title">REPORTS</h1>
         <div className="date-icon">
           <FaCalendarAlt />
-          <p className="submenu-date"><h7>Today</h7><br/>{formattedDate}</p>
+          <p className="submenu-date"><h7>Today</h7><br />{formattedDate}</p>
         </div>
       </div>
       <span className="submenu-pagesub">Monthly</span>
-      <span className="reports-submenu-subtitle">Welcome<b>, {user.firstName}!</b></span>
+      <span className="reports-submenu-subtitle">
+        {user.firstName ? (
+          <React.Fragment>
+            Welcome<b>, {user.firstName}!</b>
+          </React.Fragment>
+        ) : (
+          "Loading..."
+        )}
+      </span>
 
 
       <div className="submenu-dropdown">

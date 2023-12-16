@@ -29,7 +29,15 @@ function Home() {
           <p className="home-date"><h7>Today</h7><br/>{formattedDate}</p>
         </div>
       </div>
-      <span className="home-subtitle">Welcome<b>, {user.firstName}!</b></span>
+      <span className="home-subtitle">
+  {user.firstName ? (
+    <React.Fragment>
+      Welcome<b>, {user.firstName}!</b>
+    </React.Fragment>
+  ) : (
+    "Loading..."
+  )}
+</span>
 
       <div className="terminal-table-container">
         <table className="terminal-table">
