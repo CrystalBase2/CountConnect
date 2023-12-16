@@ -142,9 +142,8 @@ function BusDriver() {
             <h3>Add New Driver</h3>
             <br></br>
             <form onSubmit={handleSave}>
-                <TextField
+                <TextField select
                   id="outlined-select-route"
-                  select
                   label="Bus Route"
                   defaultValue="Alubijid"
                   helperText="Please select driver's bus route"
