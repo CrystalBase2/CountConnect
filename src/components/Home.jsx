@@ -31,8 +31,8 @@ function Home() {
       </div>
       <span className="home-subtitle">Welcome<b>, {user.firstName}!</b></span>
 
-      <div className="passenger-table-container">
-        <table className="passenger-table">
+      <div className="terminal-table-container">
+        <table className="terminal-table">
           <thead>
             <tr>
               <th>Bus Route</th>
@@ -68,8 +68,6 @@ function Home() {
 
   );
 }
-
-
 
 export default Home;
 

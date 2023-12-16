@@ -57,15 +57,15 @@ span {
     font-weight: lighter;
 }
 
-.passenger-table {
+.terminal-table {
     width: 50%;
     border-collapse: collapse;
     margin-top: 50px !important;
     margin: 0 auto;
 }
 
-.passenger-table th,
-.passenger-table td {
+.terminal-table th,
+.terminal-table td {
     font-size: 15px;
     border: 1px solid #ccc;
     padding: 10px;
@@ -73,18 +73,18 @@ span {
 }
 
 
-.passenger-table th {
+.terminal-table th {
     background-color: #D5B690;
     color: #181414;
 
 }
 
-.passenger-table tbody tr:nth-child(even) {
+.terminal-table tbody tr:nth-child(even) {
     background-color: white;
     font-weight: lighter;
 }
 
-.passenger-table tbody tr:nth-child(odd) {
+.terminal-table tbody tr:nth-child(odd) {
     background-color: white;
     font-weight: lighter;
 }
