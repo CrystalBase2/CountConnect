@@ -9,6 +9,7 @@ import {
     reload,
 } from 'firebase/auth';
 import { auth, db } from '../../../firebase';
+import { collection, doc, getDoc} from 'firebase/firestore';
 
 const UserContext = createContext();
 
@@ -48,15 +49,35 @@ export const AuthContextProvider = ({ children }) => {
         }
     };
 
+
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-          console.log(currentUser);
-          setUser(currentUser);
+        const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
+            console.log(currentUser);
+            setUser(currentUser);
+     
+            if (currentUser) {
+                // Fetch additional user data from Firestore.
+                const userRef = doc(collection(db, 'users'), currentUser.uid);
+     
+                try {
+                    const userDoc = await getDoc(userRef);
+                    if (userDoc.exists()) {
+                       const userData = userDoc.data();
+                       setUser((prevUser) => ({ ...prevUser, ...userData }));
+                    } else {
+                       console.log('No such document!');
+                    }
+                } catch (error) {
+                    console.error('Error fetching user data:', error.message);
+                }
+            }
         });
+     
         return () => {
-          unsubscribe();
+            unsubscribe();
         };
-       }, []);
+     }, []);
+     
 
     
     return (

@@ -1,9 +1,11 @@
 import React from "react";
 import { FaCalendarAlt } from "react-icons/fa";
 import { useState } from "react";
+import { UserAuth } from "./Features/auth/AuthContext";
 import '../css/Home.css';
 
 function Home() {
+  const { user } = UserAuth();
   const currentDate = new Date();
   const year = currentDate.getFullYear();
   const month = (currentDate.getMonth() + 1).toString().padStart(2, '0');
@@ -20,7 +22,7 @@ function Home() {
           <p className="home-date">{formattedDate}</p>
         </div>
       </div>
-      <span className="home-subtitle">Welcome<b>, USER!</b></span>
+      <span className="home-subtitle">Welcome<b>, {user.firstName}!</b></span>
 
       <div className="passenger-table-container">
         <table className="passenger-table">

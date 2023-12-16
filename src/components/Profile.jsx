@@ -2,14 +2,16 @@ import React, { useState } from "react";
 import { FaCalendarAlt } from "react-icons/fa";
 import { FaUserCog } from "react-icons/fa";
 import { BsPersonFillExclamation } from "react-icons/bs";
+
 import '../css/Profile.css';
 
 import InformationPage from './SubPages/InformationPage';
 import AccountSettingPage from './SubPages/AccountSettingPage';
-
+import { UserAuth } from "./Features/auth/AuthContext";
 import ProfileIcon from '../images/Profile.png';
 
 function Profile() {
+  const {user} = UserAuth();
   const currentDate = new Date();
   const year = currentDate.getFullYear();
   const month = (currentDate.getMonth() + 1).toString().padStart(2, '0');
@@ -34,7 +36,7 @@ function Profile() {
       </div>
 
       <span className="profile-subtitle">
-          Welcome<b>, USER!</b>
+          Welcome<b>, {user.firstName}!</b>
         </span>
 
       <div className="mini-page-container">
@@ -45,7 +47,7 @@ function Profile() {
       <div class="card">
         <img src={ProfileIcon} className="profile-photo_img" alt="Card image"/>
         <div class="card-body">
-          <h5 class="card-title">Insert Name Here</h5>
+          <h5 class="card-title">{user.firstName} {user.lastName}</h5>
           <p class="card-text">Operator</p>
           <button type="submit" className="profile-submenu-information" onClick={() => handleOptionClick('Information')}>
           <BsPersonFillExclamation /> Information
