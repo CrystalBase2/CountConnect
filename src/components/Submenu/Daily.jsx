@@ -2,10 +2,13 @@ import React from "react";
 import { FaCalendarAlt } from "react-icons/fa";
 import { useState } from "react";
 
+import { UserAuth } from ".././Features/auth/AuthContext";
+
 import '../../css/Submenu.css';
 
-
 function Daily() {
+  const { user } = UserAuth();
+
   const currentDate = new Date();
   const day = currentDate.getDate().toString().padStart(2, '0');
   const monthNames = [
@@ -32,7 +35,7 @@ function Daily() {
         </div>
       </div>
       <span className="submenu-pagesub">Daily</span>
-      <span className="reports-submenu-subtitle">Welcome<b>, USER!</b></span>
+      <span className="reports-submenu-subtitle">Welcome<b>, {user.firstName}!</b></span>
 
 
       <div className="submenu-dropdown">
