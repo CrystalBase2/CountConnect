@@ -70,10 +70,10 @@ function EditProfilePage() {
       autoComplete="off"
     >
       <div>
-      <TextField disabled
+      <TextField
         label="First Name"
-        value= {user.firstName}
-        InputProps={{inputProps: {style: {color: 'gray', fontSize: '15px', padding: '10px', cursor: 'not-allowed'},}}}
+        defaultValue= " "
+        InputProps={{inputProps: {style: {color: 'gray', fontSize: '15px', padding: '10px'},}}}
         type="text"
         id="firstName"
         className="rounded-input"
@@ -82,8 +82,8 @@ function EditProfilePage() {
       />
       <TextField
         label="Last Name"
-        value= {user.lastName}
-        InputProps={{inputProps: {style: {color: 'gray', fontSize: '15px', padding: '10px', cursor: 'not-allowed'},}}}
+        defaultValue= " "
+        InputProps={{inputProps: {style: {color: 'gray', fontSize: '15px', padding: '10px'},}}}
         type="text"
         id="lastName"
         className="rounded-input"

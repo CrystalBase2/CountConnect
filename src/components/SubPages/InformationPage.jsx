@@ -30,7 +30,7 @@ function Information() {
       autoComplete="off"
     >
       <div>
-      <TextField
+      <TextField disabled
         label="First Name"
         value= {user.firstName}
         InputProps={{inputProps: {style: {color: 'gray', fontSize: '15px', padding: '10px'},},readOnly: true}}
@@ -39,8 +39,8 @@ function Information() {
         className="rounded-input"
         onChange={(e) => handleInputChange("firstName", e.target.value)}
         size= "small"
-      />
-      <TextField
+      /> 
+      <TextField disabled
         label="Last Name"
        value= {user.lastName}
         InputProps={{inputProps: {style: {color: 'gray', fontSize: '15px', padding: '10px'},},readOnly: true}}
@@ -50,9 +50,9 @@ function Information() {
         onChange={(e) => handleInputChange("lastName", e.target.value)}
         size= "small"
       /><br></br>
-      <TextField
+      <TextField disabled
         label="Address"
-        defaultValue= "House No, Street, Barangay, City, Province and Code"
+        value= "House No, Street, Barangay, City, Province and Code"
         InputProps={{inputProps: {style: {color: 'gray', fontSize: '15px', padding: '10px'},},readOnly: true}}
         type="text"
         id="address"
@@ -60,9 +60,9 @@ function Information() {
         onChange={(e) => handleInputChange("address", e.target.value)}
         size= "small"
       /><br></br>
-      <TextField
+      <TextField disabled
         label="Contact Number"
-        defaultValue= "+63**********"
+        value= "+63**********"
         InputProps={{inputProps: {style: {color: 'gray', fontSize: '15px', padding: '10px'},},readOnly: true}}
         type="text"
         id="contactNumber"
@@ -70,9 +70,9 @@ function Information() {
         onChange={(e) => handleInputChange("contactNumber", e.target.value)}
         size= "small"
       />
-      <TextField
+      <TextField disabled
         label="Email Address" 
-        defaultValue= "email@gmail.com"
+        value= "email@gmail.com"
         InputProps={{inputProps: {style: {color: 'gray', fontSize: '15px', padding: '10px'},},readOnly: true}}
         type="text"
         id="email"
