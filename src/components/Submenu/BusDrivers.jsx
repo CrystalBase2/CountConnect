@@ -1,22 +1,18 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useContext, useEffect } from "react";
+import { UserAuth } from "../Features/auth/AuthContext";
 import '../../css/Submenu.css';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import MenuItem from '@mui/material/MenuItem';
 
-function BusDriver() { 
-  const navigate = useNavigate();
+function BusDriver() {
+  const { drivers, addBusDriver } = UserAuth();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [busRoute, setSelectedDestination] = useState("");
+  const [busRoute, setBusRoute] = useState("");
   const [busNumber, setBusNumber] = useState("");
   const [idNumber, setIDNumber] = useState("");
   const [driverName, setDriverName] = useState("");
   const [contactNumber, setContactNumber] = useState("");
-
-  const handleBusDriver = () => {
-    setIsModalOpen(true);
-  };
 
   const BusRoute = [
     {
@@ -41,25 +37,24 @@ function BusDriver() {
     },
   ];
 
+  const handleBusDriver = () => {
+    setIsModalOpen(true);
+  };
+
   const closeModal = () => {
     setIsModalOpen(false);
-    // Reset form fields on modal close
-    setSelectedDestination("");
+    setBusRoute("");
     setBusNumber("");
     setIDNumber("");
     setDriverName("");
     setContactNumber("");
   };
 
-  const handleSave = (e) => {
+  const handleSave = async (e) => {
     e.preventDefault();
-    // Add your logic to save the new driver details
-    // For now, let's just log the details
-    console.log("Select Route:", busRoute);
-    console.log("Bus Number:", busNumber);
-    console.log("ID Number:", idNumber);
-    console.log("Driver Name:", driverName);
-    console.log("Contact Number:", contactNumber);
+
+    // Add new bus driver to Firestore using the addBusDriver function
+    await addBusDriver(busRoute, busNumber, idNumber, driverName, contactNumber);
 
     // Close the modal
     closeModal();
@@ -88,109 +83,86 @@ function BusDriver() {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Destination Here</td>
-              <td>101</td>
-              <td>123456</td>
-              <td>Input Here</td>
-              <td>09*********</td>
-            </tr>
-            <tr>
-              <td>Destination Here</td>
-              <td>102</td>
-              <td>123457</td>
-              <td>Input Here</td>
-              <td>09*********</td>
-            </tr>
-            <tr>
-              <td>Destination Here</td>
-              <td>103</td>
-              <td>123458</td>
-              <td>Input Here</td>
-              <td>09*********</td>
-            </tr>
-            <tr>
-              <td>Destination Here</td>
-              <td>104</td>
-              <td>123459</td>
-              <td>Input Here</td>
-              <td>09*********</td>
-            </tr>
-            <tr>
-              <td>Destination Here</td>
-              <td>105</td>
-              <td>123450</td>
-              <td>Input Here</td>
-              <td>09*********</td>
-            </tr>
+            {drivers.map((driver) => (
+              <tr key={driver.id}>
+                <td>{driver.busRoute}</td>
+                <td>{driver.busNumber}</td>
+                <td>{driver.idNumber}</td>
+                <td>{driver.driverName}</td>
+                <td>{driver.contactNumber}</td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
 
       {/* Modal for adding a new driver */}
       {isModalOpen && (
-            <Box
-            component="form"
-            sx={{
-              '& .MuiTextField-root': { m: 1, width: '25ch' },
-            }}
-            noValidate
-            autoComplete="off"
-          >
-        <div className="modal-overlay">
-          <div className="modal">
-            <h3>Add New Driver</h3>
-            <br></br>
-            <form onSubmit={handleSave}>
-                <TextField select
+        <Box
+
+          sx={{
+            '& .MuiTextField-root': { m: 1, width: '25ch' },
+          }}
+          noValidate
+          autoComplete="off"
+        >
+          <div className="modal-overlay">
+            <div className="modal">
+              <h3>Add New Driver</h3>
+              <br></br>
+              <form onSubmit={handleSave}>
+                <TextField
+                  select
                   id="outlined-select-route"
                   label="Bus Route"
-                  defaultValue="Alubijid"
+                  value={busRoute || "Alubijid"}
+                  onChange={(e) => setBusRoute(e.target.value)}
                   helperText="Please select driver's bus route"
-                  size ="small"
-                >                
-                {BusRoute.map((option) => (
-                  <MenuItem key={option.value} value={option.value}>
-                    {option.label}
-                  </MenuItem>
-                ))}
+                  size="small"
+                >
+                  {BusRoute.map((option) => (
+                    <MenuItem key={option.value} value={option.value}>
+                      {option.label}
+                    </MenuItem>
+                  ))}
                 </TextField> <br></br>
                 <TextField
                   type="text"
                   value={busNumber}
                   label="Bus Number"
                   onChange={(e) => setBusNumber(e.target.value)}
-                  size ="small"
+                  size="small"
                 /><br></br>
                 <TextField
                   type="text"
                   value={idNumber}
                   label="Employee ID Number"
                   onChange={(e) => setIDNumber(e.target.value)}
-                  size ="small"
+                  size="small"
                 /><br></br>
                 <TextField
                   type="text"
                   value={driverName}
                   label="Driver's Name"
                   onChange={(e) => setDriverName(e.target.value)}
-                  size ="small"
+                  size="small"
                 /><br></br>
                 <TextField
                   type="text"
                   value={contactNumber}
                   label="Contact Number"
                   onChange={(e) => setContactNumber(e.target.value)}
-                  size ="small"
+                  size="small"
                 />
 
-              <div className="modal-buttons">
-                <button type="submit">Save Information</button>
-                <button type="button" onClick={closeModal}>Cancel</button>
-              </div>
-            </form>
+                <div className="modal-buttons">
+                  <button type="submit">Save Information</button>
+                  <button type="button" onClick={closeModal}>Cancel</button>
+                </div>
+              </form>
+            </div>
           </div>
-        </div></Box>
+        </Box>
       )}
     </div>
   );

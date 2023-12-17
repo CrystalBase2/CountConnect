@@ -57,11 +57,11 @@ function Profile() {
         {selectedOption === 'AccountSetting' && <AccountSettingPage />}
       </div>
 
-      <div class="card">
+      <div className="card">
         <img src={ProfileIcon} className="profile-photo_img" alt="Card image" />
-        <div class="card-body">
-          <h5 class="card-title">{user.firstName} {user.lastName}</h5>
-          <p class="card-text">Operator</p>
+        <div className="card-body">
+          <h5 className="card-title">{user.firstName} {user.lastName}</h5>
+          <p className="card-text">Operator</p>
           <button type="submit" className="profile-submenu-information" onClick={() => handleOptionClick('Information')}>
             <BsPersonFillExclamation /> Information
           </button>
