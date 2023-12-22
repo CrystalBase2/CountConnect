@@ -23,13 +23,6 @@
     white-space: nowrap;
 }
 
-h7{
-    font-family: Tahoma, sans-serif;
-    font-weight: light;
-    font-size: 15px;
-    color: #263f50;
-}
-
 .date-icon {
     display: flex;
     align-items: center;
@@ -38,6 +31,15 @@ h7{
 .date-icon svg {
     margin-right: 20px;
 }
+
+h7{
+    font-family: Tahoma, sans-serif;
+    font-weight: light;
+    font-size: 15px;
+    color: #263f50;
+}
+
+
 
 .subpages-title {
     font-size: 50px;

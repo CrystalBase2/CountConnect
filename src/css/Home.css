@@ -19,13 +19,7 @@
     font-weight: bold;
     font-size: 21px;
     color: #152A38;
-}
-
-h7{
-    font-family: Tahoma, sans-serif;
-    font-weight: light;
-    font-size: 15px;
-    color: #263f50;
+    white-space: nowrap;
 }
 
 .date-icon {
@@ -35,6 +29,13 @@ h7{
 
 .date-icon svg {
     margin-right: 20px;
+}
+
+h7{
+    font-family: Tahoma, sans-serif;
+    font-weight: light;
+    font-size: 15px;
+    color: #263f50;
 }
 
 .home-title {
