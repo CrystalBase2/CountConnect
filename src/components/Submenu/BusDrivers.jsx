@@ -10,6 +10,7 @@ import { MdDelete, MdEdit} from "react-icons/md";
 function BusDriver() {
   const { drivers, addBusDriver } = UserAuth();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [busRoute, setBusRoute] = useState("");
   const [busNumber, setBusNumber] = useState("");
   const [idNumber, setIDNumber] = useState("");
@@ -62,6 +63,16 @@ function BusDriver() {
     closeModal();
   };
 
+  const handleDeleteChanges = () => {
+    setIsModalOpen(false);
+    setIsDeleteModalOpen(true);
+  };
+  const closeDeleteModal = () => {
+    setIsModalOpen(false);
+    setIsDeleteModalOpen(false);
+  };
+
+
   return (
     <div className="submenu-container">
       <div className="submenu-content">
@@ -93,7 +104,7 @@ function BusDriver() {
                 <td>{driver.driverName}</td>
                 <td>{driver.contactNumber}</td>
                 <td><button><MdEdit style={{ fontSize: '25px', color:'#8080F8' }} /></button></td>
-                <td><button><MdDelete style={{ fontSize: '25px',  color:'#D5564D' }} /></button></td>
+                <td><button onClick={handleDeleteChanges}><MdDelete style={{ fontSize: '25px',  color:'#D5564D' }} /></button></td>
               </tr>
             ))}
           </tbody>
@@ -167,6 +178,21 @@ function BusDriver() {
             </div>
           </div>
         </Box>
+      )}
+
+      {isDeleteModalOpen && (
+        <div className="modal-overlay">
+          <div className="modal">
+            <h5>Are you sure you wanted to delete driver information?</h5>
+            <br/>
+            <form onSubmit={handleDeleteChanges}>
+              <div className="modal-buttons">
+                <button type="submit">Delete Driver</button>
+                <button type="button" onClick={closeDeleteModal}>Cancel</button>
+              </div>
+            </form>
+          </div>
+        </div>
       )}
     </div>
   );
