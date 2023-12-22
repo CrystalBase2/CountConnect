@@ -187,6 +187,24 @@ h2{
     margin: 0 auto;
 }
 
+.busdriver-table button{
+    font-size: 13px;
+    width: fit-content;
+    padding: 5px;
+    border-radius: 15%;
+    border: hidden;
+    background-color: transparent;
+    cursor: pointer;    
+}
+
+.busdriver-table button:nth-child(1){
+    color: #8080F8;
+}
+
+.busdriver-table button:nth-child(2){
+    color: #D5564D;
+}
+
 .passenger-table th,
 .passenger-table td, .weekly-passenger-table th, .weekly-passenger-table td, .busdriver-table th, .busdriver-table td {
     font-size: 15px;

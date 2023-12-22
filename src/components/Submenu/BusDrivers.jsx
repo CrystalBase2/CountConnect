@@ -5,6 +5,8 @@ import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import MenuItem from '@mui/material/MenuItem';
 
+import { MdDelete, MdEdit} from "react-icons/md";
+
 function BusDriver() {
   const { drivers, addBusDriver } = UserAuth();
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -90,6 +92,8 @@ function BusDriver() {
                 <td>{driver.idNumber}</td>
                 <td>{driver.driverName}</td>
                 <td>{driver.contactNumber}</td>
+                <td><button><MdEdit style={{ fontSize: '25px', color:'#8080F8' }} /></button></td>
+                <td><button><MdDelete style={{ fontSize: '25px',  color:'#D5564D' }} /></button></td>
               </tr>
             ))}
           </tbody>
