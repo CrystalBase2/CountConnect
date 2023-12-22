@@ -72,6 +72,11 @@ function BusDriver() {
     setIsDeleteModalOpen(false);
   };
 
+  const [editingRow, setEditingRow] = useState(null);
+  const handleEdit = (id) => {
+    setEditingRow(id);
+   };
+
 
   return (
     <div className="submenu-container">
@@ -98,12 +103,52 @@ function BusDriver() {
           <tbody>
             {drivers.map((driver) => (
               <tr key={driver.id}>
-                <td>{driver.busRoute}</td>
-                <td>{driver.busNumber}</td>
-                <td>{driver.idNumber}</td>
-                <td>{driver.driverName}</td>
-                <td>{driver.contactNumber}</td>
-                <td><button><MdEdit style={{ fontSize: '25px', color:'#8080F8' }} /></button></td>
+                <td>{editingRow === driver.id ? (
+                  <input
+                    className="edit-input"
+                    type="text"
+                    defaultValue={driver.busRoute}
+                    onBlur={(e) => {
+                      setEditingRow(null);
+                    }}/>) : (
+                    driver.busRoute)}</td>
+                <td>{editingRow === driver.id ? (
+                  <input
+                    className="edit-input"
+                    type="text"
+                    defaultValue={driver.busNumber}
+                    onBlur={(e) => {
+                      setEditingRow(null);
+                    }}/>) : (
+                    driver.busNumber)}</td>
+                <td>{editingRow === driver.id ? (
+                  <input
+                    className="edit-input"
+                    type="text"
+                    defaultValue={driver.idNumber}
+                    onBlur={(e) => {
+                      setEditingRow(null);
+                    }}/>) : (
+                    driver.idNumber)}</td>
+                <td>{editingRow === driver.id ? (
+                  <input
+                    className="edit-input"
+                    type="text"
+                    defaultValue={driver.driverName}
+                    onBlur={(e) => {
+                      setEditingRow(null);
+                    }}/>) : (
+                    driver.driverName)}</td>
+                <td>{editingRow === driver.id ? (
+                  <input
+                    className="edit-input"
+                    type="text"
+                    defaultValue={driver.contactNumber}
+                    onBlur={(e) => {
+                      setEditingRow(null);
+                    }}/>) : (
+                    driver.contactNumber)}</td>
+                <td><button onClick={() => handleEdit(driver.id)}><MdEdit style={{ fontSize: '25px', color:'#8080F8' }} /></button></td>
                 <td><button onClick={handleDeleteChanges}><MdDelete style={{ fontSize: '25px',  color:'#D5564D' }} /></button></td>
               </tr>
             ))}
