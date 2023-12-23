@@ -5,7 +5,7 @@ import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import MenuItem from '@mui/material/MenuItem';
 
-import { MdDelete, MdEdit} from "react-icons/md";
+import { MdDelete, MdEdit, MdDone} from "react-icons/md";
 
 function BusDriver() {
   const { drivers, addBusDriver } = UserAuth();
@@ -55,11 +55,7 @@ function BusDriver() {
 
   const handleSave = async (e) => {
     e.preventDefault();
-
-    // Add new bus driver to Firestore using the addBusDriver function
     await addBusDriver(busRoute, busNumber, idNumber, driverName, contactNumber);
-
-    // Close the modal
     closeModal();
   };
 
@@ -72,12 +68,18 @@ function BusDriver() {
     setIsDeleteModalOpen(false);
   };
 
+  const [isEditing, setIsEditing] = useState(false);
   const [editingRow, setEditingRow] = useState(null);
   const handleEdit = (id) => {
     setEditingRow(id);
+    setIsEditing(true);
    };
 
-
+  const handleUpdate = (id) => {
+    setEditingRow(false);
+    setIsEditing(false);
+   };
+   
   return (
     <div className="submenu-container">
       <div className="submenu-content">
@@ -148,7 +150,17 @@ function BusDriver() {
                       setEditingRow(null);
                     }}/>) : (
                     driver.contactNumber)}</td>
-                <td><button onClick={() => handleEdit(driver.id)}><MdEdit style={{ fontSize: '25px', color:'#8080F8' }} /></button></td>
+                <td>
+                  {isEditing && editingRow === driver.id ? (
+                    <button onClick={() => handleUpdate(driver.id)}
+                    ><MdDone style={{ fontSize: '25px', color:'#458647' }} />
+                    </button>
+                  ) : (
+                    <button onClick={() => handleEdit(driver.id)}>
+                      <MdEdit style={{ fontSize: '25px', color:'#8080F8' }} />
+                    </button>
+                  )}
+                  </td>
                 <td><button onClick={handleDeleteChanges}><MdDelete style={{ fontSize: '25px',  color:'#D5564D' }} /></button></td>
               </tr>
             ))}
