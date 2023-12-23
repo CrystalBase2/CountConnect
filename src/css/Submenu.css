@@ -180,6 +180,15 @@ h2{
     margin: 0 auto;
 }
 
+.scrollable-table {
+    max-height: 300px;
+    overflow: auto;
+}
+
+.scrollable-table::-webkit-scrollbar {
+    display: none;
+}
+
 .busdriver-table {
     width: auto;
     border-collapse: collapse;
@@ -197,14 +206,6 @@ h2{
     cursor: pointer;    
 }
 
-.busdriver-table button:nth-child(1){
-    color: #8080F8;
-}
-
-.busdriver-table button:nth-child(2){
-    color: #D5564D;
-}
-
 .passenger-table th,
 .passenger-table td, .weekly-passenger-table th, .weekly-passenger-table td, .busdriver-table th, .busdriver-table td {
     font-size: 15px;
@@ -214,10 +215,12 @@ h2{
 }
 
 
-.passenger-table th, .weekly-passenger-table th, .busdriver-table {
+.passenger-table th, .weekly-passenger-table th, .busdriver-table th{
     background-color: #D5B690;
     color: #181414;
-
+    position: sticky;
+    top: 0;
+    z-index: 1;
 }
 
 .passenger-table, .weekly-passenger-table, .busdriver-table tbody tr:nth-child(even) {

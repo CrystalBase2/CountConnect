@@ -91,7 +91,7 @@ function BusDriver() {
         + Add New Driver
       </button>
 
-      <div className="passenger-table-container">
+      <div className="scrollable-table">
         <table className="busdriver-table">
           <thead>
             <tr>
@@ -100,6 +100,7 @@ function BusDriver() {
               <th>ID Number</th>
               <th>Driver's Name</th>
               <th>Contact Number</th>
+              <th/><th/>
             </tr>
           </thead>
           <tbody>
@@ -171,7 +172,6 @@ function BusDriver() {
       {/* Modal for adding a new driver */}
       {isModalOpen && (
         <Box
-
           sx={{
             '& .MuiTextField-root': { m: 1, width: '25ch' },
           }}
