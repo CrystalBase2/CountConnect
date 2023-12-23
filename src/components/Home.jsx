@@ -44,13 +44,13 @@ function Home() {
           <thead>
             <tr>
               <th>Bus Route</th>
-              <th>Passengers Waiting</th>
+              <th>Unit Available</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td>Gaisano Mall - Alubijid</td>
-              <td>00</td>
+              <td>01</td>
             </tr>
             <tr>
               <td>Gaisano Mall - Libertad</td>

@@ -73,19 +73,24 @@ span {
     text-align: center;
 }
 
-
 .terminal-table th {
     background-color: #D5B690;
     color: #181414;
-
 }
 
-.terminal-table tbody tr:nth-child(even) {
+.terminal-table tbody{
     background-color: white;
     font-weight: lighter;
 }
 
-.terminal-table tbody tr:nth-child(odd) {
-    background-color: white;
-    font-weight: lighter;
+.terminal-table tr:nth-child(1){
+    font-weight: bold;
+}
+
+.terminal-table tr:nth-child(2),
+.terminal-table tr:nth-child(3),
+.terminal-table tr:nth-child(4),
+.terminal-table tr:nth-child(5){
+color: gray;
+pointer-events: none;
 }
