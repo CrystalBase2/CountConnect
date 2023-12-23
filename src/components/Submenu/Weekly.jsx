@@ -88,7 +88,7 @@ function Weekly() {
         </div>
       </div>
 
-      <h2 className="table-title"><b>(Chosen Bus Here)</b></h2>
+      <h2 className="table-title"><b>{selected}</b></h2>
       <div className="passenger-table-container">
         <table className="weekly-passenger-table">
           <thead>
