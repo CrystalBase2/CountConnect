@@ -138,14 +138,13 @@ function EditProfilePage() {
         onChange={(e) => handleInputChange("contactNumber", e.target.value)}
         size= "small"
       />
-      <TextField
+      <TextField disabled
         label="Email Address" 
-        defaultValue= {user.email || "email@gmail.com"}
-        InputProps={{inputProps: {style: {color: 'black', fontSize: '15px', padding: '10px'},}}}
+        value= {user.email || " "}
+        InputProps={{inputProps: {style: {color: 'gray', fontSize: '15px', padding: '10px'},},readOnly: true}}
         type="text"
         id="email"
         className="rounded-input"
-        onChange={(e) => handleInputChange("email", e.target.value)}
         size= "small"
       />
       </div></Box>
