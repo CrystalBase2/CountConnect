@@ -24,7 +24,7 @@ function Monthly() {
   console.log(formattedDate);
 
   const [isActive, setIsActive] = useState(false);
-  const [selected, setIsSelected] = useState("Choose a bus route");
+  const [selected, setIsSelected] = useState("Choose a Bus Route");
 
   return (
     <div className="submenu-container">
