@@ -89,7 +89,7 @@ function BusDriver() {
 
       <button type="button" className="driver-button" onClick={handleBusDriver}>
         + Add New Driver
-      </button>
+      </button><br/>
 
       <div className="scrollable-table">
         <table className="busdriver-table">
@@ -106,14 +106,19 @@ function BusDriver() {
           <tbody>
             {drivers.map((driver) => (
               <tr key={driver.id}>
-                <td>{editingRow === driver.id ? (
-                  <input
-                    className="edit-input"
-                    type="text"
-                    defaultValue={driver.busRoute}
-                    onBlur={(e) => {
-                      setEditingRow(null);
-                    }}/>) : (
+               <td>{editingRow === driver.id ? (
+                    <select
+                      className="edit-input"
+                      defaultValue={driver.busRoute}
+                      onBlur={(e) => {
+                        setEditingRow(null);
+                      }}>
+                      {BusRoute.map((option, index) => (
+                        <option key={index} value={option.label}>
+                          {option.label}
+                        </option>
+                      ))}
+                    </select>) : (
                     driver.busRoute)}</td>
                 <td>{editingRow === driver.id ? (
                   <input
