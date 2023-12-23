@@ -86,7 +86,7 @@ function Unit() {
         </div>
       </div>
 
-      <h2 className="table-title"><b>(Chosen Bus Here)</b></h2>
+      <h2 className="table-title"><b>{selected}</b></h2>
       <p className="table-subtitle"><i>This is reflected from the Mobile Application</i></p>
       <div className="passenger-table-container">
         <table className="passenger-table">
