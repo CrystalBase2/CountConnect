@@ -32,7 +32,7 @@
     margin-right: 20px;
 }
 
-h7{
+small{
     font-family: Tahoma, sans-serif;
     font-weight: light;
     font-size: 15px;
@@ -94,6 +94,19 @@ span {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.dropdown-item-reports {
+    font-size: 15px;
+    padding: 10px;
+    font-family: 'Inter', sans-serif;
+    font-weight: lighter;
+    align-items: center;
+    color: gray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: not-allowed;
 }
 
 .dropdown-item:hover {
@@ -194,17 +207,42 @@ h2{
     background-color: #D5B690;
     color: #181414;
 }
-  
+
+/* Reports Table */
+.reports-table {
+    border-collapse: collapse;
+    margin-top: 20px !important;
+    margin: 0 auto;
+}
+
+.reports-table td {
+    height: 18px;
+    font-size: 15px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+}
+
+.reports-table th {
+    width: 110px;
+    white-space: nowrap;
+    font-size: 15px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+    background-color: #D5B690;
+    color: #181414;
+}
   
 /*Combinations of Table*/
-.passenger-table tr:nth-child(1), .weekly-passenger-table tr:nth-child(1){
+.reports-table tr:nth-child(1), .weekly-passenger-table tr:nth-child(1){
     font-weight: bold;
 }
 
-.unit-table tr:nth-child(1),.unit-table tr:nth-child(2),.passenger-table tr:nth-child(2), .weekly-passenger-table tr:nth-child(2), 
-.unit-table tr:nth-child(3),.passenger-table tr:nth-child(3), .weekly-passenger-table tr:nth-child(3),
-.unit-table tr:nth-child(4),.passenger-table tr:nth-child(4), .weekly-passenger-table tr:nth-child(4),
-.unit-table tr:nth-child(5),.passenger-table tr:nth-child(5), .weekly-passenger-table tr:nth-child(5){
+.unit-table tr:nth-child(1),.unit-table tr:nth-child(2),.reports-table tr:nth-child(2), .weekly-passenger-table tr:nth-child(2), 
+.unit-table tr:nth-child(3),.reports-table tr:nth-child(3), .weekly-passenger-table tr:nth-child(3),
+.unit-table tr:nth-child(4),.reports-table tr:nth-child(4), .weekly-passenger-table tr:nth-child(4),
+.unit-table tr:nth-child(5),.reports-table tr:nth-child(5), .weekly-passenger-table tr:nth-child(5){
     color: gray;
     pointer-events: none;
 }
@@ -244,8 +282,8 @@ h2{
     cursor: pointer;    
 }
 
-.passenger-table th,
-.passenger-table td, .weekly-passenger-table th, .weekly-passenger-table td, .busdriver-table th, .busdriver-table td {
+.reports-table th,
+.reports-table td, .weekly-passenger-table th, .weekly-passenger-table td, .busdriver-table th, .busdriver-table td {
     font-size: 15px;
     border: 1px solid #ccc;
     padding: 10px;
@@ -253,7 +291,7 @@ h2{
 }
 
 
-.passenger-table th, .weekly-passenger-table th, .busdriver-table th{
+.reports-table th, .weekly-passenger-table th, .busdriver-table th{
     background-color: #D5B690;
     color: #181414;
     position: sticky;
@@ -261,12 +299,12 @@ h2{
     z-index: 1;
 }
 
-.passenger-table, .weekly-passenger-table, .busdriver-table tbody tr:nth-child(even) {
+.reports-table, .weekly-passenger-table, .busdriver-table tbody tr:nth-child(even) {
     background-color: white;
     font-weight: lighter;
 }
 
-.unit-table, .passenger-table, .weekly-passenger-table, .busdriver-table tbody tr:nth-child(odd) {
+.unit-table, .reports-table, .weekly-passenger-table, .busdriver-table tbody tr:nth-child(odd) {
     background-color: white;
     font-weight: lighter;
 }
