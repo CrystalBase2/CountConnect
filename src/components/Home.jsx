@@ -3,6 +3,7 @@ import { FaCalendarAlt } from "react-icons/fa";
 import { useState } from "react";
 import { UserAuth } from "./Features/auth/AuthContext";
 import '../css/Home.css';
+import ProfileIcon from '../images/Profile.png';
 
 function Home() {
   const { user } = UserAuth();
@@ -71,9 +72,15 @@ function Home() {
           </tbody>
         </table>
       </div>
+
+      <div className="card">
+        <div className="card-body">
+          <h5 className="card-title">00</h5>
+          <p className="card-text">Number of Passengers Waiting at Terminal</p>
+        </div>
+      </div>
+
     </div>
-
-
   );
 }
 
