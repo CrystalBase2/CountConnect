@@ -233,27 +233,44 @@ h2{
     background-color: #D5B690;
     color: #181414;
 }
-  
-/*Combinations of Table*/
-.reports-table tr:nth-child(1), .weekly-passenger-table tr:nth-child(1){
-    font-weight: bold;
-}
 
-.unit-table tr:nth-child(1),.unit-table tr:nth-child(2),.reports-table tr:nth-child(2), .weekly-passenger-table tr:nth-child(2), 
-.unit-table tr:nth-child(3),.reports-table tr:nth-child(3), .weekly-passenger-table tr:nth-child(3),
-.unit-table tr:nth-child(4),.reports-table tr:nth-child(4), .weekly-passenger-table tr:nth-child(4),
-.unit-table tr:nth-child(5),.reports-table tr:nth-child(5), .weekly-passenger-table tr:nth-child(5){
-    color: gray;
-    pointer-events: none;
-}
-
-
-
-.weekly-passenger-table {
-    width: 75%;
+/* Weekly Table */
+.weekly-table {
     border-collapse: collapse;
     margin-top: 20px !important;
     margin: 0 auto;
+}
+
+.weekly-table td {
+    height: 18px;
+    font-size: 15px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+}
+
+.weekly-table th {
+    width: 85px;
+    white-space: nowrap;
+    font-size: 15px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+    background-color: #D5B690;
+    color: #181414;
+}
+
+/*Combinations of Table*/
+.reports-table tr:nth-child(1), .weekly-table tr:nth-child(1){
+    font-weight: bold;
+}
+
+.unit-table tr:nth-child(1),.unit-table tr:nth-child(2),.reports-table tr:nth-child(2), .weekly-table tr:nth-child(2), 
+.unit-table tr:nth-child(3),.reports-table tr:nth-child(3), .weekly-table tr:nth-child(3),
+.unit-table tr:nth-child(4),.reports-table tr:nth-child(4), .weekly-table tr:nth-child(4),
+.unit-table tr:nth-child(5),.reports-table tr:nth-child(5), .weekly-table tr:nth-child(5){
+    color: gray;
+    pointer-events: none;
 }
 
 .scrollable-table {
@@ -283,7 +300,7 @@ h2{
 }
 
 .reports-table th,
-.reports-table td, .weekly-passenger-table th, .weekly-passenger-table td, .busdriver-table th, .busdriver-table td {
+.reports-table td, .weekly-table th, .weekly-table td, .busdriver-table th, .busdriver-table td {
     font-size: 15px;
     border: 1px solid #ccc;
     padding: 10px;
@@ -291,7 +308,7 @@ h2{
 }
 
 
-.reports-table th, .weekly-passenger-table th, .busdriver-table th{
+.reports-table th, .weekly-table th, .busdriver-table th{
     background-color: #D5B690;
     color: #181414;
     position: sticky;
@@ -299,12 +316,12 @@ h2{
     z-index: 1;
 }
 
-.reports-table, .weekly-passenger-table, .busdriver-table tbody tr:nth-child(even) {
+.reports-table, .weekly-table, .busdriver-table tbody tr:nth-child(even) {
     background-color: white;
     font-weight: lighter;
 }
 
-.unit-table, .reports-table, .weekly-passenger-table, .busdriver-table tbody tr:nth-child(odd) {
+.unit-table, .reports-table, .weekly-table, .busdriver-table tbody tr:nth-child(odd) {
     background-color: white;
     font-weight: lighter;
 }
