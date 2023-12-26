@@ -59,10 +59,10 @@ span {
 }
 
 .terminal-table {
-    width: 50%;
+    width: max-content;
     border-collapse: collapse;
     margin-top: 50px !important;
-    margin: 0 auto;
+    margin-left: 100px;
 }
 
 .terminal-table th,
