@@ -79,6 +79,10 @@ function BusDriver() {
     setEditingRow(false);
     setIsEditing(false);
    };
+
+   const isFormFilled = () => {
+    return busRoute !== "" && busNumber !== "" && idNumber !== "" && driverName !== "" && contactNumber !== "";
+   };   
    
   return (
     <div className="submenu-container">
@@ -203,7 +207,7 @@ function BusDriver() {
                     </MenuItem>
                   ))}
                 </TextField> <br></br>
-                <TextField
+                <TextField required
                   type="text"
                   value={busNumber}
                   label="Bus Number"
@@ -233,7 +237,8 @@ function BusDriver() {
                 />
 
                 <div className="modal-buttons">
-                  <button type="submit">Save Information</button>
+                  {!isFormFilled() && <p style={{color: 'red', fontWeight: 'lighter'}}> Please fill all fields.</p>}
+                  <button type="submit" disabled={!isFormFilled()}>Save Information</button>
                   <button type="button" onClick={closeModal}>Cancel</button>
                 </div>
               </form>
