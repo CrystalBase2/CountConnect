@@ -182,7 +182,7 @@ function BusDriver() {
       {isModalOpen && (
         <Box
           sx={{
-            '& .MuiTextField-root': { m: 1, width: '25ch' },
+            '& .MuiTextField-root': { m: 1, width: '30ch' },
           }}
           noValidate
           autoComplete="off"
@@ -237,9 +237,9 @@ function BusDriver() {
                 />
 
                 <div className="modal-buttons">
-                  {!isFormFilled() && <p style={{color: 'red', fontWeight: 'lighter'}}> Please fill all fields.</p>}
-                  <button type="submit" disabled={!isFormFilled()}>Save Information</button>
-                  <button type="button" onClick={closeModal}>Cancel</button>
+                  {!isFormFilled() && <p style={{color: 'red', fontWeight: 'lighter'}}> Please fill all fields.</p>}<br/>
+                  <button type="submit" disabled={!isFormFilled()} className="save-button">Save Information</button>
+                  <button type="button" onClick={closeModal} className="cancel-button">Cancel</button>
                 </div>
               </form>
             </div>
