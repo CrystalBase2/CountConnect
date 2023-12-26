@@ -25,6 +25,7 @@ function Unit() {
 
   const [isActive, setIsActive] = useState(false);
   const [selected, setIsSelected] = useState("Choose a Bus Route");
+  const [selectedRoute, setSelectedRoute] = useState('');
 
   const [tableData, setTableData] = useState([
     [" ", " ", " "],
@@ -72,6 +73,7 @@ function Unit() {
                 <div onClick={(e) => {
                   setIsSelected(e.target.textContent.trim());
                   setTableData(routesData[e.target.textContent.trim()]);
+                  setSelectedRoute(e.target.textContent.trim());
                   setIsActive(!isActive);
                   }}
                   className="dropdown-item"> Gaisano Mall - Alubijid
@@ -79,6 +81,7 @@ function Unit() {
                 <div onClick={(e) => {
                   setIsSelected(e.target.textContent.trim());
                   setTableData(routesData[e.target.textContent.trim()]);
+                  setSelectedRoute(e.target.textContent.trim());
                   setIsActive(!isActive);
                   }}
                   className="dropdown-item"> Gaisano Mall - Laguindingan
@@ -86,6 +89,7 @@ function Unit() {
                 <div onClick={(e) => {
                   setIsSelected(e.target.textContent.trim());
                   setTableData(routesData[e.target.textContent.trim()]);
+                  setSelectedRoute(e.target.textContent.trim());
                   setIsActive(!isActive);
                   }}
                   className="dropdown-item"> Gaisano Mall - Libertad
@@ -93,6 +97,7 @@ function Unit() {
                 <div onClick={(e) => {
                   setIsSelected(e.target.textContent.trim());
                   setTableData(routesData[e.target.textContent.trim()]);
+                  setSelectedRoute(e.target.textContent.trim());
                   setIsActive(!isActive);
                   }}
                   className="dropdown-item"> Gaisano Mall - Tagoloan
@@ -100,6 +105,7 @@ function Unit() {
                 <div onClick={(e) => {
                   setIsSelected(e.target.textContent.trim());
                   setTableData(routesData[e.target.textContent.trim()]);
+                  setSelectedRoute(e.target.textContent.trim());
                   setIsActive(!isActive);
                   }}
                   className="dropdown-item"> Gaisano Mall - Villanueva
@@ -110,8 +116,8 @@ function Unit() {
 
       <h2 className="table-title"><b>{selected}</b></h2>
       <p className="table-subtitle"><i>This is reflected from the Mobile Application</i></p>
-      <div className="passenger-table-container">
-        <table className="passenger-table">
+      <div className="unit-table-container">
+      <table className="unit-table">
           <thead>
             <tr>
               <th>Bus Number</th>
@@ -121,7 +127,7 @@ function Unit() {
           </thead>
           <tbody>
                 {tableData && tableData.map((row, index) => (
-                <tr key={index}>
+                <tr style={{color: index === 0 && selectedRoute === 'Gaisano Mall - Alubijid' ? '#000000' : 'gray', fontWeight: index === 0 && selectedRoute === 'Gaisano Mall - Alubijid' ? 'bold' : 'normal'}} key={index}>
                   {row.map((cell, i) => (
                     <td key={i}>{cell}</td>
                   ))}

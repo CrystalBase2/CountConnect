@@ -158,32 +158,58 @@ h2{
 .table-title{
     font-size: 40px;
     margin-top: 65px;
+    margin: 0 auto;
+    margin-top: 75px !important;
 }
 
 .table-subtitle {
     text-align: center;
     font-size: 15px;
     font-weight: lighter;
+    margin: 0 auto;
 }
 
-.passenger-table tr:nth-child(1), .weekly-passenger-table tr:nth-child(1){
-    font-weight: bold;
-}
-
-.passenger-table tr:nth-child(2), .weekly-passenger-table tr:nth-child(2), 
-.passenger-table tr:nth-child(3), .weekly-passenger-table tr:nth-child(3),
-.passenger-table tr:nth-child(4), .weekly-passenger-table tr:nth-child(4),
-.passenger-table tr:nth-child(5), .weekly-passenger-table tr:nth-child(5){
-    color: gray;
-    pointer-events: none;
-}
-
-.passenger-table {
-    width: 50%;
+/*Unit Table*/
+.unit-table {
     border-collapse: collapse;
     margin-top: 20px !important;
     margin: 0 auto;
 }
+
+.unit-table td {
+    height: 18px;
+    font-size: 15px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+}
+
+.unit-table th {
+    width: 80px;
+    white-space: nowrap;
+    font-size: 15px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+    background-color: #D5B690;
+    color: #181414;
+}
+  
+  
+/*Combinations of Table*/
+.passenger-table tr:nth-child(1), .weekly-passenger-table tr:nth-child(1){
+    font-weight: bold;
+}
+
+.unit-table tr:nth-child(1),.unit-table tr:nth-child(2),.passenger-table tr:nth-child(2), .weekly-passenger-table tr:nth-child(2), 
+.unit-table tr:nth-child(3),.passenger-table tr:nth-child(3), .weekly-passenger-table tr:nth-child(3),
+.unit-table tr:nth-child(4),.passenger-table tr:nth-child(4), .weekly-passenger-table tr:nth-child(4),
+.unit-table tr:nth-child(5),.passenger-table tr:nth-child(5), .weekly-passenger-table tr:nth-child(5){
+    color: gray;
+    pointer-events: none;
+}
+
+
 
 .weekly-passenger-table {
     width: 75%;
@@ -240,7 +266,7 @@ h2{
     font-weight: lighter;
 }
 
-.passenger-table, .weekly-passenger-table, .busdriver-table tbody tr:nth-child(odd) {
+.unit-table, .passenger-table, .weekly-passenger-table, .busdriver-table tbody tr:nth-child(odd) {
     background-color: white;
     font-weight: lighter;
 }
