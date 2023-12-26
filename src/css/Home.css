@@ -31,7 +31,7 @@
     margin-right: 20px;
 }
 
-h7{
+small{
     font-family: Tahoma, sans-serif;
     font-weight: light;
     font-size: 15px;
@@ -95,26 +95,52 @@ color: gray;
 pointer-events: none;
 }
 
-.card {
+.card-terminal {
     position: absolute;
     right: 0;
-    background-color: #E6D2B9;
-    padding: 25px;
-    margin-right: 200px;
-    width: 50%;
-    height: 350px;
-    border-radius: 10px;
-    z-index: 1; 
+    top: 0;
+    background-color: #D9D9D9;
+    margin-top: 200px;
+    margin-right: 100px;
+    margin-left: 100px;
+    width: 550px;
+    height: 400px;
 }
 
-.card-title{
-    font-size: 20px;
-    font-weight: bolder;
+.sign-photo_img{
+    max-width: 75%;
+    max-height: 75%;
+    margin-top: 20px;
+    display: flex;
+    float: left;
+}
+
+h2{
     text-align: center;
+    margin-right: 75px;
 }
 
-.card-text{
+.card-terminal-number{
+    margin-top: 80px;
+    font-weight: bolder;
+    font-size: 90px;
+    color: #D5B690;
+}
+
+.card-terminal-title{
+    font-family: Tahoma, sans-serif;
+    font-weight: light;
     font-size: 15px;
+    color: #263f50;
+    margin-right: 70px;
+    text-align: center;
+    float: left;
+}
+
+.card-terminal-text{
+    font-size: 12px;
+    float: left;
+    margin-top: 10px;
     font-weight: lighter;
     font-style: italic;
     text-align: center;

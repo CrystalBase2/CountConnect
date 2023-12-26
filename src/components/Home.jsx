@@ -3,7 +3,7 @@ import { FaCalendarAlt } from "react-icons/fa";
 import { useState } from "react";
 import { UserAuth } from "./Features/auth/AuthContext";
 import '../css/Home.css';
-import ProfileIcon from '../images/Profile.png';
+import SignIcon from '../images/SignIcon.png';
 
 function Home() {
   const { user } = UserAuth();
@@ -27,7 +27,7 @@ function Home() {
         <h1 className="home-title">HOME</h1>
         <div className="date-icon">
           <FaCalendarAlt />
-          <p className="home-date"><h7>Today</h7><br/>{formattedDate}</p>
+          <p className="home-date"><small>Today</small><br/>{formattedDate}</p>
         </div>
       </div>
       <span className="home-subtitle">
@@ -73,10 +73,11 @@ function Home() {
         </table>
       </div>
 
-      <div className="card">
-        <div className="card-body">
-          <h5 className="card-title">00</h5>
-          <p className="card-text">Number of Passengers Waiting at Terminal</p>
+      <div className="card-terminal">
+      <img src={SignIcon} className="sign-photo_img" alt="Card image" />
+        <div className="card-terminal-body">
+          <h2 className="card-terminal-number">00</h2>
+          <medium className="card-terminal-title">Passengers Waiting at <br/>Terminal</medium>
         </div>
       </div>
 
