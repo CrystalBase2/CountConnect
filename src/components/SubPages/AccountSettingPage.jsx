@@ -165,8 +165,8 @@ function EditProfilePage() {
                 onChange={(e) => setPassword(e.target.value)} 
               />
               <div className="modal-buttons">
-                <button type="submit">Save Changes</button>
-                <button type="button" onClick={closeModal}>Cancel</button>
+                <button type="submit" className="save-button">Save Changes</button>
+                <button type="button" className="cancel-button"onClick={closeModal}>Cancel</button>
               </div>
             </form>
           </div>
