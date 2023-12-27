@@ -354,7 +354,7 @@ h2{
 }
 
 /* Add Driver Modal Configurations */
-.save-button {
+.save-button, .del-driver-button {
     background-color: #52575D;
     color: white;
     border: none;  
@@ -398,7 +398,6 @@ h3{
 
 .modal-buttons {
     margin-top: 20px;
-    
 }
 
 .modal-buttons button {
@@ -406,6 +405,11 @@ h3{
     cursor: pointer;
     border-radius: 40px;
     width: fit-content;
+}
+
+medium {
+    font-size: 25px;
+    font-weight: bold;
 }
 
 .destination-dropdown {

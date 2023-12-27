@@ -250,12 +250,11 @@ function BusDriver() {
       {isDeleteModalOpen && (
         <div className="modal-overlay">
           <div className="modal">
-            <h5>Are you sure you wanted to delete driver information?</h5>
-            <br/>
+            <medium>Are you sure you wanted to delete driver information?</medium>
             <form onSubmit={handleDeleteChanges}>
               <div className="modal-buttons">
-                <button type="submit">Delete Driver</button>
-                <button type="button" onClick={closeDeleteModal}>Cancel</button>
+                <button type="submit" className= "del-driver-button">Delete Driver</button>
+                <button type="button" className= "cancel-button" onClick={closeDeleteModal}>Cancel</button>
               </div>
             </form>
           </div>
