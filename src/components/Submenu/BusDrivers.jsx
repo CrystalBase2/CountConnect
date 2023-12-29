@@ -5,7 +5,7 @@ import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import MenuItem from '@mui/material/MenuItem';
 
-import { MdDelete, MdEdit, MdDone} from "react-icons/md";
+import {MdMessage, MdDelete, MdEdit, MdDone} from "react-icons/md";
 
 function BusDriver() {
   const { drivers, addBusDriver } = UserAuth();
@@ -99,6 +99,7 @@ function BusDriver() {
         <table className="busdriver-table">
           <thead>
             <tr>
+              <th/>
               <th>Bus Route</th>
               <th>Bus Number</th>
               <th>ID Number</th>
@@ -110,6 +111,9 @@ function BusDriver() {
           <tbody>
             {drivers.map((driver) => (
               <tr key={driver.id}>
+              <td><button>
+                    <MdMessage style={{ fontSize: '25px',  color:'#eed868' }} />
+                  </button></td>
                <td>{editingRow === driver.id ? (
                     <select
                       className="edit-input"
@@ -171,7 +175,9 @@ function BusDriver() {
                     </button>
                   )}
                   </td>
-                <td><button onClick={handleDeleteChanges}><MdDelete style={{ fontSize: '25px',  color:'#D5564D' }} /></button></td>
+                <td><button onClick={handleDeleteChanges}>
+                      <MdDelete style={{ fontSize: '25px',  color:'#D5564D' }} />
+                    </button></td>
               </tr>
             ))}
           </tbody>
