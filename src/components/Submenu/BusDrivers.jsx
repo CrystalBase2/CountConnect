@@ -82,7 +82,17 @@ function BusDriver() {
 
    const isFormFilled = () => {
     return busRoute !== "" && busNumber !== "" && idNumber !== "" && driverName !== "" && contactNumber !== "";
-   };   
+   };  
+  
+  function compare(a, b) {
+    if (a.busRoute < b.busRoute) {
+      return -1;
+    }
+    if (a.busRoute > b.busRoute) {
+      return 1;
+    }
+    return 0;
+   }
    
   return (
     <div className="submenu-container">
@@ -109,7 +119,7 @@ function BusDriver() {
             </tr>
           </thead>
           <tbody>
-            {drivers.map((driver) => (
+            {drivers.sort(compare).map((driver) => (
               <tr key={driver.id}>
               <td><button>
                     <MdMessage style={{ fontSize: '25px',  color:'#eed868' }} />
@@ -213,7 +223,7 @@ function BusDriver() {
                     </MenuItem>
                   ))}
                 </TextField> <br></br>
-                <TextField required
+                <TextField
                   type="text"
                   value={busNumber}
                   label="Bus Number"
