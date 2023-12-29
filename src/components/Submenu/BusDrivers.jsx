@@ -235,13 +235,18 @@ function BusDriver() {
                   size="small"
                 /><br></br>
                 <TextField
-                  type="text"
-                  value={contactNumber}
-                  label="Contact Number"
-                  onChange={(e) => setContactNumber(e.target.value)}
-                  size="small"
+                type="text"
+                value={contactNumber}
+                placeholder="9xxxxxxxxx"
+                maxLength={10}
+                label="Contact Number"
+                onChange={(e) => {
+                  if (e.target.value.length <= 10) {
+                    setContactNumber(e.target.value);
+                  }
+                }}
+                size="small"
                 />
-
                 <div className="modal-buttons">
                   {!isFormFilled() && <p style={{color: 'red', fontWeight: 'lighter'}}> Please fill all fields.</p>}<br/>
                   <button type="submit" disabled={!isFormFilled()} className="save-button">Save Information</button>
