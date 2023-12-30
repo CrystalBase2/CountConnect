@@ -127,10 +127,7 @@ function BusDriver() {
                <td>{editingRow === driver.id ? (
                     <select
                       className="edit-input"
-                      defaultValue={driver.busRoute}
-                      onBlur={(e) => {
-                        setEditingRow(null);
-                      }}>
+                      defaultValue={driver.busRoute}>
                       {BusRoute.map((option, index) => (
                         <option key={index} value={option.label}>
                           {option.label}
@@ -143,36 +140,28 @@ function BusDriver() {
                     className="edit-input"
                     type="text"
                     defaultValue={driver.busNumber}
-                    onBlur={(e) => {
-                      setEditingRow(null);
-                    }}/>) : (
+                    />) : (
                     driver.busNumber)}</td>
                 <td>{editingRow === driver.id ? (
                   <input
                     className="edit-input"
                     type="text"
                     defaultValue={driver.idNumber}
-                    onBlur={(e) => {
-                      setEditingRow(null);
-                    }}/>) : (
+                    />) : (
                     driver.idNumber)}</td>
                 <td>{editingRow === driver.id ? (
                   <input
                     className="edit-input"
                     type="text"
                     defaultValue={driver.driverName}
-                    onBlur={(e) => {
-                      setEditingRow(null);
-                    }}/>) : (
+                    />) : (
                     driver.driverName)}</td>
                 <td>{editingRow === driver.id ? (
                   <input
                     className="edit-input"
                     type="text"
                     defaultValue={driver.contactNumber}
-                    onBlur={(e) => {
-                      setEditingRow(null);
-                    }}/>) : (
+                    />) : (
                     driver.contactNumber)}</td>
                 <td>
                   {isEditing && editingRow === driver.id ? (
