@@ -164,7 +164,7 @@ function BusDriver() {
               <td><button>
                     <MdMessage style={{ fontSize: '25px',  color:'#eed868' }} />
                   </button></td>
-               <td>{driver.busRoute}</td>
+                <td>{driver.busRoute}</td>
                 <td>{driver.busNumber}</td>
                 <td>{driver.idNumber}</td>
                 <td>{driver.driverName}</td>
@@ -334,6 +334,7 @@ function BusDriver() {
                 setEditedContactNumber(e.target.value);
               }
             }}
+            helperText="Only 10 digits are allowed"
             size="small"
           />
           <div className="modal-buttons">
