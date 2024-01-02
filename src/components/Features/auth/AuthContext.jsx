@@ -9,7 +9,7 @@ import {
    reload,
 } from 'firebase/auth';
 import { auth, db } from '../../../firebase';
-import { collection, doc, onSnapshot,addDoc } from 'firebase/firestore';
+import { collection, doc, onSnapshot, addDoc, deleteDoc, updateDoc } from 'firebase/firestore';
 
 const UserContext = createContext();
 
@@ -65,6 +65,25 @@ export const AuthContextProvider = ({ children }) => {
           console.error('Error adding bus driver:', error.message);
        }
     };
+
+    const deleteDriver = async (id) => {
+    try {
+      await deleteDoc(doc(db, 'busDrivers', id));
+      setDrivers(drivers.filter((driver) => driver.id !== id)); // Update local state
+    } catch (error) {
+      console.error("Error deleting driver:", error);
+      // Handle error appropriately, e.g., display an error message to the user
+    }
+  };
+
+   const updateDriver = async (id, newData) => {
+      try {
+         await updateDoc(doc(db, 'busDrivers', id), newData);
+      } catch (error) {
+         console.error("Error updating driver:", error);
+         // Handle error appropriately, e.g., display an error message to the user
+      }
+   };
  
     useEffect(() => {
        const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
@@ -106,7 +125,7 @@ export const AuthContextProvider = ({ children }) => {
     }, []);
  
     return (
-       <UserContext.Provider value={{ createUser, user, logout, signIn, forgotPass, reloadUser, drivers, addBusDriver }}>
+       <UserContext.Provider value={{ createUser, user, logout, signIn, forgotPass, reloadUser, drivers, addBusDriver, deleteDriver, updateDriver }}>
           {children}
        </UserContext.Provider>
     );

@@ -8,7 +8,7 @@ import MenuItem from '@mui/material/MenuItem';
 import {MdMessage, MdDelete, MdEdit, MdDone} from "react-icons/md";
 
 function BusDriver() {
-  const { drivers, addBusDriver } = UserAuth();
+  const { drivers, addBusDriver, deleteDriver, updateDriver } = UserAuth();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [busRoute, setBusRoute] = useState("");
@@ -16,6 +16,18 @@ function BusDriver() {
   const [idNumber, setIDNumber] = useState("");
   const [driverName, setDriverName] = useState("");
   const [contactNumber, setContactNumber] = useState("");
+
+  const [editedBusRoute, setEditedBusRoute] = useState("");
+  const [editedBusNumber, setEditedBusNumber] = useState("");
+  const [editedIDNumber, setEditedIDNumber] = useState("");
+  const [editedDriverName, setEditedDriverName] = useState("");
+  const [editedContactNumber, setEditedContactNumber] = useState("");
+
+
+  const [driverToBeDeleted, setDriverToBeDeleted] = useState(null);
+  const [editedDriver, setEditedDriver] = useState(null);
+
+  const [modalType, setModalType] = useState("add");
 
   const BusRoute = [
     {
@@ -41,6 +53,7 @@ function BusDriver() {
   ];
 
   const handleBusDriver = () => {
+    setModalType("add");
     setIsModalOpen(true);
   };
 
@@ -59,26 +72,53 @@ function BusDriver() {
     closeModal();
   };
 
-  const handleDeleteChanges = () => {
-    setIsModalOpen(false);
+  const handleDeleteChanges = (id) => {
+    setDriverToBeDeleted(id);
     setIsDeleteModalOpen(true);
   };
+
+  const handleDeleteDriver = () => {
+    if (driverToBeDeleted !== null) {
+      deleteDriver(driverToBeDeleted);
+      setIsDeleteModalOpen(false);
+    }
+  };
+
   const closeDeleteModal = () => {
-    setIsModalOpen(false);
+    setDriverToBeDeleted(null);
     setIsDeleteModalOpen(false);
   };
 
-  const [isEditing, setIsEditing] = useState(false);
-  const [editingRow, setEditingRow] = useState(null);
-  const handleEdit = (id) => {
-    setEditingRow(id);
-    setIsEditing(true);
-   };
+  const closeEditModal = () => {
+    setEditedDriver(null);
+    setIsModalOpen(false);
+  };
 
-  const handleUpdate = (id) => {
-    setEditingRow(false);
-    setIsEditing(false);
-   };
+  const handleEdit = (driver) => {
+  setEditedBusRoute(driver.busRoute);
+  setEditedBusNumber(driver.busNumber);
+  setEditedIDNumber(driver.idNumber);
+  setEditedDriverName(driver.driverName);
+  setEditedContactNumber(driver.contactNumber);
+  setEditedDriver(driver);
+
+  setModalType("edit");
+  setIsModalOpen(true);
+};
+
+  const handleUpdate = async (e) => {
+    e.preventDefault();
+    await updateDriver(editedDriver.id, {
+      busRoute: editedBusRoute,
+      busNumber: editedBusNumber,
+      idNumber: editedIDNumber,
+      driverName: editedDriverName,
+      contactNumber: editedContactNumber,
+    });
+    setEditedDriver(null);
+    setIsModalOpen(false);
+  };
+
 
    const isFormFilled = () => {
     return busRoute !== "" && busNumber !== "" && idNumber !== "" && driverName !== "" && contactNumber !== "";
@@ -124,59 +164,21 @@ function BusDriver() {
               <td><button>
                     <MdMessage style={{ fontSize: '25px',  color:'#eed868' }} />
                   </button></td>
-               <td>{editingRow === driver.id ? (
-                    <select
-                      className="edit-input"
-                      defaultValue={driver.busRoute}>
-                      {BusRoute.map((option, index) => (
-                        <option key={index} value={option.label}>
-                          {option.label}
-                        </option>
-                      ))}
-                    </select>) : (
-                    driver.busRoute)}</td>
-                <td>{editingRow === driver.id ? (
-                  <input
-                    className="edit-input"
-                    type="text"
-                    defaultValue={driver.busNumber}
-                    />) : (
-                    driver.busNumber)}</td>
-                <td>{editingRow === driver.id ? (
-                  <input
-                    className="edit-input"
-                    type="text"
-                    defaultValue={driver.idNumber}
-                    />) : (
-                    driver.idNumber)}</td>
-                <td>{editingRow === driver.id ? (
-                  <input
-                    className="edit-input"
-                    type="text"
-                    defaultValue={driver.driverName}
-                    />) : (
-                    driver.driverName)}</td>
-                <td>{editingRow === driver.id ? (
-                  <input
-                    className="edit-input"
-                    type="text"
-                    defaultValue={driver.contactNumber}
-                    />) : (
-                    driver.contactNumber)}</td>
+               <td>{driver.busRoute}</td>
+                <td>{driver.busNumber}</td>
+                <td>{driver.idNumber}</td>
+                <td>{driver.driverName}</td>
+                <td>{driver.contactNumber}</td>
                 <td>
-                  {isEditing && editingRow === driver.id ? (
-                    <button onClick={() => handleUpdate(driver.id)}
-                    ><MdDone style={{ fontSize: '25px', color:'#458647' }} />
-                    </button>
-                  ) : (
-                    <button onClick={() => handleEdit(driver.id)}>
+                    <button onClick={() => handleEdit(driver)}>
                       <MdEdit style={{ fontSize: '25px', color:'#8080F8' }} />
                     </button>
-                  )}
-                  </td>
-                <td><button onClick={handleDeleteChanges}>
+                </td>
+                <td>
+                    <button onClick={() => handleDeleteChanges(driver.id)}>
                       <MdDelete style={{ fontSize: '25px',  color:'#D5564D' }} />
-                    </button></td>
+                    </button>
+                </td>
               </tr>
             ))}
           </tbody>
@@ -184,7 +186,7 @@ function BusDriver() {
       </div>
 
       {/* Modal for adding a new driver */}
-      {isModalOpen && (
+      {isModalOpen && modalType === "add" && (
         <Box
           sx={{
             '& .MuiTextField-root': { m: 1, width: '30ch' },
@@ -263,15 +265,92 @@ function BusDriver() {
             <medium>Are you sure you wanted to delete driver information?</medium>
             <form onSubmit={handleDeleteChanges}>
               <div className="modal-buttons">
-                <button type="submit" className= "del-driver-button">Delete Driver</button>
+                <button type="button" className="del-driver-button" onClick={handleDeleteDriver}>Delete Driver</button>
                 <button type="button" className= "cancel-button" onClick={closeDeleteModal}>Cancel</button>
               </div>
             </form>
           </div>
         </div>
       )}
+
+      {isModalOpen && modalType === "edit" && (
+  // Modal for editing an existing driver
+  <Box
+    sx={{
+      '& .MuiTextField-root': { m: 1, width: '30ch' },
+    }}
+    noValidate
+    autoComplete="off"
+  >
+    <div className="modal-overlay">
+      <div className="modal">
+        <h3>Edit Driver</h3>
+        <br></br>
+        <form onSubmit={handleUpdate}>
+          <TextField
+            select
+            id="outlined-select-route"
+            label="Bus Route"
+            value={editedBusRoute || "Alubijid"}
+            onChange={(e) => setEditedBusRoute(e.target.value)}
+            helperText="Please select driver's bus route"
+            size="small"
+          >
+            {BusRoute.map((option) => (
+              <MenuItem key={option.value} value={option.value}>
+                {option.label}
+              </MenuItem>
+            ))}
+          </TextField> <br></br>
+          <TextField
+            type="text"
+            value={editedBusNumber}
+            label="Bus Number"
+            onChange={(e) => setEditedBusNumber(e.target.value)}
+            size="small"
+          /><br></br>
+          <TextField
+            type="text"
+            value={editedIDNumber}
+            label="Employee ID Number"
+            onChange={(e) => setEditedIDNumber(e.target.value)}
+            size="small"
+          /><br></br>
+          <TextField
+            type="text"
+            value={editedDriverName}
+            label="Driver's Name"
+            onChange={(e) => setEditedDriverName(e.target.value)}
+            size="small"
+          /><br></br>
+          <TextField
+            type="text"
+            value={editedContactNumber}
+            placeholder="9xxxxxxxxx"
+            maxLength={10}
+            label="Contact Number"
+            onChange={(e) => {
+              if (e.target.value.length <= 10) {
+                setEditedContactNumber(e.target.value);
+              }
+            }}
+            size="small"
+          />
+          <div className="modal-buttons">
+            <button type="submit" className="save-button">Save Changes</button>
+            <button type="button" onClick={closeEditModal} className="cancel-button">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </Box>
+)}
+
+
     </div>
   );
+
+
 }
 
 export default BusDriver;
