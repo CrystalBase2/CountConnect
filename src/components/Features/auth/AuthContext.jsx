@@ -8,14 +8,39 @@ import {
    sendEmailVerification,
    reload,
 } from 'firebase/auth';
-import { auth, db } from '../../../firebase';
+import { auth, db, database } from '../../../firebase';
 import { collection, doc, onSnapshot, addDoc, deleteDoc, updateDoc } from 'firebase/firestore';
+import { ref, onValue, off } from 'firebase/database';
+
 
 const UserContext = createContext();
+
 
 export const AuthContextProvider = ({ children }) => {
     const [user, setUser] = useState({});
     const [drivers, setDrivers] = useState([]);
+    const [personCount, setPersonCount] = useState(0);
+
+  useEffect(() => {
+    const fetchPersonCount = () => {
+      const personCountRef = ref(database, '/person_count');
+
+      const personCountListener = onValue(personCountRef, (snapshot) => {
+        const count = snapshot.val();
+        setPersonCount(count);
+      });
+
+      return () => {
+        off(personCountRef, 'value', personCountListener);
+      };
+    };
+
+    fetchPersonCount();
+
+    return () => {
+      // Cleanup function to detach the listener when the component unmounts
+    };
+  }, []);
  
     const createUser = async (email, password) => {
        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
@@ -125,7 +150,7 @@ export const AuthContextProvider = ({ children }) => {
     }, []);
  
     return (
-       <UserContext.Provider value={{ createUser, user, logout, signIn, forgotPass, reloadUser, drivers, addBusDriver, deleteDriver, updateDriver }}>
+       <UserContext.Provider value={{ createUser, user, logout, signIn, forgotPass, reloadUser, drivers, addBusDriver, deleteDriver, updateDriver, personCount }}>
           {children}
        </UserContext.Provider>
     );

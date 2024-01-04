@@ -1,12 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from 'react';
 import { FaCalendarAlt } from "react-icons/fa";
-import { useState } from "react";
 import { UserAuth } from "./Features/auth/AuthContext";
 import '../css/Home.css';
 import SignIcon from '../images/SignIcon.png';
 
 function Home() {
-  const { user } = UserAuth();
+  const { user, personCount } = UserAuth();
   const currentDate = new Date();
   const day = currentDate.getDate().toString().padStart(2, '0');
   const monthNames = [
@@ -17,8 +16,9 @@ function Home() {
   const month = monthNames[currentDate.getMonth()];
   const year = currentDate.getFullYear();
   const formattedDate = `${day} ${month}, ${year}`;
-  
+
   console.log(formattedDate);
+
   
 
   return (
@@ -76,7 +76,7 @@ function Home() {
       <div className="card-terminal">
       <img src={SignIcon} className="sign-photo_img" alt="Card image" />
         <div className="card-terminal-body">
-          <h2 className="card-terminal-number">00</h2>
+          <h2 className="card-terminal-number">{personCount}</h2>
           <medium className="card-terminal-title">Passengers Waiting at <br/>Terminal</medium>
         </div>
       </div>
@@ -86,5 +86,4 @@ function Home() {
 }
 
 export default Home;
-
 
