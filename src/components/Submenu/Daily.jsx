@@ -1,13 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from 'react';
 import { FaCalendarAlt } from "react-icons/fa";
-import { useState } from "react";
 
 import { UserAuth } from ".././Features/auth/AuthContext";
 
 import '../../css/Submenu.css';
 
 function Daily() {
-  const { user } = UserAuth();
+  const { user, totalPeopleData  } = UserAuth();
 
   const currentDate = new Date();
   const day = currentDate.getDate().toString().padStart(2, '0');
@@ -34,10 +33,11 @@ function Daily() {
    ]);
 
   const routesData = {
-    "Gaisano Mall - Alubijid": [["101", "00", "00", "00"], 
+    "Gaisano Mall - Alubijid": [["101", totalPeopleData.morning, totalPeopleData.afternoon, totalPeopleData.evening], 
     ["102", "00", "00", "00"], ["103", "00", "00", "00"], 
     ["104", "00", "00", "00"],["105", "00", "00", "00"]],
   };
+
 
   return (
     <div className="submenu-container">
@@ -49,7 +49,7 @@ function Daily() {
         </div>
       </div>
       <span className="submenu-pagesub">Daily</span>
-      <span className="reports-submenu-subtitle">
+      <span className="reports-submenu-subtitle"> 
         {user.firstName ? (
           <React.Fragment>
             Welcome<b>, {user.firstName}!</b>
@@ -115,5 +115,4 @@ function Daily() {
 
 
 export default Daily;
-
 

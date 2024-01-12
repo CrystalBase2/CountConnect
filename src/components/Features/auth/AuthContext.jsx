@@ -9,7 +9,7 @@ import {
    reload,
 } from 'firebase/auth';
 import { auth, db, database } from '../../../firebase';
-import { collection, doc, onSnapshot, addDoc, deleteDoc, updateDoc } from 'firebase/firestore';
+import { collection, doc, onSnapshot, addDoc, deleteDoc, updateDoc, getDocs, where} from 'firebase/firestore';
 import { ref, onValue, off } from 'firebase/database';
 
 
@@ -20,6 +20,12 @@ export const AuthContextProvider = ({ children }) => {
     const [user, setUser] = useState({});
     const [drivers, setDrivers] = useState([]);
     const [personCount, setPersonCount] = useState(0);
+    const [numPeople, setNumPeople] = useState(0);
+    const [totalPeopleData, setTotalPeopleData] = useState({
+    morning: "00",
+    afternoon: "00",
+    evening: "00"
+  });
 
   useEffect(() => {
     const fetchPersonCount = () => {
@@ -41,6 +47,58 @@ export const AuthContextProvider = ({ children }) => {
       // Cleanup function to detach the listener when the component unmounts
     };
   }, []);
+
+  useEffect(() => {
+   const fetchNumPeople = () => {
+      const numPeopleRef = ref(database, '/num_people');
+
+      const numPeopleListener = onValue(numPeopleRef, (snapshot) => {
+         const count = snapshot.val();
+         setNumPeople(count);
+      });
+
+      return () => {
+         off(numPeopleRef, 'value', numPeopleListener);
+      };
+   };
+
+   fetchNumPeople();
+
+   return () => {
+      // Cleanup function to detach the listener when the component unmounts
+   };
+   }, []);
+
+
+  const fetchTotalPeopleData = async () => {
+    try {
+      const todaysDate = new Date().toISOString().slice(0, 10);
+      const totalPeopleRef = collection(db, 'total_people');
+      const querySnapshot = await getDocs(totalPeopleRef, where('date', '==', todaysDate));
+
+      // Assuming there is only one document for today's date
+      if (querySnapshot.docs.length > 0) {
+        const { total_people_inside_morning, total_people_inside_afternoon, total_people_inside_evening } = querySnapshot.docs[0].data();
+
+        setTotalPeopleData({
+          morning: total_people_inside_morning,
+          afternoon: total_people_inside_afternoon,
+          evening: total_people_inside_evening
+        });
+      } else {
+        console.log('No data found for today');
+      }
+    } catch (error) {
+      console.error('Error fetching total people data:', error);
+    }
+  };
+
+  useEffect(() => {
+    fetchTotalPeopleData();
+  }, []); // Fetch data when the component mounts
+
+
+
  
     const createUser = async (email, password) => {
        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
@@ -150,7 +208,7 @@ export const AuthContextProvider = ({ children }) => {
     }, []);
  
     return (
-       <UserContext.Provider value={{ createUser, user, logout, signIn, forgotPass, reloadUser, drivers, addBusDriver, deleteDriver, updateDriver, personCount }}>
+       <UserContext.Provider value={{ createUser, user, logout, signIn, forgotPass, reloadUser, drivers, addBusDriver, deleteDriver, updateDriver, personCount, numPeople, totalPeopleData }}>
           {children}
        </UserContext.Provider>
     );
