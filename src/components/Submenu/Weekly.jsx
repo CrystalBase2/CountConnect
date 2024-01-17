@@ -8,7 +8,7 @@ import '../../css/Submenu.css';
 
 
 function Weekly() {
-  const { user } = UserAuth();
+  const { user, weeklyReport } = UserAuth();
 
   const currentDate = new Date();
   const day = currentDate.getDate().toString().padStart(2, '0');
@@ -35,7 +35,14 @@ function Weekly() {
    ]);
 
   const routesData = {
-    "Gaisano Mall - Alubijid": [["101", "00", "00", "00", "00", "00", "00", "00"], 
+    "Gaisano Mall - Alubijid": [["101",
+    weeklyReport.Sunday.totalPeopleInside, 
+    weeklyReport.Monday.totalPeopleInside, 
+    weeklyReport.Tuesday.totalPeopleInside, 
+    weeklyReport.Wednesday.totalPeopleInside, 
+    weeklyReport.Thursday.totalPeopleInside, 
+    weeklyReport.Friday.totalPeopleInside, 
+    weeklyReport.Saturday.totalPeopleInside],
     ["102", "00", "00", "00", "00", "00", "00", "00"], ["103", "00", "00", "00", "00", "00", "00", "00"], 
     ["104", "00", "00", "00", "00", "00", "00", "00"],["105", "00", "00", "00", "00", "00", "00", "00"]],
   };
@@ -89,13 +96,13 @@ function Weekly() {
           <thead>
             <tr>
               <th>Bus Number</th>
+              <th>Sun</th>
               <th>Mon</th>
               <th>Tue</th>
               <th>Wed</th>
-              <th>Thur</th>
+              <th>Thu</th>
               <th>Fri</th>
               <th>Sat</th>
-              <th>Sun</th>
             </tr>
           </thead>
           <tbody>
@@ -120,5 +127,4 @@ function Weekly() {
 
 
 export default Weekly;
-
 

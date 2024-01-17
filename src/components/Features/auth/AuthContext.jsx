@@ -9,7 +9,7 @@ import {
    reload,
 } from 'firebase/auth';
 import { auth, db, database } from '../../../firebase';
-import { collection, doc, onSnapshot, addDoc, deleteDoc, updateDoc, getDocs, where} from 'firebase/firestore';
+import { collection, query, doc, onSnapshot, addDoc, deleteDoc, updateDoc, getDocs, getDoc, where} from 'firebase/firestore';
 import { ref, onValue, off } from 'firebase/database';
 
 
@@ -21,10 +21,27 @@ export const AuthContextProvider = ({ children }) => {
     const [drivers, setDrivers] = useState([]);
     const [personCount, setPersonCount] = useState(0);
     const [numPeople, setNumPeople] = useState(0);
-    const [totalPeopleData, setTotalPeopleData] = useState({
-    morning: "00",
-    afternoon: "00",
-    evening: "00"
+    const [dailyReport, setDailyReport] = useState({
+  totalPeopleInsideMorning: 0,
+  totalPeopleInsideAfternoon: 0,
+  totalPeopleInsideEvening: 0,
+});
+
+   const [weeklyReport, setWeeklyReport] = useState({
+   Monday: { date: '', totalPeopleInside: '00' },
+   Tuesday: { date: '', totalPeopleInside: '00' },
+   Wednesday: { date: '', totalPeopleInside: '00' },
+   Thursday: { date: '', totalPeopleInside: '00' },
+   Friday: { date: '', totalPeopleInside: '00' },
+   Saturday: { date: '', totalPeopleInside: '00' },
+   Sunday: { date: '', totalPeopleInside: '00' },
+   });
+   const [monthlyReport, setMonthlyReport] = useState({
+    week1: 0,
+    week2: 0,
+    week3: 0,
+    week4: 0,
+    week5: 0
   });
 
   useEffect(() => {
@@ -70,32 +87,172 @@ export const AuthContextProvider = ({ children }) => {
    }, []);
 
 
-  const fetchTotalPeopleData = async () => {
-    try {
-      const todaysDate = new Date().toISOString().slice(0, 10);
-      const totalPeopleRef = collection(db, 'total_people');
-      const querySnapshot = await getDocs(totalPeopleRef, where('date', '==', todaysDate));
+const generateDailyReport = async () => {
+  try {
+    const currentDate = new Date();
+    const startOfDay = new Date(currentDate);
+    startOfDay.setHours(0, 0, 0, 0); // Set to midnight
 
-      // Assuming there is only one document for today's date
-      if (querySnapshot.docs.length > 0) {
-        const { total_people_inside_morning, total_people_inside_afternoon, total_people_inside_evening } = querySnapshot.docs[0].data();
+    const endOfDay = new Date(currentDate);
+    endOfDay.setHours(23, 59, 59, 999); // Set to the last millisecond of the day
 
-        setTotalPeopleData({
-          morning: total_people_inside_morning,
-          afternoon: total_people_inside_afternoon,
-          evening: total_people_inside_evening
-        });
-      } else {
-        console.log('No data found for today');
+    const querySnapshot = await getDocs(
+      collection(db, 'total_people'),
+      where('date', '>=', startOfDay.toISOString().slice(0, 10)),
+      where('date', '<=', endOfDay.toISOString().slice(0, 10))
+    );
+
+    let dailyReportData = {
+      date: currentDate.toLocaleDateString(),
+      totalPeopleInsideMorning: 0,
+      totalPeopleInsideAfternoon: 0,
+      totalPeopleInsideEvening: 0,
+    };
+
+    let dataFound = false;
+
+    querySnapshot.forEach((doc) => {
+      const docDate = new Date(doc.data().date);
+      const totalPeopleInsideMorning = doc.data().total_people_inside_morning || 0;
+      const totalPeopleInsideAfternoon = doc.data().total_people_inside_afternoon || 0;
+      const totalPeopleInsideEvening = doc.data().total_people_inside_evening || 0;
+
+      if (docDate >= startOfDay && docDate <= endOfDay) {
+         dataFound = true;
+        dailyReportData = {
+          date: docDate.toLocaleDateString(),
+          totalPeopleInsideMorning,
+          totalPeopleInsideAfternoon,
+          totalPeopleInsideEvening,
+        };
       }
-    } catch (error) {
-      console.error('Error fetching total people data:', error);
-    }
-  };
+    });
 
-  useEffect(() => {
-    fetchTotalPeopleData();
-  }, []); // Fetch data when the component mounts
+    if (!dataFound) {
+      console.log('No data found for today. Setting values to 0.');
+    }
+
+    setDailyReport(dailyReportData);
+  } catch (error) {
+    console.error('Error generating daily report: ', error);
+  }
+};
+
+useEffect(() => {
+  generateDailyReport();
+}, []);
+
+
+
+   const generateWeeklyReport = async () => {
+   try {
+      const currentDate = new Date();
+      const startOfWeek = new Date(currentDate);
+      startOfWeek.setHours(0, 0, 0, 0); // Set to midnight
+      startOfWeek.setDate(startOfWeek.getDate() - startOfWeek.getDay()); // Start from the beginning of the week
+
+      const endOfWeek = new Date(startOfWeek);
+      endOfWeek.setDate(endOfWeek.getDate() + 6); // End at the end of the week
+
+      const querySnapshot = await getDocs(
+         collection(db, 'total_people'),
+         where('date', '>=', startOfWeek.toISOString().slice(0, 10)),
+         where('date', '<=', endOfWeek.toISOString().slice(0, 10))
+      );
+
+      const weeklyReportData = {
+         Sunday: { date: '', totalPeopleInside: '00' },
+         Monday: { date: '', totalPeopleInside: '00' },
+         Tuesday: { date: '', totalPeopleInside: '00' },
+         Wednesday: { date: '', totalPeopleInside: '00' },
+         Thursday: { date: '', totalPeopleInside: '00' },
+         Friday: { date: '', totalPeopleInside: '00' },
+         Saturday: { date: '', totalPeopleInside: '00' },
+      };
+
+      querySnapshot.forEach((doc) => {
+         const dateString = doc.data().date;
+         const date = new Date(dateString);
+
+         // Check if the date is within the current week
+         if (date >= startOfWeek && date <= endOfWeek) {
+            const dayName = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][date.getDay()];
+
+            weeklyReportData[dayName] = {
+               date: date.toLocaleDateString(),
+               totalPeopleInside: doc.data().total_people_inside,
+            };
+         }
+      });
+
+      setWeeklyReport(weeklyReportData);
+   } catch (error) {
+      console.error('Error generating weekly report: ', error);
+   }
+};
+
+
+   useEffect(() => {
+   generateWeeklyReport();
+   }, []);
+
+
+
+   const generateMonthlyReport = async () => {
+   try {
+      const currentDate = new Date();
+      const currentYear = currentDate.getFullYear();
+      const currentMonth = currentDate.getMonth() + 1; // Months are zero-indexed
+
+      const startDate = new Date(currentYear, currentMonth - 1, 1);
+      const endDate = new Date(currentYear, currentMonth, 0); // Last day of the month
+
+      const querySnapshot = await getDocs(
+         query(collection(db, 'total_people'),
+         where('date', '>=', startDate.toISOString().slice(0, 10)),
+         where('date', '<=', endDate.toISOString().slice(0, 10))
+         )
+      );
+
+
+      const monthlyReportData = {
+         week1: 0,
+         week2: 0,
+         week3: 0,
+         week4: 0,
+         week5: 0
+      };
+
+      querySnapshot.forEach((doc) => {
+         const dateString = doc.data().date;
+         const date = new Date(dateString);
+
+         // Ensure that the date is within the specified range
+         if (date >= startDate && date <= endDate) {
+         const weekOfMonth = Math.ceil((date.getDate() + startDate.getDay()) / 7);
+
+         // Assuming each document has a 'total_people_inside' field
+         const totalPeopleInside = doc.data().total_people_inside;
+
+         // Add to the respective week
+         monthlyReportData[`week${weekOfMonth}`] += totalPeopleInside;
+         }
+      });
+
+
+
+      setMonthlyReport(monthlyReportData); // Set the state with the fetched data
+
+      return monthlyReportData;
+   } catch (error) {
+      console.error('Error generating monthly report: ', error);
+   }
+   };
+
+   useEffect(() => {
+   generateMonthlyReport();
+   }, []); // Run initially and whenever the component mounts
+
 
 
 
@@ -208,7 +365,22 @@ export const AuthContextProvider = ({ children }) => {
     }, []);
  
     return (
-       <UserContext.Provider value={{ createUser, user, logout, signIn, forgotPass, reloadUser, drivers, addBusDriver, deleteDriver, updateDriver, personCount, numPeople, totalPeopleData }}>
+       <UserContext.Provider value={{ 
+         createUser, 
+         user, 
+         logout, 
+         signIn, 
+         forgotPass, 
+         reloadUser, 
+         drivers, 
+         addBusDriver, 
+         deleteDriver, 
+         updateDriver, 
+         personCount, 
+         numPeople,
+         dailyReport,
+         weeklyReport,
+         monthlyReport }}>
           {children}
        </UserContext.Provider>
     );

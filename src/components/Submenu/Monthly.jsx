@@ -8,7 +8,7 @@ import '../../css/Submenu.css';
 
 
 function Monthly() {
-  const { user } = UserAuth();
+  const { user, monthlyReport } = UserAuth();
 
   const currentDate = new Date();
   const day = currentDate.getDate().toString().padStart(2, '0');
@@ -35,7 +35,7 @@ function Monthly() {
    ]);
 
   const routesData = {
-    "Gaisano Mall - Alubijid": [["101", "00", "00", "00", "00", "00"], 
+    "Gaisano Mall - Alubijid": [["101", monthlyReport.week1, monthlyReport.week2, monthlyReport.week3, monthlyReport.week4, monthlyReport.week5], 
     ["102", "00", "00", "00", "00", "00"], ["103", "00", "00", "00", "00", "00"], 
     ["104", "00", "00", "00", "00", "00"],["105", "00", "00", "00", "00", "00"]],
   };
@@ -118,5 +118,4 @@ function Monthly() {
 
 
 export default Monthly;
-
 

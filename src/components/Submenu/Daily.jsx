@@ -6,7 +6,7 @@ import { UserAuth } from ".././Features/auth/AuthContext";
 import '../../css/Submenu.css';
 
 function Daily() {
-  const { user, totalPeopleData  } = UserAuth();
+  const { user, dailyReport, } = UserAuth();
 
   const currentDate = new Date();
   const day = currentDate.getDate().toString().padStart(2, '0');
@@ -33,7 +33,7 @@ function Daily() {
    ]);
 
   const routesData = {
-    "Gaisano Mall - Alubijid": [["101", totalPeopleData.morning, totalPeopleData.afternoon, totalPeopleData.evening], 
+    "Gaisano Mall - Alubijid": [["101", dailyReport.totalPeopleInsideMorning, dailyReport.totalPeopleInsideAfternoon, dailyReport.totalPeopleInsideEvening], 
     ["102", "00", "00", "00"], ["103", "00", "00", "00"], 
     ["104", "00", "00", "00"],["105", "00", "00", "00"]],
   };
