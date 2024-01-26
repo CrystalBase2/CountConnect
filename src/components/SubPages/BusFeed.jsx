@@ -14,23 +14,24 @@ function BusFeed() {
   const month = monthNames[currentDate.getMonth()];
   const year = currentDate.getFullYear();
   const formattedDate = `${day} ${month}, ${year}`;
-  
-  console.log(formattedDate);
 
+  console.log(formattedDate);
 
   return (
     <div className="subpages-container">
       <div className="subpages-content">
-        <h1 className="subpages-title">LIVE FEED ON BUS<br/>UNITS</h1>
+        <h1 className="subpages-title">LIVE FEED ON eBUS VEHICLE</h1>
         <div className="date-icon">
           <FaCalendarAlt />
-          <p className="subpages-date"><h7>Today</h7><br/>{formattedDate}</p>
+          <p className="subpages-date"><strong>Today</strong><br />{formattedDate}</p>
         </div>
       </div>
+      <div className="bus-feed" style={{ textAlign: 'center' }}>
+        <img src={'http://localhost:5000/video_feed'} alt="Live Feed Temporarily Unavailable Due to Camera Disconnection. Thanks for Your Understanding." />
+      </div>
+
     </div>
   );
 }
 
 export default BusFeed;
-
-

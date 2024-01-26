@@ -14,9 +14,8 @@ function BusFeed() {
   const month = monthNames[currentDate.getMonth()];
   const year = currentDate.getFullYear();
   const formattedDate = `${day} ${month}, ${year}`;
-  
-  console.log(formattedDate);
 
+  console.log(formattedDate);
 
   return (
     <div className="subpages-container">
@@ -24,13 +23,14 @@ function BusFeed() {
         <h1 className="subpages-title">LIVE FEED ON GAISANO TERMINAL</h1>
         <div className="date-icon">
           <FaCalendarAlt />
-          <p className="subpages-date"><h7>Today</h7><br/>{formattedDate}</p>
+          <p className="subpages-date"><strong>Today</strong><br />{formattedDate}</p>
         </div>
+      </div>
+      <div className="terminal-feed">
+        <img src={'http://localhost:5000/video_feed'} alt="none" />
       </div>
     </div>
   );
 }
 
 export default BusFeed;
-
-
