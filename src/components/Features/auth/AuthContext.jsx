@@ -152,7 +152,7 @@ useEffect(() => {
       startOfWeek.setDate(startOfWeek.getDate() - startOfWeek.getDay()); // Start from the beginning of the week
 
       const endOfWeek = new Date(startOfWeek);
-      endOfWeek.setDate(endOfWeek.getDate() + 6); // End at the end of the week
+      endOfWeek.setDate(endOfWeek.getDate() + 7); // End at the end of the week
 
       const querySnapshot = await getDocs(
          collection(db, 'total_people'),
