@@ -27,7 +27,7 @@ function BusFeed() {
         </div>
       </div>
       <div className="bus-feed" style={{ textAlign: 'center' }}>
-        <img src={'http://localhost:5000/video_feed'} alt="Live Feed Temporarily Unavailable Due to Camera Disconnection. Thanks for Your Understanding." />
+        <img src={'http://192.168.137.146:5000/video_feed'} alt="Live Feed Temporarily Unavailable Due to Camera Disconnection. Thanks for Your Understanding." />
       </div>
 
     </div>
