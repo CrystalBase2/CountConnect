@@ -26,9 +26,10 @@ function BusFeed() {
           <p className="subpages-date"><strong>Today</strong><br />{formattedDate}</p>
         </div>
       </div>
-      <div className="terminal-feed">
-        <img src={'http://localhost:5000/video_feed'} alt="none" />
+      <div className="bus-feed" style={{ textAlign: 'center' }}>
+        <img src={'http://localhost:5000/video_feed'} alt="Live Feed Temporarily Unavailable Due to Camera Disconnection. Thanks for Your Understanding." />
       </div>
+      
     </div>
   );
 }
