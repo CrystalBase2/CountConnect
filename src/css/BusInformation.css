@@ -46,8 +46,6 @@ h7 {
     font-weight: bolder;
 }
 
-/* Subpages for Profile Page */
-
 .profile-submenu-container {
     position: relative;
     align-items: center;
@@ -199,6 +197,7 @@ h5 {
 .busroute-table td {
     height: 15px;
     font-size: 15px;
+    font-weight: lighter;
     border: 1px solid #ccc;
     padding: 10px;
     text-align: center;
