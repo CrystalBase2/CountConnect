@@ -298,28 +298,35 @@ function BusDriver() {
         <h3>Edit Driver</h3>
         <br></br>
         <form onSubmit={handleUpdate}>
-          <TextField
-            select
-            id="outlined-select-route"
-            label="Bus Route"
-            value={editedBusRoute || "Alubijid"}
-            onChange={(e) => setEditedBusRoute(e.target.value)}
-            helperText="Please select driver's bus route"
-            size="small"
-          >
-            {busRoute.map((option) => (
-              <MenuItem key={option.value} value={option.value}>
-                {option.label}
-              </MenuItem>
-            ))}
-          </TextField> <br></br>
-          <TextField
-            type="text"
-            value={editedBusNumber}
-            label="Bus Number"
-            onChange={(e) => setEditedBusNumber(e.target.value)}
-            size="small"
-          /><br></br>
+        <TextField
+                  select
+                  label="Bus Number"
+                  value={editedBusNumber}
+                  onChange={(e) => {
+                    const selectedNumber = e.target.value;
+                    setSelectedBusNumber(selectedNumber);
+
+                    const selectedBusInfo = busInfo.find(
+                      (info) => info.busNumber === selectedNumber
+                    );
+                    setSelectedBusRoute(selectedBusInfo ? selectedBusInfo.busRoute : "");
+                  }}
+                  size="small"
+                >
+                  {busInfo.map((info) => (
+                    <MenuItem key={info.busNumber} value={info.busNumber}>
+                      {info.busNumber}
+                    </MenuItem>
+                  ))}
+                </TextField>
+                <br></br>
+                <TextField
+                  type="text"
+                  label="Bus Route"
+                  value={editedBusRoute}
+                  size="small"
+                  disabled
+                /> <br></br>
           <TextField
             type="text"
             value={editedIDNumber}
@@ -357,8 +364,6 @@ function BusDriver() {
     </div>
   </Box>
 )}
-
-
     </div>
   );
 

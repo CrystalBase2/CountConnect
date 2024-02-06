@@ -198,7 +198,6 @@ const handleEditClick = (bus) => {
                 <TextField
                   select
                   label="Bus Route"
-                  value={busRoute}
                   onChange={(e) => setBusRoute(e.target.value)}
                   size="small"
                 >

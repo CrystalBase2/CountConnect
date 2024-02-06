@@ -116,7 +116,7 @@ function BusRoute() {
                 <TextField
                   type="text"
                   value={busRoute}
-                  placeholder="Gaisano - Opol"
+                  placeholder="Gaisano - (Destination)"
                   label="Bus Route"
                   onChange={(e) => setBusRoute(e.target.value)}
                   size="small"
