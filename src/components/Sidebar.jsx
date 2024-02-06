@@ -11,11 +11,11 @@ const Sidebar = ({ children }) => {
   const [subNavOpen, setSubNavOpen] = useState(null);
   const { logout } = UserAuth(); // Get the logout function from context
 
-  const handleLogout = () => {
-    // Call the logout function when the Logout button is clicked
-    logout();
+const handleLogout = () => {
+  // Call the logout function when the Logout button is clicked
+  logout();
 
-  };
+};
 
   const menuItem = [
     {
@@ -23,19 +23,29 @@ const Sidebar = ({ children }) => {
       name: "Home",
       icon: <FaHome />,
       subNav: [
-        { path: "./unit", name: "Unit Updates", icon: <FaBusAlt /> },
-        { path: "./webcam", name: "Live Feed", icon: <BsWebcamFill /> },
+        {path: "./unit", name: "Unit Updates", icon: <FaBusAlt />},
+        {path: "./webcam", name: "Live Feed", icon: <BsWebcamFill />},
       ],
       iconClosed: <RiArrowDownSFill />,
       iconOpened: <RiArrowUpSFill />,
     },
     {
+      path: "/dashboard/busroute",
+      name: "Bus Routes",
+      icon: <FaBus />,
+    },
+    {
+      path: "/dashboard/businformation",
+      name: "Bus Information",
+      icon: <FaBus />,
+    },
+    {
       name: "Reports",
       icon: <FaFile />,
       subNav: [
-        { path: "/dashboard/daily", name: "Daily", icon: <BsTable /> },
-        { path: "/dashboard/weekly", name: "Weekly", icon: <BsTable /> },
-        { path: "/dashboard/monthly", name: "Monthly", icon: <BsTable /> },
+        { path: "/dashboard/daily", name: "Daily", icon: <BsTable />},
+        { path: "/dashboard/weekly", name: "Weekly", icon: <BsTable />},
+        { path: "/dashboard/monthly", name: "Monthly", icon: <BsTable />},
       ],
       iconClosed: <RiArrowDownSFill />,
       iconOpened: <RiArrowUpSFill />,
@@ -45,8 +55,7 @@ const Sidebar = ({ children }) => {
       name: "Profile",
       icon: <FaUserAlt />,
       subNav: [
-        { path: "./businformation", name: "Bus Information", icon: <FaBus /> },
-        { path: "./busdriver", name: "Terminal Drivers", icon: <BsFillPeopleFill /> },
+        {path: "./busdriver", name: "Terminal Drivers", icon: <BsFillPeopleFill />},
       ],
     },
     {
@@ -65,8 +74,8 @@ const Sidebar = ({ children }) => {
             <NavLink
               to={item.path}
               className={({ isActive }) =>
-                isActive ? "link active" : "link"
-              }
+              isActive ? "link active" : "link"
+            }
               onClick={() => {
                 item.subNav && setSubNavOpen(subNavOpen === index ? null : index);
                 item.onClick && item.onClick(); // Call onClick if provided
@@ -85,8 +94,8 @@ const Sidebar = ({ children }) => {
                 to={subItem.path}
                 key={subIndex}
                 className={({ isActive }) =>
-                  isActive ? "link active" : "sublink"
-                }
+                isActive ? "link active" : "sublink"
+              }
               >
                 <div className="sublink_icon">{subItem.icon}</div>
                 <div className="sublink_text">{subItem.name}</div>

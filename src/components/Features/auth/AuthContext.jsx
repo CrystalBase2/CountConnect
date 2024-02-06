@@ -19,30 +19,54 @@ const UserContext = createContext();
 export const AuthContextProvider = ({ children }) => {
     const [user, setUser] = useState({});
     const [drivers, setDrivers] = useState([]);
+    const [busInfo, setBus] = useState([]);
     const [personCount, setPersonCount] = useState(0);
     const [numPeople, setNumPeople] = useState(0);
     const [dailyReport, setDailyReport] = useState({
-  totalPeopleInsideMorning: 0,
-  totalPeopleInsideAfternoon: 0,
-  totalPeopleInsideEvening: 0,
-});
+         totalPeopleInsideMorning: 0,
+         totalPeopleInsideAfternoon: 0,
+         totalPeopleInsideEvening: 0,
+         });
 
    const [weeklyReport, setWeeklyReport] = useState({
-   Monday: { date: '', totalPeopleInside: '00' },
-   Tuesday: { date: '', totalPeopleInside: '00' },
-   Wednesday: { date: '', totalPeopleInside: '00' },
-   Thursday: { date: '', totalPeopleInside: '00' },
-   Friday: { date: '', totalPeopleInside: '00' },
-   Saturday: { date: '', totalPeopleInside: '00' },
-   Sunday: { date: '', totalPeopleInside: '00' },
-   });
+         Monday: { date: '', totalPeopleInside: '00' },
+         Tuesday: { date: '', totalPeopleInside: '00' },
+         Wednesday: { date: '', totalPeopleInside: '00' },
+         Thursday: { date: '', totalPeopleInside: '00' },
+         Friday: { date: '', totalPeopleInside: '00' },
+         Saturday: { date: '', totalPeopleInside: '00' },
+         Sunday: { date: '', totalPeopleInside: '00' },
+         });
    const [monthlyReport, setMonthlyReport] = useState({
-    week1: 0,
-    week2: 0,
-    week3: 0,
-    week4: 0,
-    week5: 0
-  });
+         week1: 0,
+         week2: 0,
+         week3: 0,
+         week4: 0,
+         week5: 0
+      });
+   const [busRoutes, setBusRoutes] = useState([]);
+   const [raspberryPiOptions, setRaspberryPiOptions] = useState([]);
+
+   useEffect(() => {
+    const fetchRaspberryPiOptions = () => {
+      const raspberryPiRef = ref(database, '/raspberrypi');
+
+      const raspberryPiOptionsListener = onValue(raspberryPiRef, (snapshot) => {
+        const options = snapshot.val();
+        setRaspberryPiOptions(options ? Object.keys(options) : []);
+      });
+
+      return () => {
+        off(raspberryPiRef, 'value', raspberryPiOptionsListener);
+      };
+    };
+
+    fetchRaspberryPiOptions();
+
+    return () => {
+      // Cleanup function to detach the listener when the component unmounts
+    };
+  }, []);
 
   useEffect(() => {
     const fetchPersonCount = () => {
@@ -132,6 +156,7 @@ const generateDailyReport = async () => {
       console.log('No data found for today. Setting values to 0.');
     }
 
+
     setDailyReport(dailyReportData);
   } catch (error) {
     console.error('Error generating daily report: ', error);
@@ -173,6 +198,7 @@ useEffect(() => {
       querySnapshot.forEach((doc) => {
          const dateString = doc.data().date;
          const date = new Date(dateString);
+         
 
          // Check if the date is within the current week
          if (date >= startOfWeek && date <= endOfWeek) {
@@ -182,6 +208,7 @@ useEffect(() => {
                date: date.toLocaleDateString(),
                totalPeopleInside: doc.data().total_people_inside,
             };
+            
          }
       });
 
@@ -252,6 +279,61 @@ useEffect(() => {
    useEffect(() => {
    generateMonthlyReport();
    }, []); // Run initially and whenever the component mounts
+
+
+   const addBusRoute = async (route) => {
+    try {
+      const routesRef = collection(db, 'busRoutes');
+      await addDoc(routesRef, {
+        route,
+      });
+      console.log('Bus route added successfully');
+    } catch (error) {
+      console.error('Error adding bus route:', error.message);
+    }
+  };
+
+  const fetchBusRoutes = async () => {
+    try {
+      const querySnapshot = await getDocs(collection(db, 'busRoutes'));
+      const routesData = querySnapshot.docs.map(doc => doc.data().route);
+      setBusRoutes(routesData);
+    } catch (error) {
+      console.error('Error fetching bus routes:', error.message);
+    }
+  };
+
+   const addBusInfo = async (busRoute, busNumber, busCapacity, raspberryPi) => {
+    try {
+      const busInfoRef = collection(db, 'busInfo');
+      await addDoc(busInfoRef, {
+        busRoute,
+        busNumber,
+        busCapacity,
+        raspberryPi
+      });
+      console.log('Bus info added successfully');
+    } catch (error) {
+      console.error('Error adding bus info:', error.message);
+    }
+  };
+
+    const updateBusInfo = async (id, newData) => {
+    try {
+      await updateDoc(doc(db, 'busInfo', id), newData);
+    } catch (error) {
+      console.error('Error updating bus info:', error.message);
+    }
+  };
+
+  const deleteBusInfo = async (id) => {
+    try {
+      await deleteDoc(doc(db, 'busInfo', id));
+    } catch (error) {
+      console.error('Error deleting bus info:', error.message);
+    }
+  };
+
 
 
 
@@ -350,12 +432,21 @@ useEffect(() => {
                 const driversData = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
                 setDrivers(driversData);
              });
+
+            // Fetch busInfo data from Firestore.
+             const busInfoRef = collection(db, 'busInfo');
+             const unsubscribeBusInfoSnapshot = onSnapshot(busInfoRef, (querySnapshot) => {
+            const busInfoData = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+               setBus(busInfoData);
+             });
  
              // Clean up the snapshot listeners when the component unmounts.
              return () => {
                 unsubscribeSnapshot();
                 unsubscribeDriversSnapshot();
+                unsubscribeBusInfoSnapshot();
              };
+
           }
        });
  
@@ -380,7 +471,15 @@ useEffect(() => {
          numPeople,
          dailyReport,
          weeklyReport,
-         monthlyReport }}>
+         monthlyReport,
+         busRoutes,
+         fetchBusRoutes,
+         addBusRoute,
+         raspberryPiOptions,
+         addBusInfo,
+         busInfo,
+         updateBusInfo,
+         deleteBusInfo }}>
           {children}
        </UserContext.Provider>
     );

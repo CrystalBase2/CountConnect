@@ -3,7 +3,7 @@ import { FaCalendarAlt } from "react-icons/fa";
 
 import '../../css/Subpages.css';
 
-function BusFeed() {
+function TermiFeed() {
   const currentDate = new Date();
   const day = currentDate.getDate().toString().padStart(2, '0');
   const monthNames = [
@@ -14,8 +14,9 @@ function BusFeed() {
   const month = monthNames[currentDate.getMonth()];
   const year = currentDate.getFullYear();
   const formattedDate = `${day} ${month}, ${year}`;
-
+  
   console.log(formattedDate);
+
 
   return (
     <div className="subpages-container">
@@ -23,15 +24,14 @@ function BusFeed() {
         <h1 className="subpages-title">LIVE FEED ON GAISANO TERMINAL</h1>
         <div className="date-icon">
           <FaCalendarAlt />
-          <p className="subpages-date"><strong>Today</strong><br />{formattedDate}</p>
+          <p className="subpages-date"><h7>Today</h7><br/>{formattedDate}</p>
         </div>
       </div>
-      <div className="bus-feed" style={{ textAlign: 'center' }}>
-        <img src={'http://localhost:5000/video_feed'} alt="Live Feed Temporarily Unavailable Due to Camera Disconnection. Thanks for Your Understanding." />
-      </div>
-      
+      <img src="http://192.168.43.45:5000/video_feed" style={{ textAlign: 'center' }} className="terminal-feed" alt="Live feed temporarily unavailable due to camera disconnection.  Thanks for your understanding."/>
     </div>
   );
 }
 
-export default BusFeed;
+export default TermiFeed;
+
+
