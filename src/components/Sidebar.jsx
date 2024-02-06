@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { FaHome, FaFile, FaUserAlt, FaBusAlt, FaBus } from "react-icons/fa";
+import { FaHome, FaFile, FaUserAlt, FaBusAlt, FaBus, FaRoute } from "react-icons/fa";
 import { BsTable, BsWebcamFill, BsFillPeopleFill } from "react-icons/bs";
 import { RiArrowDownSFill, RiArrowUpSFill } from "react-icons/ri";
+import { MdBusAlert } from "react-icons/md";
 import { BiLogOut } from "react-icons/bi";
 import { NavLink } from "react-router-dom";
 import { UserAuth } from "./Features/auth/AuthContext"; // Import UserAuth context
@@ -30,14 +31,15 @@ const handleLogout = () => {
       iconOpened: <RiArrowUpSFill />,
     },
     {
-      path: "/dashboard/busroute",
-      name: "Bus Routes",
+      name: "Bus Units",
       icon: <FaBus />,
-    },
-    {
-      path: "/dashboard/businformation",
-      name: "Bus Information",
-      icon: <FaBus />,
+      subNav: [
+        {path: "/dashboard/busroute", name: "Bus Routes", icon: <FaRoute />},
+        {path: "/dashboard/businformation", name: "Bus Registration", icon: <MdBusAlert />},
+        {path: "./busdriver", name: "Driver Assigned", icon: <BsFillPeopleFill />},
+      ],
+      iconClosed: <RiArrowDownSFill />,
+      iconOpened: <RiArrowUpSFill />,
     },
     {
       name: "Reports",
@@ -54,9 +56,6 @@ const handleLogout = () => {
       path: "/dashboard/profile",
       name: "Profile",
       icon: <FaUserAlt />,
-      subNav: [
-        {path: "./busdriver", name: "Terminal Drivers", icon: <BsFillPeopleFill />},
-      ],
     },
     {
       name: "Logout",
