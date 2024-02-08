@@ -261,16 +261,8 @@ h2{
 }
 
 /*Combinations of Table*/
-.reports-table tr:nth-child(1), .weekly-table tr:nth-child(1){
-    font-weight: bold;
-}
-
-.unit-table tr:nth-child(1),.unit-table tr:nth-child(2),.reports-table tr:nth-child(2), .weekly-table tr:nth-child(2), 
-.unit-table tr:nth-child(3),.reports-table tr:nth-child(3), .weekly-table tr:nth-child(3),
-.unit-table tr:nth-child(4),.reports-table tr:nth-child(4), .weekly-table tr:nth-child(4),
-.unit-table tr:nth-child(5),.reports-table tr:nth-child(5), .weekly-table tr:nth-child(5){
-    color: gray;
-    pointer-events: none;
+.reports-table tr, .weekly-table tr{
+    font-weight: lighter;
 }
 
 .scrollable-table {

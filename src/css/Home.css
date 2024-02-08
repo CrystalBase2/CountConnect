@@ -83,16 +83,8 @@ span {
     font-weight: lighter;
 }
 
-.terminal-table tr:nth-child(1){
-    font-weight: bold;
-}
-
-.terminal-table tr:nth-child(2),
-.terminal-table tr:nth-child(3),
-.terminal-table tr:nth-child(4),
-.terminal-table tr:nth-child(5){
-color: gray;
-pointer-events: none;
+.terminal-table tr{
+    font-weight: lighter;
 }
 
 .card-terminal {
