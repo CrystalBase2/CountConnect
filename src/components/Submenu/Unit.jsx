@@ -7,7 +7,7 @@ import { ref, onValue } from 'firebase/database';
 
 
 function Unit() {
-  const { numPeople, busRoutes, busInfo, raspberryPiOptions } = UserAuth();
+  const { user, numPeople, busRoutes, busInfo, raspberryPiOptions } = UserAuth();
 
   const currentDate = new Date();
   const day = currentDate.getDate().toString().padStart(2, '0');
@@ -20,6 +20,7 @@ function Unit() {
   const year = currentDate.getFullYear();
   const formattedDate = `${day} ${month}, ${year}`;
 
+  const [isActive, setIsActive] = useState(false);
   const [selectedRoute, setSelectedRoute] = useState('');
   const [tableData, setTableData] = useState([]);
 
@@ -56,15 +57,36 @@ function Unit() {
           <p className="submenu-date"><small>Today</small><br />{formattedDate}</p>
         </div>
       </div>
-      <div className="submenu-dropdown">
+
+      <span className="submenu-subtitle">
+        {user.firstName ? (
+          <React.Fragment>
+            Welcome<b>, {user.firstName}!</b>
+          </React.Fragment>
+        ) : (
+          "Loading..."
+        )}</span>
+
+<div className="submenu-dropdown">
         <div className="dropdown">
-          <div className="dropdown-btn">
-            <select onChange={(e) => setSelectedRoute(e.target.value)} value={selectedRoute}>
-              <option value="">Choose a Bus Route</option>
-              {busRoutes.map((route, index) => (
-                <option key={index} value={route}>{route}</option>
-              ))}
-            </select>
+          <div onClick={() => setIsActive(!isActive)} className="dropdown-btn">
+            {selectedRoute || 'Choose a Bus Route'}
+            <p className={isActive ? "fas fa-caret-up" : "fas fa-caret-down"} />
+          </div>
+          <div className="dropdown-content" style={{ display: isActive ? "block" : "none" }}>
+            {busRoutes.map((route, index) => (
+              <div
+                key={index}
+                onClick={() => {
+                  setSelectedRoute(route);
+                  setTableData(busInfo.filter(info => info.busRoute === route));
+                  setIsActive(false);
+                }}
+                className="dropdown-item"
+              >
+                {route}
+              </div>
+            ))}
           </div>
         </div>
       </div>
