@@ -1,14 +1,13 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { FaCalendarAlt } from "react-icons/fa";
-import { useState } from "react";
-
-import { UserAuth } from ".././Features/auth/AuthContext";
-
+import { UserAuth } from "../Features/auth/AuthContext";
 import '../../css/Submenu.css';
+import { database } from '../../firebase';
+import { ref, onValue } from 'firebase/database';
 
 
 function Unit() {
-  const { user, numPeople } = UserAuth();
+  const { numPeople, busRoutes, busInfo, raspberryPiOptions } = UserAuth();
 
   const currentDate = new Date();
   const day = currentDate.getDate().toString().padStart(2, '0');
@@ -21,28 +20,32 @@ function Unit() {
   const year = currentDate.getFullYear();
   const formattedDate = `${day} ${month}, ${year}`;
 
-  console.log(formattedDate);
-
-  const [isActive, setIsActive] = useState(false);
-  const [selected, setIsSelected] = useState("Choose a Bus Route");
   const [selectedRoute, setSelectedRoute] = useState('');
+  const [tableData, setTableData] = useState([]);
 
-  const [tableData, setTableData] = useState([
-    [" ", " ", " "],
-    [" ", " ", " "],
-    [" ", " ", " "],
-    [" ", " ", " "],
-    [" ", " ", " "]
-   ]);
-
-  const routesData = {
-    "Gaisano Mall - Alubijid": [["101", "26", numPeople], ["102", "00", "00"], ["103", "00", "00"],, ["104", "00", "00"],["105", "00", "00"]],
-    "Gaisano Mall - Laguindingan": [["201", "00", "00"], ["202", "00", "00"], ["203", "00", "00"],, ["204", "00", "00"],["205", "00", "00"]],
-    "Gaisano Mall - Libertad": [["301", "00", "00"], ["302", "00", "00"], ["303", "00", "00"],, ["304", "00", "00"],["305", "00", "00"]],
-    "Gaisano Mall - Tagoloan": [["401", "00", "00"], ["402", "00", "00"], ["403", "00", "00"],, ["404", "00", "00"],["405", "00", "00"]],
-    "Gaisano Mall - Villanueva": [["501", "00", "00"], ["502", "00", "00"], ["503", "00", "00"],, ["504", "00", "00"],["505", "00", "00"]],
-  };
-   
+  useEffect(() => {
+    if (selectedRoute) {
+      Promise.all(
+        busInfo
+          .filter(info => info.busRoute === selectedRoute)
+          .map(info => {
+            const countNumberRef = ref(database, `raspberrypi/${info.raspberryPi}/count_number`);
+            return new Promise((resolve, reject) => {
+              onValue(countNumberRef, (snapshot) => {
+                const countNumber = snapshot.val();
+                resolve({ ...info, countNumber });
+              }, (error) => {
+                reject(error);
+              });
+            });
+          })
+      ).then(updatedData => {
+        setTableData(updatedData);
+      }).catch(error => {
+        console.error('Error fetching count numbers:', error);
+      });
+    }
+  }, [selectedRoute, busInfo, raspberryPiOptions]);
 
   return (
     <div className="submenu-container">
@@ -53,71 +56,23 @@ function Unit() {
           <p className="submenu-date"><small>Today</small><br />{formattedDate}</p>
         </div>
       </div>
-      <span className="submenu-subtitle">
-        {user.firstName ? (
-          <React.Fragment>
-            Welcome<b>, {user.firstName}!</b>
-          </React.Fragment>
-        ) : (
-          "Loading..."
-        )}</span>
-
-
       <div className="submenu-dropdown">
         <div className="dropdown">
-          <div onClick={(e) => { setIsActive(!isActive); }} className="dropdown-btn">
-            {selected}
-            <p className={isActive ? "fas fa-caret-up" : "fas fa-caret-down"} />
-          </div>
-          <div className="dropdown-content" style={{ display: isActive ? "block" : "none" }}>
-                <div onClick={(e) => {
-                  setIsSelected(e.target.textContent.trim());
-                  setTableData(routesData[e.target.textContent.trim()]);
-                  setSelectedRoute(e.target.textContent.trim());
-                  setIsActive(!isActive);
-                  }}
-                  className="dropdown-item"> Gaisano Mall - Alubijid
-                  </div>
-                <div onClick={(e) => {
-                  setIsSelected(e.target.textContent.trim());
-                  setTableData(routesData[e.target.textContent.trim()]);
-                  setSelectedRoute(e.target.textContent.trim());
-                  setIsActive(!isActive);
-                  }}
-                  className="dropdown-item"> Gaisano Mall - Laguindingan
-                </div>
-                <div onClick={(e) => {
-                  setIsSelected(e.target.textContent.trim());
-                  setTableData(routesData[e.target.textContent.trim()]);
-                  setSelectedRoute(e.target.textContent.trim());
-                  setIsActive(!isActive);
-                  }}
-                  className="dropdown-item"> Gaisano Mall - Libertad
-                </div>
-                <div onClick={(e) => {
-                  setIsSelected(e.target.textContent.trim());
-                  setTableData(routesData[e.target.textContent.trim()]);
-                  setSelectedRoute(e.target.textContent.trim());
-                  setIsActive(!isActive);
-                  }}
-                  className="dropdown-item"> Gaisano Mall - Tagoloan
-                </div>
-                <div onClick={(e) => {
-                  setIsSelected(e.target.textContent.trim());
-                  setTableData(routesData[e.target.textContent.trim()]);
-                  setSelectedRoute(e.target.textContent.trim());
-                  setIsActive(!isActive);
-                  }}
-                  className="dropdown-item"> Gaisano Mall - Villanueva
-                </div>
+          <div className="dropdown-btn">
+            <select onChange={(e) => setSelectedRoute(e.target.value)} value={selectedRoute}>
+              <option value="">Choose a Bus Route</option>
+              {busRoutes.map((route, index) => (
+                <option key={index} value={route}>{route}</option>
+              ))}
+            </select>
           </div>
         </div>
       </div>
 
-      <h2 className="table-title"><b>{selected}</b></h2>
+      <h2 className="table-title"><b>{selectedRoute}</b></h2>
       <p className="table-subtitle"><i>This is reflected from the Mobile Application</i></p>
       <div className="unit-table-container">
-      <table className="unit-table">
+        <table className="unit-table">
           <thead>
             <tr>
               <th>Bus Number</th>
@@ -126,26 +81,18 @@ function Unit() {
             </tr>
           </thead>
           <tbody>
-                {tableData && tableData.map((row, index) => (
-                <tr style={{color: index === 0 && selectedRoute === 'Gaisano Mall - Alubijid' ? '#000000' : 'gray', fontWeight: index === 0 && selectedRoute === 'Gaisano Mall - Alubijid' ? 'bold' : 'normal'}} key={index}>
-                  {row.map((cell, i) => (
-                    <td key={i}>{cell}</td>
-                  ))}
-                </tr>
-              ))}
-            </tbody>
+            {tableData && tableData.map((info, index) => (
+              <tr key={index}>
+                <td>{info.busNumber}</td>
+                <td>{info.busCapacity}</td>
+                <td>{info.countNumber}</td>
+              </tr>
+            ))}
+          </tbody>
         </table>
       </div>
-
     </div>
-
-
-
   );
 }
 
-
-
 export default Unit;
-
-

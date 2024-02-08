@@ -5,7 +5,7 @@ import '../css/Home.css';
 import SignIcon from '../images/SignIcon.png';
 
 function Home() {
-  const { user, personCount } = UserAuth();
+  const { user, personCount, busRoutes, busInfo } = UserAuth();
   const currentDate = new Date();
   const day = currentDate.getDate().toString().padStart(2, '0');
   const monthNames = [
@@ -19,7 +19,10 @@ function Home() {
 
   console.log(formattedDate);
 
-  
+  // Function to count available units for a specific route
+  const countAvailableUnits = (route) => {
+    return busInfo.filter(info => info.busRoute === route).length;
+  };
 
   return (
     <div className="home-container">
@@ -49,26 +52,12 @@ function Home() {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Gaisano Mall - Alubijid</td>
-              <td>01</td>
-            </tr>
-            <tr>
-              <td>Gaisano Mall - Libertad</td>
-              <td>00</td>
-            </tr>
-            <tr>
-              <td>Gaisano Mall - Laguindingan</td>
-              <td>00</td>
-            </tr>
-            <tr>
-              <td>Gaisano Mall - Tagoloan</td>
-              <td>00</td>
-            </tr>
-            <tr>
-              <td>Gaisano Mall - Villanueva</td>
-              <td>00</td>
-            </tr>
+            {busRoutes.map((route, index) => (
+              <tr key={index}>
+                <td>{route}</td>
+                <td>{countAvailableUnits(route)}</td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
@@ -86,4 +75,3 @@ function Home() {
 }
 
 export default Home;
-
