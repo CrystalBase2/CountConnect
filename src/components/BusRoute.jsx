@@ -11,12 +11,12 @@ import '../css/Submenu.css';
 import '../css/BusInformation.css';
 
 function BusRoute() {
-    const { user, addBusRoute, fetchBusRoutes, busRoutes } = UserAuth();
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [modalType, setModalType] = useState("");
-    const [busRoute, setBusRoute] = useState("");
+  const { user, addBusRoute, fetchBusRoutes, busRoutes } = UserAuth();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalType, setModalType] = useState("");
+  const [busRoute, setBusRoute] = useState("");
 
-    useEffect(() => {
+  useEffect(() => {
     fetchBusRoutes();
   }, [busRoutes]);
 
@@ -76,18 +76,18 @@ function BusRoute() {
         )}</span>
 
 
-        <button type="button" className="add-route-button" onClick={handleAddRouteClick}>
-          + Add New Bus Route
-        </button>
-        <div>
-          <div className="scrollable-info-table">
-            <table className="busroute-table">
-              <thead>
-                <tr>
-                  <th/>
-                  <th>Routes</th>
-                </tr>
-              </thead>
+      <button type="button" className="add-route-button" onClick={handleAddRouteClick}>
+        + Add New Bus Route
+      </button>
+      <div>
+        <div className="scrollable-info-table">
+          <table className="busroute-table">
+            <thead>
+              <tr>
+                <th />
+                <th>Routes</th>
+              </tr>
+            </thead>
             <tbody>
               {busRoutes.map((route, index) => (
                 <tr key={index}>
@@ -96,9 +96,9 @@ function BusRoute() {
                 </tr>
               ))}
             </tbody>
-            </table>
-          </div>
+          </table>
         </div>
+      </div>
 
       {isModalOpen && modalType === "add" && (
         <Box
@@ -121,7 +121,7 @@ function BusRoute() {
                   onChange={(e) => setBusRoute(e.target.value)}
                   size="small"
                 /><br></br>
-                
+
                 <div className="modal-buttons">
                   <button type="submit" className="save-button">Save Information</button>
                   <button type="button" onClick={closeModal} className="cancel-button">Cancel</button>

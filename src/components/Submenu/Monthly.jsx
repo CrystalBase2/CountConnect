@@ -1,14 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaCalendarAlt } from "react-icons/fa";
-import { useState } from "react";
-
 import { UserAuth } from ".././Features/auth/AuthContext";
-
 import '../../css/Submenu.css';
 
-
 function Monthly() {
-  const { user, monthlyReport } = UserAuth();
+  const { user, monthlyReport, busRoutes, busInfo } = UserAuth();
 
   const currentDate = new Date();
   const day = currentDate.getDate().toString().padStart(2, '0');
@@ -21,24 +17,11 @@ function Monthly() {
   const year = currentDate.getFullYear();
   const formattedDate = `${day} ${month}, ${year}`;
 
-  console.log(formattedDate);
-
   const [isActive, setIsActive] = useState(false);
-  const [selected, setIsSelected] = useState("Choose a Bus Route");
+  const [selected, setSelected] = useState("Choose a Bus Route");
 
-  const [tableData, setTableData] = useState([
-    [" ", " ", " ", " ", " ", " "],
-    [" ", " ", " ", " ", " ", " "],
-    [" ", " ", " ", " ", " ", " "],
-    [" ", " ", " ", " ", " ", " "],
-    [" ", " ", " ", " ", " ", " "]
-   ]);
-
-  const routesData = {
-    "Gaisano Mall - Alubijid": [["101", monthlyReport.week1, monthlyReport.week2, monthlyReport.week3, monthlyReport.week4, monthlyReport.week5], 
-    ["102", "00", "00", "00", "00", "00"], ["103", "00", "00", "00", "00", "00"], 
-    ["104", "00", "00", "00", "00", "00"],["105", "00", "00", "00", "00", "00"]],
-  };
+  // Filter busInfo based on selected route
+  const filteredBusInfo = busInfo.filter(info => info.busRoute === selected);
 
   return (
     <div className="submenu-container">
@@ -60,26 +43,26 @@ function Monthly() {
         )}
       </span>
 
-
       <div className="submenu-dropdown">
         <div className="dropdown">
-          <div onClick={(e) => { setIsActive(!isActive); }} className="dropdown-btn">
+          <div onClick={() => setIsActive(!isActive)} className="dropdown-btn">
             {selected}
             <p className={isActive ? "fas fa-caret-up" : "fas fa-caret-down"} />
           </div>
-              <div className="dropdown-content" style={{ display: isActive ? "block" : "none" }}>
-                <div onClick={(e) => {
-                  setIsSelected(e.target.textContent.trim());
-                  setTableData(routesData[e.target.textContent.trim()]);
-                  setIsActive(!isActive);
-                  }}
-                  className="dropdown-item"> Gaisano Mall - Alubijid
-                </div>
-                <div className="dropdown-item-reports"> Gaisano Mall - Laguindingan </div>
-                <div className="dropdown-item-reports"> Gaisano Mall - Libertad </div>
-                <div className="dropdown-item-reports"> Gaisano Mall - Tagoloan </div>
-                <div className="dropdown-item-reports"> Gaisano Mall - Villanueva </div>
+          <div className="dropdown-content" style={{ display: isActive ? "block" : "none" }}>
+            {busRoutes.map((route, index) => (
+              <div
+                key={index}
+                onClick={() => {
+                  setSelected(route);
+                  setIsActive(false);
+                }}
+                className="dropdown-item"
+              >
+                {route}
               </div>
+            ))}
+          </div>
         </div>
       </div>
 
@@ -89,34 +72,29 @@ function Monthly() {
           <thead>
             <tr>
               <th>Bus Number</th>
-              <th> Week 1 </th>
-              <th> Week 2 </th>
-              <th> Week 3 </th>
-              <th> Week 4 </th>
-              <th> Week 5 </th>
+              <th>Week 1</th>
+              <th>Week 2</th>
+              <th>Week 3</th>
+              <th>Week 4</th>
+              <th>Week 5</th>
             </tr>
           </thead>
           <tbody>
-                {tableData && tableData.map((row, index) => (
-                <tr key={index}>
-                  {row.map((cell, i) => (
-                    <td key={i}>{cell}</td>
-                  ))}
-                </tr>
-              ))}
-            </tbody>
+            {filteredBusInfo.map((bus, index) => (
+              <tr key={index}>
+                <td>{bus.busNumber}</td>
+                <td>{monthlyReport.week1 || "00"}</td>
+                <td>{monthlyReport.week2 || "00"}</td>
+                <td>{monthlyReport.week3 || "00"}</td>
+                <td>{monthlyReport.week4 || "00"}</td>
+                <td>{monthlyReport.week5 || "00"}</td>
+              </tr>
+            ))}
+          </tbody>
         </table>
       </div>
-
     </div>
-
-
-
   );
 }
 
-
-
 export default Monthly;
-
-

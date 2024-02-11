@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { FaCalendarAlt } from "react-icons/fa";
-
 import { UserAuth } from ".././Features/auth/AuthContext";
-
 import '../../css/Submenu.css';
 
 function Daily() {
-  const { user, dailyReport, } = UserAuth();
-
+  const { user, dailyReport, busRoutes, busInfo } = UserAuth();
+  console.log(dailyReport);
   const currentDate = new Date();
   const day = currentDate.getDate().toString().padStart(2, '0');
   const monthNames = [
@@ -19,25 +17,11 @@ function Daily() {
   const year = currentDate.getFullYear();
   const formattedDate = `${day} ${month}, ${year}`;
 
-  console.log(formattedDate);
-
   const [isActive, setIsActive] = useState(false);
   const [selected, setIsSelected] = useState("Choose a Bus Route");
 
-  const [tableData, setTableData] = useState([
-    [" ", " ", " ", " "],
-    [" ", " ", " ", " "],
-    [" ", " ", " ", " "],
-    [" ", " ", " ", " "],
-    [" ", " ", " ", " "]
-   ]);
-
-  const routesData = {
-    "Gaisano Mall - Alubijid": [["101", dailyReport.totalPeopleInsideMorning, dailyReport.totalPeopleInsideAfternoon, dailyReport.totalPeopleInsideEvening], 
-    ["102", "00", "00", "00"], ["103", "00", "00", "00"], 
-    ["104", "00", "00", "00"],["105", "00", "00", "00"]],
-  };
-
+  // Filter busInfo based on selected route
+  const filteredBusInfo = busInfo.filter(info => info.busRoute === selected);
 
   return (
     <div className="submenu-container">
@@ -49,7 +33,7 @@ function Daily() {
         </div>
       </div>
       <span className="submenu-pagesub">Daily</span>
-      <span className="reports-submenu-subtitle"> 
+      <span className="reports-submenu-subtitle">
         {user.firstName ? (
           <React.Fragment>
             Welcome<b>, {user.firstName}!</b>
@@ -59,26 +43,26 @@ function Daily() {
         )}
       </span>
 
-
       <div className="submenu-dropdown">
         <div className="dropdown">
           <div onClick={(e) => { setIsActive(!isActive); }} className="dropdown-btn">
             {selected}
             <p className={isActive ? "fas fa-caret-up" : "fas fa-caret-down"} />
           </div>
-              <div className="dropdown-content" style={{ display: isActive ? "block" : "none" }}>
-                <div onClick={(e) => {
-                  setIsSelected(e.target.textContent.trim());
-                  setTableData(routesData[e.target.textContent.trim()]);
-                  setIsActive(!isActive);
-                  }}
-                  className="dropdown-item"> Gaisano Mall - Alubijid
-                </div>
-                <div className="dropdown-item-reports"> Gaisano Mall - Laguindingan </div>
-                <div className="dropdown-item-reports"> Gaisano Mall - Libertad </div>
-                <div className="dropdown-item-reports"> Gaisano Mall - Tagoloan </div>
-                <div className="dropdown-item-reports"> Gaisano Mall - Villanueva </div>
+          <div className="dropdown-content" style={{ display: isActive ? "block" : "none" }}>
+            {busRoutes.map((route, index) => (
+              <div
+                key={index}
+                onClick={() => {
+                  setIsSelected(route);
+                  setIsActive(false);
+                }}
+                className="dropdown-item"
+              >
+                {route}
               </div>
+            ))}
+          </div>
         </div>
       </div>
 
@@ -94,26 +78,19 @@ function Daily() {
             </tr>
           </thead>
           <tbody>
-                {tableData && tableData.map((row, index) => (
-                <tr key={index}>
-                  {row.map((cell, i) => (
-                    <td key={i}>{cell}</td>
-                  ))}
-                </tr>
-              ))}
-            </tbody>
+            {filteredBusInfo.map((bus, index) => (
+              <tr key={index}>
+                <td>{bus.busNumber}</td>
+                <td>{dailyReport.totalPeopleInsideMorning || 0}</td>
+                <td>{dailyReport.totalPeopleInsideAfternoon || 0}</td>
+                <td>{dailyReport.totalPeopleInsideEvening || 0}</td>
+              </tr>
+            ))}
+          </tbody>
         </table>
       </div>
-
     </div>
-
-
-
   );
 }
 
-
-
 export default Daily;
-
-
