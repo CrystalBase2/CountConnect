@@ -23,6 +23,33 @@ function Monthly() {
   // Filter busInfo based on selected route
   const filteredBusInfo = busInfo.filter(info => info.busRoute === selected);
 
+  // Find raspberryPiID associated with the selected bus route
+  const raspberryPiID = filteredBusInfo.length > 0 ? filteredBusInfo[0].raspberryPi : null;
+  // console.log(filteredBusInfo)
+  // console.log(raspberryPiID)
+
+  // Initialize table data with default values
+  const tableData = filteredBusInfo.map(bus => {
+    const weekNumbers = ['week1', 'week2', 'week3', 'week4', 'week5'];
+
+    // Initialize an object to store the filtered report data by weeks
+    const filteredWeeklyReport = {};
+
+    // Iterate over each week in weekNumbers array
+    weekNumbers.forEach((week, index) => {
+      // Check if monthlyReport exists and matches bus.busNumber
+      if (monthlyReport && monthlyReport[week] && monthlyReport[week].raspberryPiID === raspberryPiID) {
+        // If it matches, add the report data to filteredWeeklyReport under the corresponding week name
+        filteredWeeklyReport[week] = { weekNumber: index + 1, ...monthlyReport[week] };
+      }
+    });
+
+    return {
+      busNumber: bus.busNumber,
+      monthlyReport: filteredWeeklyReport
+    };
+  });
+
   return (
     <div className="submenu-container">
       <div className="submenu-content">
@@ -80,14 +107,14 @@ function Monthly() {
             </tr>
           </thead>
           <tbody>
-            {filteredBusInfo.map((bus, index) => (
+            {tableData.map((bus, index) => (
               <tr key={index}>
                 <td>{bus.busNumber}</td>
-                <td>{monthlyReport.week1 || "00"}</td>
-                <td>{monthlyReport.week2 || "00"}</td>
-                <td>{monthlyReport.week3 || "00"}</td>
-                <td>{monthlyReport.week4 || "00"}</td>
-                <td>{monthlyReport.week5 || "00"}</td>
+                <td>{bus.monthlyReport && bus.monthlyReport.week1 ? bus.monthlyReport.week1.totalPeopleInside : '0'}</td>
+                <td>{bus.monthlyReport && bus.monthlyReport.week2 ? bus.monthlyReport.week2.totalPeopleInside : '0'}</td>
+                <td>{bus.monthlyReport && bus.monthlyReport.week3 ? bus.monthlyReport.week3.totalPeopleInside : '0'}</td>
+                <td>{bus.monthlyReport && bus.monthlyReport.week4 ? bus.monthlyReport.week4.totalPeopleInside : '0'}</td>
+                <td>{bus.monthlyReport && bus.monthlyReport.week5 ? bus.monthlyReport.week5.totalPeopleInside : '0'}</td>
               </tr>
             ))}
           </tbody>

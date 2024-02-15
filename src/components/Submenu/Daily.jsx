@@ -5,7 +5,6 @@ import '../../css/Submenu.css';
 
 function Daily() {
   const { user, dailyReport, busRoutes, busInfo } = UserAuth();
-  console.log(dailyReport);
   const currentDate = new Date();
   const day = currentDate.getDate().toString().padStart(2, '0');
   const monthNames = [
@@ -22,6 +21,12 @@ function Daily() {
 
   // Filter busInfo based on selected route
   const filteredBusInfo = busInfo.filter(info => info.busRoute === selected);
+
+  // Find raspberryPiID associated with the selected bus route
+  const raspberryPiID = filteredBusInfo.length > 0 ? filteredBusInfo[0].raspberryPi : null;
+
+  // Filter dailyReport based on raspberryPiID
+  const filteredDailyReport = dailyReport && dailyReport.raspberryPiID === raspberryPiID ? dailyReport : null;
 
   return (
     <div className="submenu-container">
@@ -81,9 +86,9 @@ function Daily() {
             {filteredBusInfo.map((bus, index) => (
               <tr key={index}>
                 <td>{bus.busNumber}</td>
-                <td>{dailyReport.totalPeopleInsideMorning || 0}</td>
-                <td>{dailyReport.totalPeopleInsideAfternoon || 0}</td>
-                <td>{dailyReport.totalPeopleInsideEvening || 0}</td>
+                <td>{filteredDailyReport ? filteredDailyReport.totalPeopleInsideMorning || 0 : 0}</td>
+                <td>{filteredDailyReport ? filteredDailyReport.totalPeopleInsideAfternoon || 0 : 0}</td>
+                <td>{filteredDailyReport ? filteredDailyReport.totalPeopleInsideEvening || 0 : 0}</td>
               </tr>
             ))}
           </tbody>

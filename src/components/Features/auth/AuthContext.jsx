@@ -131,6 +131,7 @@ export const AuthContextProvider = ({ children }) => {
             totalPeopleInsideMorning: 0,
             totalPeopleInsideAfternoon: 0,
             totalPeopleInsideEvening: 0,
+            raspberryPiID: "" // Initialize raspberryPiID to empty string
          };
 
          let dataFound = false;
@@ -140,6 +141,7 @@ export const AuthContextProvider = ({ children }) => {
             const totalPeopleInsideMorning = doc.data().total_people_inside_morning || 0;
             const totalPeopleInsideAfternoon = doc.data().total_people_inside_afternoon || 0;
             const totalPeopleInsideEvening = doc.data().total_people_inside_evening || 0;
+            const raspberryPiID = doc.data().raspberryPiID; // Assuming raspberryPiID is stored in the document
 
             if (docDate >= startOfDay && docDate <= endOfDay) {
                dataFound = true;
@@ -148,6 +150,7 @@ export const AuthContextProvider = ({ children }) => {
                   totalPeopleInsideMorning,
                   totalPeopleInsideAfternoon,
                   totalPeopleInsideEvening,
+                  raspberryPiID
                };
             }
          });
@@ -155,7 +158,6 @@ export const AuthContextProvider = ({ children }) => {
          if (!dataFound) {
             console.log('No data found for today. Setting values to 0.');
          }
-
 
          setDailyReport(dailyReportData);
       } catch (error) {
@@ -186,19 +188,18 @@ export const AuthContextProvider = ({ children }) => {
          );
 
          const weeklyReportData = {
-            Sunday: { date: '', totalPeopleInside: '00' },
-            Monday: { date: '', totalPeopleInside: '00' },
-            Tuesday: { date: '', totalPeopleInside: '00' },
-            Wednesday: { date: '', totalPeopleInside: '00' },
-            Thursday: { date: '', totalPeopleInside: '00' },
-            Friday: { date: '', totalPeopleInside: '00' },
-            Saturday: { date: '', totalPeopleInside: '00' },
+            Sunday: { date: '', totalPeopleInside: '00', raspberryPiID: '' },
+            Monday: { date: '', totalPeopleInside: '00', raspberryPiID: '' },
+            Tuesday: { date: '', totalPeopleInside: '00', raspberryPiID: '' },
+            Wednesday: { date: '', totalPeopleInside: '00', raspberryPiID: '' },
+            Thursday: { date: '', totalPeopleInside: '00', raspberryPiID: '' },
+            Friday: { date: '', totalPeopleInside: '00', raspberryPiID: '' },
+            Saturday: { date: '', totalPeopleInside: '00', raspberryPiID: '' },
          };
 
          querySnapshot.forEach((doc) => {
             const dateString = doc.data().date;
             const date = new Date(dateString);
-
 
             // Check if the date is within the current week
             if (date >= startOfWeek && date <= endOfWeek) {
@@ -207,8 +208,8 @@ export const AuthContextProvider = ({ children }) => {
                weeklyReportData[dayName] = {
                   date: date.toLocaleDateString(),
                   totalPeopleInside: doc.data().total_people_inside,
+                  raspberryPiID: doc.data().raspberryPiID // Include raspberryPiID in the weekly report data
                };
-
             }
          });
 
@@ -217,7 +218,6 @@ export const AuthContextProvider = ({ children }) => {
          console.error('Error generating weekly report: ', error);
       }
    };
-
 
    useEffect(() => {
       generateWeeklyReport();
@@ -241,13 +241,12 @@ export const AuthContextProvider = ({ children }) => {
             )
          );
 
-
          const monthlyReportData = {
-            week1: 0,
-            week2: 0,
-            week3: 0,
-            week4: 0,
-            week5: 0
+            week1: { totalPeopleInside: 0, raspberryPiID: '' },
+            week2: { totalPeopleInside: 0, raspberryPiID: '' },
+            week3: { totalPeopleInside: 0, raspberryPiID: '' },
+            week4: { totalPeopleInside: 0, raspberryPiID: '' },
+            week5: { totalPeopleInside: 0, raspberryPiID: '' }
          };
 
          querySnapshot.forEach((doc) => {
@@ -258,15 +257,17 @@ export const AuthContextProvider = ({ children }) => {
             if (date >= startDate && date <= endDate) {
                const weekOfMonth = Math.ceil((date.getDate() + startDate.getDay()) / 7);
 
-               // Assuming each document has a 'total_people_inside' field
+               // Assuming each document has a 'total_people_inside' and 'raspberryPiID' field
                const totalPeopleInside = doc.data().total_people_inside;
+               const raspberryPiID = doc.data().raspberryPiID;
 
                // Add to the respective week
-               monthlyReportData[`week${weekOfMonth}`] += totalPeopleInside;
+               monthlyReportData[`week${weekOfMonth}`] = {
+                  totalPeopleInside: monthlyReportData[`week${weekOfMonth}`].totalPeopleInside + totalPeopleInside,
+                  raspberryPiID: raspberryPiID
+               };
             }
          });
-
-
 
          setMonthlyReport(monthlyReportData); // Set the state with the fetched data
 

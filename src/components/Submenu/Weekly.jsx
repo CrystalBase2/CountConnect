@@ -23,17 +23,33 @@ function Weekly() {
   // Filter busInfo based on selected route
   const filteredBusInfo = busInfo.filter(info => info.busRoute === selected);
 
+  // Find raspberryPiID associated with the selected bus route
+  const raspberryPiID = filteredBusInfo.length > 0 ? filteredBusInfo[0].raspberryPi : null;
+  // console.log(filteredBusInfo)
+  // console.log(raspberryPiID)
+
+
   // Initialize table data with default values
   const tableData = filteredBusInfo.map(bus => {
+    const dayName = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+    // Initialize an object to store the filtered report data by days
+    const filteredDailyReport = {};
+
+    // Iterate over each day in dayName array
+    dayName.forEach(day => {
+      // Check if weeklyReport exists and matches raspberryPiID
+      if (weeklyReport && weeklyReport[day] && weeklyReport[day].raspberryPiID === raspberryPiID) {
+        // If it matches, add the report data to filteredDailyReport under the corresponding day name
+        filteredDailyReport[day] = { dayName: day, ...weeklyReport[day] };
+      }
+    });
+
+    console.log(filteredDailyReport);
+
     return {
       busNumber: bus.busNumber,
-      Sunday: weeklyReport.Sunday[bus.busNumber]?.totalPeopleInside || "00",
-      Monday: weeklyReport.Monday[bus.busNumber]?.totalPeopleInside || "00",
-      Tuesday: weeklyReport.Tuesday[bus.busNumber]?.totalPeopleInside || "00",
-      Wednesday: weeklyReport.Wednesday[bus.busNumber]?.totalPeopleInside || "00",
-      Thursday: weeklyReport.Thursday[bus.busNumber]?.totalPeopleInside || "00",
-      Friday: weeklyReport.Friday[bus.busNumber]?.totalPeopleInside || "00",
-      Saturday: weeklyReport.Saturday[bus.busNumber]?.totalPeopleInside || "00"
+      weeklyReport: filteredDailyReport
     };
   });
 
@@ -86,30 +102,32 @@ function Weekly() {
           <thead>
             <tr>
               <th>Bus Number</th>
-              <th>Sun</th>
-              <th>Mon</th>
-              <th>Tue</th>
-              <th>Wed</th>
-              <th>Thu</th>
-              <th>Fri</th>
-              <th>Sat</th>
+              <th>Sunday</th>
+              <th>Monday</th>
+              <th>Tuesday</th>
+              <th>Wednesday</th>
+              <th>Thursday</th>
+              <th>Friday</th>
+              <th>Saturday</th>
             </tr>
           </thead>
           <tbody>
-            {tableData.map((row, index) => (
+            {tableData.map((bus, index) => (
               <tr key={index}>
-                <td>{row.busNumber}</td>
-                <td>{weeklyReport.Sunday.totalPeopleInside}</td>
-                <td>{weeklyReport.Monday.totalPeopleInside}</td>
-                <td>{weeklyReport.Tuesday.totalPeopleInside}</td>
-                <td>{weeklyReport.Wednesday.totalPeopleInside}</td>
-                <td>{weeklyReport.Thursday.totalPeopleInside}</td>
-                <td>{weeklyReport.Friday.totalPeopleInside}</td>
-                <td>{weeklyReport.Saturday.totalPeopleInside}</td>
+                <td>{bus.busNumber}</td>
+                <td>{bus.weeklyReport && bus.weeklyReport.Sunday ? bus.weeklyReport.Sunday.totalPeopleInside : '0'}</td>
+                <td>{bus.weeklyReport && bus.weeklyReport.Monday ? bus.weeklyReport.Monday.totalPeopleInside : '0'}</td>
+                <td>{bus.weeklyReport && bus.weeklyReport.Tuesday ? bus.weeklyReport.Tuesday.totalPeopleInside : '0'}</td>
+                <td>{bus.weeklyReport && bus.weeklyReport.Wednesday ? bus.weeklyReport.Wednesday.totalPeopleInside : '0'}</td>
+                <td>{bus.weeklyReport && bus.weeklyReport.Thursday ? bus.weeklyReport.Thursday.totalPeopleInside : '0'}</td>
+                <td>{bus.weeklyReport && bus.weeklyReport.Friday ? bus.weeklyReport.Friday.totalPeopleInside : '0'}</td>
+                <td>{bus.weeklyReport && bus.weeklyReport.Saturday ? bus.weeklyReport.Saturday.totalPeopleInside : '0'}</td>
               </tr>
             ))}
+
           </tbody>
         </table>
+
       </div>
     </div>
   );
