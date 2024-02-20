@@ -21,7 +21,7 @@ function Unit() {
   const formattedDate = `${day} ${month}, ${year}`;
 
   const [isActive, setIsActive] = useState(false);
-  const [selectedRoute, setSelectedRoute] = useState('');
+  const [selectedRoute, setSelectedRoute] = useState('Choose a Bus Route');
   const [tableData, setTableData] = useState([]);
 
   useEffect(() => {
